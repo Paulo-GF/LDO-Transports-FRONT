@@ -51,6 +51,8 @@ Pouvoir supprimer les infos en question
 Si nous avons des questions, le client est à notre disposition, mais l'idée c'est de regrouper un max les question pour ne pas l'appeler toutes les 5 minutes :D
   
 </details>
+
+
 ---
 
 ## Stack technique (à faire évoluer ensemble, c'est des idées)
