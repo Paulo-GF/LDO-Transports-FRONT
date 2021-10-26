@@ -1,6 +1,6 @@
 // == Import
-import reactLogo from './react-logo.svg';
-import './styles.css';
+
+import './styles.scss';
 
 // == Composant
 const App = () => (
@@ -10,4 +10,3 @@ const App = () => (
 
 // == Export
 export default App;
-
