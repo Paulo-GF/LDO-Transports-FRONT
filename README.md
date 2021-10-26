@@ -1,4 +1,4 @@
-<img src="./conception/logo_ldo.jpeg" width=250px> 
+<img src="./src/assets/logo_ldo.jpeg" width=250px> 
 
 #### La solution web du transporteur LDO Transports (Toulouse)
 
