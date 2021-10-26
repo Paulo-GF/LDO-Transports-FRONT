@@ -3,7 +3,7 @@ import './styles.scss';
 
 export default function Footer() {
   return (
-    <nav className="footer">
+    <div className="footer">
       <p>Tous droits réservés</p>
       <a href="/contact" className="menu-link">
         Contact
@@ -11,6 +11,6 @@ export default function Footer() {
       <a href="/mentions-legales" className="menu-link">
         Mentions légales
       </a>
-    </nav>
+    </div>
   );
 }
