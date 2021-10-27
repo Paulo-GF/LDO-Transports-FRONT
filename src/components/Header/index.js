@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <nav className="navBar">
       <a href="/" className="menu-link">
-        <img src={LDOLogo} alt="Logo LDO" />
+        <img className="logo" src={LDOLogo} alt="Logo LDO" />
       </a>
       <a href="/" className="menu-link">
         Acceuil

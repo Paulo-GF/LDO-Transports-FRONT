@@ -1,13 +1,16 @@
 // import styles
 import './styles.scss';
 
+// import images
+import image from '../../../assets/truck2.jpg';
+
 export default function History() {
   return (
     <div className="history">
       <h2 className="history-title">Notre histoire c'est notre logo</h2>
-      <section className="history-section">
-        <div className="history-img">
-          <img src="" alt="" />
+      <article className="history-article">
+        <div className="history-image">
+          <img className="img" src={image} alt="truck2" />
         </div>
         <p className="history-content">LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
           de la SAS LDO Transports.
@@ -46,7 +49,7 @@ export default function History() {
           Chez LDO nous sommes tous des colibris et, collectivement, nous écrivons
           aujourd’hui notre histoire et celle de nos clients.
         </p>
-      </section>
+      </article>
     </div>
   );
 }
