@@ -1,0 +1,28 @@
+.news {
+  width: 90%;
+  height: 25%;
+  margin: auto;
+
+  &-title {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &-text {
+    height: 100%;
+    width: 50%;
+    float: right;
+    margin-bottom: 1rem;
+    line-height: 2rem;
+  }
+
+  &-image {
+    height: 100%;
+    width: 50%;
+    font-size: 12rem;
+    float: left;
+    text-align: center;
+  }
+}

@@ -1,18 +1,14 @@
+// import components
+import Home from 'src/components/Home';
+
 // == Import
 // import { Switch, Route } from 'react-router-dom';
 import './styles.scss';
 
-import Header from 'src/components/Header';
-
-// To add later on
-// import Home from 'src/components/Home';
-// import Recrutement from 'src/components/Recrutement';
-// import Contact from 'src/components/Contact';
-
 // == Composant
 const App = () => (
   <div className="app">
-    <Header />
+    <Home />
   </div>
 );
 
