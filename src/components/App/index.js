@@ -1,8 +1,6 @@
 // import components
 import Home from 'src/components/Home';
 
-// == Import
-// import reactLogo from './react-logo.svg';
 import './styles.scss';
 
 // == Composant
