@@ -1,23 +1,28 @@
+// == Imports
+import { useState, useEffect } from 'react';
+
 // import components
 import Home from 'src/components/Home';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+import Login from 'src/components/Login';
 
-// == Import
 // import { Switch, Route } from 'react-router-dom';
+
+// import styles
 import './styles.scss';
 
 // == Composant
-const App = () => (
-  <div className="app">
-    <Header />
-    <Home />
-    <Footer />
-  </div>
-);
-
-// == Export
-export default App;
+export default function App() {
+  return (
+    <div className="app">
+      <Header />
+      <Login />
+      <Home />
+      <Footer />
+    </div>
+  );
+}
 
 /*
 To add later on, freshly baked
