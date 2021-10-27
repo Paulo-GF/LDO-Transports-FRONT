@@ -1,18 +1,28 @@
 import PropTypes from 'prop-types';
 
 // import styles
-// import { Icon } from 'semantic-ui-react';
+import './styles.scss';
 
 export default function Login({
   emailValue,
   passwordValue,
   onChangeEmailValue,
   onChangePasswordValue,
+  onSubmitForm,
 }) {
+  // on submit, call API to authenticate the user
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmitForm();
+  };
+
   return (
     <div className="login">
       <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" alt="" />
-      <form className="login-form">
+      <form
+        className="login-form"
+        onSubmit={handleSubmit}
+      >
         <input
           type="email"
           name="email"
@@ -43,4 +53,5 @@ Login.propTypes = {
   passwordValue: PropTypes.string.isRequired,
   onChangeEmailValue: PropTypes.func.isRequired,
   onChangePasswordValue: PropTypes.func.isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
 };
