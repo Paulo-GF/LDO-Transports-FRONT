@@ -1,11 +1,13 @@
-export default function Login() {
+import PropTypes from 'prop-types';
+
+export default function Login({ emailValue, passwordValue }) {
   return (
     <div className="login">
       <form className="login-form">
         <input
           type="email"
           name="email"
-          value=""
+          value={emailValue}
           onChange={() => {
             console.log('email');
           }}
@@ -14,7 +16,7 @@ export default function Login() {
         <input
           type="pasword"
           name="password"
-          value=""
+          value={passwordValue}
           placeholder="mot de passe"
           onChange={() => {
             console.log('password');
@@ -26,3 +28,8 @@ export default function Login() {
     </div>
   );
 }
+
+Login.propTypes = {
+  emailValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
+};

@@ -14,10 +14,14 @@ import './styles.scss';
 
 // == Composant
 export default function App() {
+  // == global state
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <div className="app">
       <Header />
-      <Login />
+      <Login emailValue={email} passwordValue={password} />
       <Home />
       <Footer />
     </div>
