@@ -1,40 +1,48 @@
-// == Import
-// import { Switch, Route } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import './styles.scss';
 
-import Header from 'src/components/Header';
+import LDOLogo from 'src/assets/logo_ldo.jpeg';
 
-// To add later on
-// import Home from 'src/components/Home';
-// import Recrutement from 'src/components/Recrutement';
-// import Contact from 'src/components/Contact';
+// Use of hrefs, Link section to add later on
+export default function Header() {
+  return (
+    <nav className="navBar">
+      <a href="/" className="menu-link">
+        <img src={LDOLogo} alt="Logo LDO" />
+      </a>
+      <a href="/" className="menu-link">
+        Acceuil
+      </a>
+      <a href="/recrutement" className="menu-link">
+        Recrutement
+      </a>
+      <a href="/contact" className="menu-link">
+        Contact
+      </a>
+      <a href="/admin-logged" className="menu-link">
+        Page Admin
+      </a>
+    </nav>
+  );
+}
 
-// == Composant
-const App = () => (
-  <div className="app">
-    <Header />
-  </div>
-);
-
-// == Export
-export default App;
-
+// To add later on, freshly baked
 /*
-To add later on, freshly baked
-<Switch>
-  <Route exact path="/">
-    <Home />
-  </Route>
-  <Route exact path="/recrutement">
-    <Recrutement />
-  </Route>
-  <Route exact path="/contact">
-    <Contact />
-  </Route>
-  {isLogged && (
-    <Route exact path="/admin-logged">
-      <AdminPage />
-    </Route>
-  )}
-</Switch>
+  <nav className="navBar">
+    <NavLink to="/" className="menu-link">
+      <img src={LDOLogo} alt="Logo LDO" />
+    </NavLink>
+    <NavLink to="/" className="menu-link">
+      Acceuil
+    </NavLink>
+    <NavLink to="/recrutement" className="menu-link">
+      Recrutement
+    </NavLink>
+    <NavLink to="/contact" className="menu-link">
+      Contact
+    </NavLink>
+    <NavLink to="/admin-logged" className="menu-link">
+      Page Admin
+    </NavLink>
+  </nav>
 */
