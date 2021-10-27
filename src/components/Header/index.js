@@ -22,7 +22,7 @@ const Header = () => (
       Page Admin
     </a>
   </nav>
-);
+); // faire func classic
 
 export default Header;
 
