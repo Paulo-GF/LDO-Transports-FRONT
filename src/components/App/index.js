@@ -1,4 +1,3 @@
-
 // == Imports
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
@@ -9,7 +8,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from 'src/components/Home';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import Login from 'src/components/Login';
+import Signin from 'src/components/Signin';
 
 // import styles
 import './styles.scss';
@@ -17,12 +16,13 @@ import './styles.scss';
 // == Composant
 export default function App() {
   // == global state
-  const [email, setEmail] = useState('');
+  const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
+  // password modified: "passwordConfirm"
   // fake data while we wait for the backend
   const [isLogged, setIsLogged] = useState(true);
   const adminInfo = 'Michel';
-  
+
   const logOut = () => {
     console.log('admin logged out');
   };
@@ -42,8 +42,8 @@ export default function App() {
   const authenticateUser = () => {
     console.log('authenticate');
     // todo : waiting for the road from API
-    // axios.post('http://localhost:port/admin-signin', {
-    //   email,
+    // axios.post('http://localhost:5050/admin-signin', {
+    //   mail,
     //   password,
     // })
     //   .then((response) => {
@@ -56,19 +56,21 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header 
+      <Header
         adminInfo={adminInfo}
         isLogged={isLogged}
         logOut={logOut}
       />
-      <Login
-        emailValue={email}
-        passwordValue={password}
-        onChangeEmailValue={setEmail}
-        onChangePasswordValue={setPassword}
-        onSubmitForm={authenticateUser}
-      />
       <Switch>
+        <Route exact path="/admin-signin">
+          <Signin
+            emailValue={mail}
+            passwordValue={password}
+            onChangeEmailValue={setMail}
+            onChangePasswordValue={setPassword}
+            onSubmitForm={authenticateUser}
+          />
+        </Route>
         <Route exact path="/">
           <Home />
         </Route>
