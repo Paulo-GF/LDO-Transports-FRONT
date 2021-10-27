@@ -1,6 +1,7 @@
 // import components
 import Home from 'src/components/Home';
 
+// == Import
 import './styles.scss';
 
 // == Composant
