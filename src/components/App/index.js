@@ -21,7 +21,12 @@ export default function App() {
   return (
     <div className="app">
       <Header />
-      <Login emailValue={email} passwordValue={password} />
+      <Login
+        emailValue={email}
+        passwordValue={password}
+        onChangeEmailValue={setEmail}
+        onChangePasswordValue={setPassword}
+      />
       <Home />
       <Footer />
     </div>
