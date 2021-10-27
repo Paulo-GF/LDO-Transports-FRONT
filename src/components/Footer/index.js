@@ -1,16 +1,18 @@
+import { NavLink } from 'react-router-dom';
+
 // Import styles
 import './styles.scss';
 
 export default function Footer() {
   return (
-    <div className="footer">
+    <nav className="footer">
       <p>Tous droits réservés</p>
-      <a href="/contact" className="footer-link">
+      <NavLink to="/contact" className="footer-link">
         Contact
-      </a>
-      <a href="/mentions-legales" className="footer-link">
+      </NavLink>
+      <NavLink to="/mentions-legales" className="footer-link">
         Mentions légales
-      </a>
-    </div>
+      </NavLink>
+    </nav>
   );
 }

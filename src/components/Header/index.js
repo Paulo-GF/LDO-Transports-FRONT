@@ -1,48 +1,54 @@
-// import { NavLink } from 'react-router-dom';
-import './styles.scss';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+
+// import of the icon from the react-icon lib
+import { FaUserCircle } from 'react-icons/fa';
 
 import LDOLogo from 'src/assets/logo_ldo.jpeg';
+import './styles.scss';
 
-// Use of hrefs, Link section to add later on
-export default function Header() {
+// is Logged is gonna be the boolean fetched from the backend
+// adminInfo aka name is gonna be the string fetched from the backend
+// logOut is gonna be the function that logs out the admin, waiting for the
+// feature to be ready to code the func
+export default function Header({ isLogged, adminInfo, logOut }) {
   return (
     <nav className="navBar">
-      <a href="/" className="menu-link">
-        <img className="logo" src={LDOLogo} alt="Logo LDO" />
-      </a>
-      <a href="/" className="menu-link">
-        Acceuil
-      </a>
-      <a href="/recrutement" className="menu-link">
+      <NavLink to="/" className="menu-link">
+        <img src={LDOLogo} alt="Logo LDO" />
+      </NavLink>
+      <NavLink to="/" className="menu-link">
+        Accueil
+      </NavLink>
+      <NavLink to="/recrutement" className="menu-link">
         Recrutement
-      </a>
-      <a href="/contact" className="menu-link">
+      </NavLink>
+      <NavLink to="/contact" className="menu-link">
         Contact
-      </a>
-      <a href="/admin-logged" className="menu-link">
-        Page Admin
-      </a>
+      </NavLink>
+      {isLogged && (
+        <>
+          <NavLink to="/admin-logged" className="menu-link">
+            Page Admin
+          </NavLink>
+          <FaUserCircle />
+          <p>{adminInfo}</p>
+          <button type="button" onClick={logOut}> Déconnexion </button>
+        </>
+      )}
     </nav>
   );
 }
 
-// To add later on, freshly baked
-/*
-  <nav className="navBar">
-    <NavLink to="/" className="menu-link">
-      <img src={LDOLogo} alt="Logo LDO" />
-    </NavLink>
-    <NavLink to="/" className="menu-link">
-      Acceuil
-    </NavLink>
-    <NavLink to="/recrutement" className="menu-link">
-      Recrutement
-    </NavLink>
-    <NavLink to="/contact" className="menu-link">
-      Contact
-    </NavLink>
-    <NavLink to="/admin-logged" className="menu-link">
-      Page Admin
-    </NavLink>
-  </nav>
-*/
+Header.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  adminInfo: PropTypes.string,
+  logOut: PropTypes.func,
+};
+
+// default props are needed since the adminInfo and logOut are not required since
+// they are empty if the app is accessed by a visitor
+Header.defaultProps = {
+  adminInfo: null,
+  logOut: null,
+};
