@@ -7,7 +7,7 @@ export default function Activities() {
       <h1>Nos activités</h1>
       <div className="activities-content">
         <section className="activities-section">
-          <img src="" alt="" />
+          <img className="pictures" src="" alt="" />
           <h2>Traction</h2>
           <h3>Notre savoir-faire</h3>
           <p>
