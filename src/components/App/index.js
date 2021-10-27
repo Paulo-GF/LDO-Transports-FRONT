@@ -1,11 +1,13 @@
+// import components
+import Home from 'src/components/Home';
+
 // == Import
-import News from '../Home/News';
 import './styles.scss';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <News />
+    <Home />
   </div>
 );
 
