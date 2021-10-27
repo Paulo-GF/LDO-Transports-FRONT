@@ -4,27 +4,27 @@ import './styles.scss';
 import LDOLogo from 'src/assets/logo_ldo.jpeg';
 
 // Use of hrefs, Link section to add later on
-const Header = () => (
-  <nav className="navBar">
-    <a href="/" className="menu-link">
-      <img src={LDOLogo} alt="Logo LDO" />
-    </a>
-    <a href="/" className="menu-link">
-      Acceuil
-    </a>
-    <a href="/recrutement" className="menu-link">
-      Recrutement
-    </a>
-    <a href="/contact" className="menu-link">
-      Contact
-    </a>
-    <a href="/admin-logged" className="menu-link">
-      Page Admin
-    </a>
-  </nav>
-); // faire func classic
-
-export default Header;
+export default function Header() {
+  return (
+    <nav className="navBar">
+      <a href="/" className="menu-link">
+        <img src={LDOLogo} alt="Logo LDO" />
+      </a>
+      <a href="/" className="menu-link">
+        Acceuil
+      </a>
+      <a href="/recrutement" className="menu-link">
+        Recrutement
+      </a>
+      <a href="/contact" className="menu-link">
+        Contact
+      </a>
+      <a href="/admin-logged" className="menu-link">
+        Page Admin
+      </a>
+    </nav>
+  );
+}
 
 // To add later on, freshly baked
 /*
