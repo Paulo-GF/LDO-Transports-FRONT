@@ -1,21 +1,28 @@
-// Import
-// import axios from 'axios';
-import { useState } from 'react';
+
+// == Imports
+import { useState, useEffect } from 'react';
+import { Redirect } from 'react-router';
+import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
 
 // Import components
 import Home from 'src/components/Home';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+import Login from 'src/components/Login';
 
-// Import style
+// import styles
 import './styles.scss';
 
-// Composant
+// == Composant
 export default function App() {
+  // == global state
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // fake data while we wait for the backend
   const [isLogged, setIsLogged] = useState(true);
   const adminInfo = 'Michel';
+  
   const logOut = () => {
     console.log('admin logged out');
   };
@@ -32,12 +39,34 @@ export default function App() {
   };
 */
 
+  const authenticateUser = () => {
+    console.log('authenticate');
+    // todo : waiting for the road from API
+    // axios.post('http://localhost:port/admin-signin', {
+    //   email,
+    //   password,
+    // })
+    //   .then((response) => {
+    //    console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <div className="app">
-      <Header
+      <Header 
         adminInfo={adminInfo}
         isLogged={isLogged}
         logOut={logOut}
+      />
+      <Login
+        emailValue={email}
+        passwordValue={password}
+        onChangeEmailValue={setEmail}
+        onChangePasswordValue={setPassword}
+        onSubmitForm={authenticateUser}
       />
       <Switch>
         <Route exact path="/">
