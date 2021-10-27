@@ -1,5 +1,7 @@
 // import components
 import Home from 'src/components/Home';
+import Header from 'src/components/Header';
+import Footer from 'src/components/Footer';
 
 // == Import
 // import { Switch, Route } from 'react-router-dom';
@@ -8,7 +10,9 @@ import './styles.scss';
 // == Composant
 const App = () => (
   <div className="app">
+    <Header />
     <Home />
+    <Footer />
   </div>
 );
 
