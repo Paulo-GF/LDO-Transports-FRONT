@@ -1,9 +1,21 @@
 .navBar {
-  width: 80%;
+  width: 90%;
   margin: 0% auto;
+  font-size: 2em;
 }
 
 .menu-link {
-  font-size: 6em;
   margin: 0% 1%;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 200px;
+  height: 115px;
+}
+
+.menu-link {
+  font-size: 2em;
+  margin: 0% 4%;
 }

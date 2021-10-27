@@ -1,18 +1,55 @@
-// Import styles
-import styles from './styles.scss';
-// import img from '../../../assets/logo_ldo.jpeg';
+// import styles
+import './styles.scss';
+
+// import images
+import image from '../../../assets/truck1.jpg';
 
 export default function News() {
   return (
-    <article className="news">
-      <div className="news-image">Image de l'actualité</div>
-      <div className="news-text">
-        <h2 className="news-title">Titre de l'actualité</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dapibus non augue sed sagittis. Vivamus ut nunc libero. Proin aliquam sollicitudin massa, ut efficitur nunc tincidunt auctor. Donec odio lorem, interdum quis condimentum eu, pulvinar vel justo. In non commodo nibh. Duis luctus magna ac lacus euismod varius. Aenean cursus justo sed justo pellentesque, sed finibus enim lacinia. Suspendisse potenti. Etiam quis tempus nulla, vel iaculis mauris. Vestibulum posuere nunc sit amet commodo tincidunt. Pellentesque tincidunt eget dolor eget maximus. Proin et vestibulum dui. Aenean porttitor enim sed orci efficitur lacinia. In eget eleifend ex.
-          Cras eleifend finibus placerat. In egestas neque sit amet arcu aliquet, sit amet egestas nisi finibus. Aenean elementum orci ac lacus porttitor, eget ultrices lacus posuere. Vivamus in nunc non enim sollicitudin vehicula. Quisque molestie maximus arcu eget pretium. Quisque vulputate a lacus non lacinia. Ut et tellus nisi. Morbi varius nulla quis venenatis fermentum. Phasellus auctor vestibulum tortor et vulputate. Aliquam erat volutpat. Aenean vitae sapien vestibulum, feugiat tortor eu, vulputate augue. Nullam vitae gravida dolor. Mauris ultrices ante a diam varius egestas sit amet vel ipsum. Fusce efficitur varius semper. Maecenas euismod ante faucibus bibendum hendrerit. Integer rutrum imperdiet tortor, a aliquam nisi dignissim vel.
+    <div className="news">
+      <h2 className="news-title">Nos actualités</h2>
+      <article className="news-article">
+        <div className="news-image">
+          <img className="img" src={image} alt="truck1" />
+        </div>
+        <p className="news-content">LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
+          de la SAS LDO Transports.
+          Laurent, c’est 20 ans d’expérience en direction administrative et financière.
+          Dogan, c’est 17 ans d’expérience dans le transport, de chauffeur SPL
+          à directeur des opérations.
+          C’est aussi 7 ans de travail en commun au sein d’une entreprise
+          de transport spécialisée dans
+          la traction avant de prendre des chemins différents.
+
+          Ensuite, les aléas de la vie font que les chemins se croisent à nouveau.
+          L’envie, la maturité et la complémentarité permettent de dessiner
+          les contours d’une route commune.
+
+          Cet oiseau, ces ailes, c’est évidemment la liberté d’entreprendre mais surtout
+          celle de pouvoir porter, pour nos clients, notre savoir-faire
+          et notre vision du transport de marchandises.
+
+          Pourquoi le colibri ?
+          Parce que c’est le seul oiseau au monde capable de voler en marche arrière ce qui
+          est assez pratique pour une mise à quai ou l’accrochage d’une remorque ?
+          Parce qu’il est capable de voler jusqu’à 97km/h ? C’est un peu trop rapide
+          pour un PTRA de 44 tonnes…
+          Non. Le colibri est également connu à travers une légende amérindienne.
+          Un jour, la foudre déclenche un incendie dans une forêt. Les animaux assistent,
+          impuissants, au désastre. Seul un colibri fait des allers-retours et arrose les
+          flammes de quelques gouttes à l’aide de son bec. Le colibri est alors interpellé
+          par des animaux : « Petit colibri, tu es complètement fou, ce n’est pas avec ces
+          quelques gouttes d’eau que tu vas éteindre l’incendie ! ». Le petit colibri se
+          retourne et dit : « Oui, vous avez raison. Mais je fais ma part ».
+          La morale de cette histoire trouve une résonance évidente aujourd’hui face au
+          réchauffement climatique et aux enjeux environnementaux que nous devons relever.
+          Elle nous interpelle également, de manière plus générale, sur ce que nous sommes
+          capables de réaliser ensemble.
+
+          Chez LDO nous sommes tous des colibris et, collectivement, nous écrivons
+          aujourd’hui notre histoire et celle de nos clients.
         </p>
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }

@@ -4,13 +4,13 @@ export default function HomeNav() {
   return (
     <nav className="homeNavBar">
       <a href="#section_further_down" className="homeNavBar-ref">
-        Nos activités
+        
       </a>
       <a href="#section_further_down" className="homeNavBar-ref">
-        Notre Histoire
+        
       </a>
       <a href="#section_further_down" className="homeNavBar-ref">
-        Nos Actus
+        
       </a>
     </nav>
   );

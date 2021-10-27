@@ -1,6 +1,8 @@
 .history {
-  &-section {
-    width: 100vw;
+  &-article {
+    line-height: 2rem;
+    width: 97%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
   }
@@ -8,7 +10,7 @@
     margin: 1rem;
     text-align: center;
   }
-  &-img {
+  &-image {
     width : 50%;
     background-color: rgb(201, 77, 77);
   }
