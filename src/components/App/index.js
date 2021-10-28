@@ -9,6 +9,7 @@ import Home from 'src/components/Home';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Signin from 'src/components/Signin';
+import Admin from 'src/components/Admin';
 
 // import styles
 import './styles.scss';
@@ -74,6 +75,12 @@ export default function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        {isLogged
+        && (
+        <Route path="/admin-logged">
+          <Admin />
+        </Route>
+        )}
       </Switch>
       <Footer />
     </div>
