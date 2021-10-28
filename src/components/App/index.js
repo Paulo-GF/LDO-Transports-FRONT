@@ -19,7 +19,9 @@ export default function App() {
   // == global state
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  // password modified: "passwordConfirm"
+  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordConfirm, setNewpasswordConfirm] = useState('');
+
   // fake data while we wait for the backend
   const [isLogged, setIsLogged] = useState(true);
   const adminInfo = 'Michel';
@@ -41,18 +43,49 @@ export default function App() {
 */
 
   const authenticateUser = () => {
-    console.log('authenticate');
-    // todo : waiting for the road from API
-    // axios.post('http://localhost:5050/admin-signin', {
-    //   mail,
-    //   password,
-    // })
-    //   .then((response) => {
-    //    console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    console.log('dans authenticate: post');
+    axios.post('https://ldo-transports.herokuapp.com/admin-signin', {
+      mail,
+      password,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // const authenticateUser = () => {
+  //   console.log('dans authenticate');
+  //   axios.post('https://ldo-transports.herokuapp.com/admin-signin', {
+  //     headers: { 'X-Requested-With': 'XMLHttpRequest' },
+  //     data: {
+  //       mail,
+  //       password,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // const authenticateUser = () => {
+  //   console.log('dans authenticate: get recrutement');
+  //   axios.get('https://ldo-transports.herokuapp.com/recrutement')
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  const changePassword = () => {
+    console.log('changePassword');
   };
 
   return (
@@ -75,10 +108,17 @@ export default function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        {/** ternary expression to only allow access to the admin route if admin logged */}
         {isLogged
         && (
         <Route path="/admin-logged">
-          <Admin />
+          <Admin
+            newPasswordValue={newPassword}
+            confirmNewPasswordValue={newPasswordConfirm}
+            onChangeNewPasswordValue={setNewPassword}
+            onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
+            onSubmitForm={changePassword}
+          />
         </Route>
         )}
       </Switch>
@@ -96,14 +136,6 @@ To add later on when all pages are ready
 <Route exact path="/contact">
   <Contact />
 </Route>
-
-ternary expression to only allow access to the admin route if admin logged
-{isLogged && (
-  <Route exact path="/admin-logged">
-    <AdminPage />
-  </Route>
-)}
-
 <Route>
   <LegalNotices />
 <Route >

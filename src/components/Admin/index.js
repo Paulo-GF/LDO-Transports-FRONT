@@ -1,18 +1,26 @@
+import PropTypes from 'prop-types';
+
 // import of the icon from the react-icon lib
 import { FaUserCircle } from 'react-icons/fa';
 
-export default function Admin() {
+export default function Admin({
+  newPasswordValue,
+  confirmNewPasswordValue,
+  onChangeNewPasswordValue,
+  onChangeConfirmNewPasswordValue,
+  onSubmitForm,
+}) {
   // on submit, call API to modify the user password
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Admin: submit');
+    onSubmitForm();
   };
 
   return (
     <div className="admin">
       <div className="admin-header">
-        <FaUserCircle className="icon-anchor" />
-        <p>Bonjour Admin </p>
+        <FaUserCircle className="admin-header-icon" />
+        <p>Bonjour Benoit </p>
       </div>
       <div className="admin-content">
         <form className="admin-content-form" onSubmit={handleSubmit}>
@@ -20,9 +28,9 @@ export default function Admin() {
             className="admin-content-form-input"
             type="password"
             name="newPassword"
-            value=""
+            value={newPasswordValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeNewPasswordValue(event.target.value);
             }}
             placeholder="Nouveau mot de passe"
           />
@@ -30,9 +38,9 @@ export default function Admin() {
             className="admin-content-form-input"
             type="password"
             name="newPasswordConfirm"
-            value=""
+            value={confirmNewPasswordValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeConfirmNewPasswordValue(event.target.value);
             }}
             placeholder="Confirmer mot de passe"
           />
@@ -47,3 +55,11 @@ export default function Admin() {
     </div>
   );
 }
+
+Admin.propTypes = {
+  newPasswordValue: PropTypes.string.isRequired,
+  confirmNewPasswordValue: PropTypes.string.isRequired,
+  onChangeNewPasswordValue: PropTypes.func.isRequired,
+  onChangeConfirmNewPasswordValue: PropTypes.func.isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
+};

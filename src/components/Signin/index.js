@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 // import styles
 import './styles.scss';
+import { FaUserCircle } from 'react-icons/fa';
 
 export default function Signin({
   emailValue,
@@ -19,7 +20,7 @@ export default function Signin({
   return (
     <div className="signin">
       <div className="signin-content">
-        <img className="signin-content-icon" src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" alt="" />
+        <FaUserCircle className="signin-content-icon" />
         <form
           className="signin-content-form"
           onSubmit={handleSubmit}
