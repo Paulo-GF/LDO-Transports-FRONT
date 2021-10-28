@@ -41,7 +41,7 @@ export default function App() {
       });
   };
 */
-
+  // request to authenticate the admin
   const authenticateUser = () => {
     console.log('dans authenticate: post');
     axios.post('https://ldo-transports.herokuapp.com/admin-signin', {
@@ -84,6 +84,7 @@ export default function App() {
   //     });
   // };
 
+  // request to change the password when admin is connected
   const changePassword = () => {
     console.log('changePassword');
   };
