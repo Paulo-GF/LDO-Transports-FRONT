@@ -33,7 +33,7 @@ export default function Header({ isLogged, adminInfo, logOut }) {
           </NavLink>
           <FaUserCircle className="icon" />
           <p>{adminInfo}</p>
-          <button type="button" onClick={logOut}> Déconnexion </button>
+          <button className="deconnexion-button" type="button" onClick={logOut}> Déconnexion </button>
         </>
       )}
     </nav>
