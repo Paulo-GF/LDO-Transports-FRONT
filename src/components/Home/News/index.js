@@ -6,7 +6,7 @@ import image from '../../../assets/truck1.jpg';
 
 export default function News() {
   return (
-    <div className="news">
+    <div id="news" className="news">
       <h2 className="news-title">Nos actualités</h2>
       <article className="news-article">
         <div className="news-image">
