@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 // import of the icon from the react-icon lib
 import { FaUserCircle } from 'react-icons/fa';
 
-import LDOLogo from 'src/assets/logo_ldo.jpeg';
+import LDOLogo from 'src/assets/logo_ldo.jpg';
 import './styles.scss';
 
 // is Logged is gonna be the boolean fetched from the backend
@@ -15,7 +15,7 @@ export default function Header({ isLogged, adminInfo, logOut }) {
   return (
     <nav className="navBar">
       <NavLink to="/" className="menu-link">
-        <img src={LDOLogo} alt="Logo LDO" />
+        <img className="logo" src={LDOLogo} alt="Logo LDO" />
       </NavLink>
       <NavLink to="/" className="menu-link">
         Accueil
@@ -31,7 +31,7 @@ export default function Header({ isLogged, adminInfo, logOut }) {
           <NavLink to="/admin-logged" className="menu-link">
             Page Admin
           </NavLink>
-          <FaUserCircle />
+          <FaUserCircle className="icon" />
           <p>{adminInfo}</p>
           <button type="button" onClick={logOut}> Déconnexion </button>
         </>

@@ -1,21 +1,32 @@
 .navBar {
   width: 90%;
   margin: 0% auto;
-  font-size: 2em;
-}
-
-.menu-link {
-  margin: 0% 1%;
   display: flex;
   align-items: center;
 }
 
+.menu-link {
+  margin: 0% 1%;
+
+}
+
 .logo {
   width: 200px;
-  height: 115px;
+  height: 250px;
 }
 
 .menu-link {
   font-size: 2em;
   margin: 0% 4%;
+}
+
+.icon {
+  font-size: 40px;
+  margin-right: 0.2rem;
+}
+
+button {
+  left: 81.5%;
+  position: absolute;
+  top: 9.5rem;
 }
