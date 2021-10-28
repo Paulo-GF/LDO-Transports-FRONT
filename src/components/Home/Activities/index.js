@@ -3,7 +3,7 @@ import './styles.scss';
 
 export default function Activities() {
   return (
-    <div className="activities">
+    <div id="activities" className="activities">
       <h1>Nos activités</h1>
       <div className="activities-content">
         <section className="activities-section">

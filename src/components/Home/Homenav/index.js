@@ -6,13 +6,13 @@ import { FaUserCircle } from 'react-icons/fa';
 export default function HomeNav() {
   return (
     <nav className="homeNavBar">
-      <a href=".activities" className="homeNavBar-ref">
+      <a href="#activities" className="homeNavBar-ref">
         <FaUserCircle className="icon-anchor" />
       </a>
-      <a href="#section_further_down" className="homeNavBar-ref">
+      <a href="#history" className="homeNavBar-ref">
         <FaUserCircle className="icon-anchor" />
       </a>
-      <a href="#section_further_down" className="homeNavBar-ref">
+      <a href="#news" className="homeNavBar-ref">
         <FaUserCircle className="icon-anchor" />
       </a>
     </nav>

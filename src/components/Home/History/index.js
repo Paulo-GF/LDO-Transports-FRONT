@@ -6,7 +6,7 @@ import image from '../../../assets/truck2.jpg';
 
 export default function History() {
   return (
-    <div className="history">
+    <div id="history" className="history">
       <h2 className="history-title">Notre histoire c'est notre logo</h2>
       <article className="history-article">
         <div className="history-image">
