@@ -25,7 +25,7 @@ export default function Joboffers({
               </button>
             )}
             <p className="card-content">
-              {offer.title} - {offer.city}
+              {offer.title} - {offer.city} - {offer.type}
             </p>
           </div>
         ))}
