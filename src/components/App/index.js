@@ -86,8 +86,13 @@ export default function App() {
         console.log(error);
       });
   };
+ */
 
-  */
+  const findOffer = (event) => {
+    const jobId = event.target.getAttribute('id');
+    offers.find((offer) => (offer.id === `${jobId}`));
+  };
+
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
     /*
@@ -190,12 +195,19 @@ export default function App() {
             deleteOffer={deleteOffer}
           />
         </Route>
+        <Route exact path="/recrutement/:id">
+          <Oneoffer
+            isLogged={isLogged}
+            offer={findOffer}
+            deleteOffer={deleteOffer}
+          />
+        </Route>
       </Switch>
       <Footer />
     </div>
   );
 }
-
+// prendre exemple sur indeed pour les cartes.
 /*
 To add later on when all pages are ready
 <Route exact path="/contact">
@@ -206,10 +218,6 @@ To add later on when all pages are ready
     createOffer={createOffer}
   />
 </Route>
-
-<Route>
-  <Legalnotices />
-<Route >
   <404 />
 </Route>
 */

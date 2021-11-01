@@ -17,7 +17,7 @@ export default function Joboffers({
       <h1 className="job-offers-title"> Nos offres de recrutement : </h1>
       <div className="offers-container">
         {offers.map((offer) => (
-          <div className="offer-card" key={offer.id}>
+          <div className="offer-card" key={offer.id} id={offer.id}>
             <FaTruck className="truck-icon" />
             {isLogged && (
               <button type="button" onClick={deleteOffer} className="delete-offer-button" id={offer.id}>
