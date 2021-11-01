@@ -101,13 +101,15 @@ export default function App() {
   const changePassword = () => {
     console.log('changePassword');
     console.log(accessToken);
-    axios.patch(`https://ldo-transports.herokuapp.com/admin-logged/${userFirstName}`, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
+    axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
       userId,
       newPassword,
       newPasswordConfirm,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
     })
       .then((response) => {
         console.log(response);
@@ -127,6 +129,7 @@ export default function App() {
       />
       <Switch>
         <Route exact path="/admin-signin">
+          {isLogged && (<Redirect to="/" />)}
           <Signin
             emailValue={mail}
             passwordValue={password}
