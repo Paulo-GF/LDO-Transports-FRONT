@@ -30,7 +30,7 @@ export default function App() {
   const [adminInfo, setAdminInfo] = useState('');
 
   const getIsLogged = () => {
-    setIsLogged(false);
+    setIsLogged(true);
     /*
     axios.get('https://ldo-transports.herokuapp.com/:adminId')
       .then((response) => {
