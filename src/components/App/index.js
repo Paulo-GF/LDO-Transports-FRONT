@@ -11,6 +11,8 @@ import Footer from 'src/components/Footer';
 import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
+import Legalnotices from 'src/components/Legalnotices';
+
 import data from 'src/data';
 
 // import styles
@@ -190,6 +192,9 @@ export default function App() {
             deleteOffer={deleteOffer}
           />
         </Route>
+        <Route exact path="/mentions-legales">
+          <Legalnotices />
+        </Route>
       </Switch>
       <Footer />
     </div>
@@ -206,10 +211,6 @@ To add later on when all pages are ready
     createOffer={createOffer}
   />
 </Route>
-
-<Route>
-  <Legalnotices />
-<Route >
   <404 />
 </Route>
 */
