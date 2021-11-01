@@ -1,0 +1,59 @@
+.job-offers {
+    height: 100vh;
+}
+
+.job-offers-title {
+    margin: 2% auto;
+    font-size: 3em;
+    text-align: center;
+  }
+  
+  .offers-container, .offer-card, .create-offer-link {
+    border: solid 1px black;
+    border-radius: 15px;
+    font-size: 1.3em;
+  }
+  
+  .offers-container, .create-offer-link {
+    background: linear-gradient(45deg,#53180e,#f33f27);
+  }
+  
+  .offers-container {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .offer-card {
+    background-color: white;
+    margin: 1%;
+    width: 31%;
+    padding: 1%;
+  }
+  
+  .delete-offer-button {
+    position: inherit;
+    height: 3rem;
+    width: 3rem;
+    float: right;
+  }
+  
+  .truck-icon {
+    height: 4rem;
+    width: 4rem;
+  }
+  
+  .trash-icon {
+    height: 2rem;
+    width: 2rem;
+    pointer-events: none;
+  }
+  
+  .create-offer-link {
+    float: right;
+    margin-right: 15%;
+    margin-top: 0.5%;
+    color: white;
+    padding: 0.5%;
+  }

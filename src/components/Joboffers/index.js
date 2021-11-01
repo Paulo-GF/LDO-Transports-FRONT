@@ -13,7 +13,7 @@ export default function Joboffers({
   deleteOffer,
 }) {
   return (
-    <>
+    <div className="job-offers">
       <h1 className="job-offers-title"> Nos offres de recrutement : </h1>
       <div className="offers-container">
         {offers.map((offer) => (
@@ -35,7 +35,7 @@ export default function Joboffers({
           Créer une offre
         </Link>
       )}
-    </>
+    </div>
   );
 }
 

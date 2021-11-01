@@ -10,7 +10,7 @@ export default function History() {
       <h2 className="history-title">Notre histoire c'est notre logo</h2>
       <article className="history-article">
         <div className="history-image">
-          <img className="img" src={image} alt="truck2" />
+          <img className="image" src={image} alt="truck2" />
         </div>
         <p className="history-content">LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
           de la SAS LDO Transports.
