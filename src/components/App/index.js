@@ -11,6 +11,8 @@ import Footer from 'src/components/Footer';
 import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
+import Focusedoffer from 'src/components/Focusedoffer';
+
 import data from 'src/data';
 
 // import styles
@@ -196,7 +198,7 @@ export default function App() {
           />
         </Route>
         <Route exact path="/recrutement/:id">
-          <Oneoffer
+          <Focusedoffer
             isLogged={isLogged}
             offer={findOffer}
             deleteOffer={deleteOffer}
