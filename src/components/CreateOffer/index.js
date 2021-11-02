@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 // import styles
 import './styles.scss';
 
 export default function Createoffer({
   titleValue,
+  descriptionValue,
   regionValue,
   cityValue,
   typeValue,
-  descriptionValue,
+  onChangeTitleValue,
+  onChangeRegionValue,
+  onChangeCityValue,
+  onChangeTypeValue,
+  onChangeDescriptionValue,
   onSubmitForm,
 }) {
   const handleSubmit = (event) => {
@@ -26,50 +32,50 @@ export default function Createoffer({
           <input
             className="new-offer-content-form-input"
             type="text"
-            name="text"
+            name="title"
             value={titleValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeTitleValue(event.target.value);
             }}
             placeholder="titre de l'offre"
           />
           <input
             className="new-offer-content-form-input"
             type="text"
-            name="text"
+            name="region"
             value={regionValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeRegionValue(event.target.value);
             }}
             placeholder="région de l'offre"
           />
           <input
             className="new-offer-content-form-input"
             type="text"
-            name="text"
+            name="city"
             value={cityValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeCityValue(event.target.value);
             }}
             placeholder="ville de l'offre"
           />
           <input
             className="new-offer-content-form-input"
             type="text"
-            name="text"
+            name="type"
             value={typeValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeTypeValue(event.target.value);
             }}
             placeholder="type de l'offre"
           />
           <input
             className="new-offer-content-form-input"
             type="text"
-            name="text"
+            name="description"
             value={descriptionValue}
             onChange={(event) => {
-              console.log(event.target.value);
+              onChangeDescriptionValue(event.target.value);
             }}
             placeholder="description de l'offre"
           />
@@ -82,9 +88,14 @@ export default function Createoffer({
 
 Createoffer.propTypes = {
   titleValue: PropTypes.string.isRequired,
+  descriptionValue: PropTypes.string.isRequired,
   regionValue: PropTypes.string.isRequired,
   cityValue: PropTypes.string.isRequired,
   typeValue: PropTypes.string.isRequired,
-  descriptionValue: PropTypes.string.isRequired,
+  onChangeTitleValue: PropTypes.string.isRequired,
+  onChangeRegionValue: PropTypes.string.isRequired,
+  onChangeCityValue: PropTypes.string.isRequired,
+  onChangeTypeValue: PropTypes.string.isRequired,
+  onChangeDescriptionValue: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
