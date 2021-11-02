@@ -32,6 +32,12 @@ export default function App() {
   const [userId, setUserId] = useState(0);
   const [accessToken, setAccessToken] = useState('');
 
+  const [cityValue, setCityValue] = useState('');
+  const [titleValue, setTitleValue] = useState('');
+  const [regionValue, setRegionValue] = useState('');
+  const [typeValue, setTypeValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
+
   // function to logout the user
   const logOut = () => {
     setIsLogged(false);
@@ -55,12 +61,24 @@ export default function App() {
   // request to add a job offer
   const createOffer = () => {
     axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
+      title: titleValue,
+      region: regionValue,
+      type: typeValue,
+      description: descriptionValue,
+      city: cityValue,
+    },
+    {
       headers: {
         authorization: `Bearer ${accessToken}`,
       },
     })
       .then((response) => {
         console.log(response);
+        setTitleValue('');
+        setRegionValue('');
+        setTypeValue('');
+        setDescriptionValue('');
+        setCityValue('');
         setUpdateOffers(!updateOffers);
       })
       .catch((error) => {
@@ -163,7 +181,12 @@ export default function App() {
         )}
         <Route exact path="/add-job">
           <Createoffer
-            createOffer={createOffer}
+            onChangeTitleValue={setTitleValue}
+            onChangeRegionValue={setRegionValue}
+            onChangeCityValue={setCityValue}
+            onChangeTypeValue={setTypeValue}
+            onChangeDescriptionValue={setDescriptionValue}
+            onSubmitForm={createOffer}
           />
         </Route>
         <Route exact path="/recrutement">
