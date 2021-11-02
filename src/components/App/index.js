@@ -13,6 +13,7 @@ import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
 import Legalnotices from 'src/components/Legalnotices';
+import Createoffer from 'src/components/CreateOffer';
 
 // import styles
 import './styles.scss';
@@ -50,19 +51,23 @@ export default function App() {
   };
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
   useEffect(getOffers, [updateOffers]);
-  /*
+
   // request to add a job offer
   const createOffer = () => {
-    axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job')
+    axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((response) => {
-
+        console.log(response);
+        setUpdateOffers(!updateOffers);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  */
   // request to delete a job offer
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
@@ -156,6 +161,11 @@ export default function App() {
           />
         </Route>
         )}
+        <Route exact path="/add-job">
+          <Createoffer
+            createOffer={createOffer}
+          />
+        </Route>
         <Route exact path="/recrutement">
           <Joboffers
             isLogged={isLogged}
@@ -176,12 +186,6 @@ export default function App() {
 To add later on when all pages are ready
 <Route exact path="/contact">
   <Contact />
-</Route>
-<Route >
-  <Createoffer
-    createOffer={createOffer}
-  />
-</Route>
   <404 />
 </Route>
 */
