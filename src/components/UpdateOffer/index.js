@@ -1,8 +1,26 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function UpdateOffer({ jobList }) {
+export default function UpdateOffer({
+  titleValue,
+  descriptionValue,
+  regionValue,
+  cityValue,
+  typeValue,
+  onChangeTitleValue,
+  onChangeRegionValue,
+  onChangeCityValue,
+  onChangeTypeValue,
+  onChangeDescriptionValue,
+  jobList,
+  setChange,
+}) {
+  // state local
+  const [reset, setReset] = useState(false);
+
+  // find the good offer by id
   const {
+    id,
     city,
     region,
     title,
@@ -10,33 +28,37 @@ export default function UpdateOffer({ jobList }) {
     description,
   } = jobList.find((job) => job.id === 1);
 
-  // local state
-  const [updateCity, setUpdateCity] = useState(city);
-  const [updateTitle, setUpdateTitle] = useState(title);
-  const [updateRegion, setUpdateRegion] = useState(region);
-  const [updateType, setUpdateType] = useState(type);
-  const [updateDescription, setUpdateDescription] = useState(description);
+  useEffect(() => {
+  // put the current values of the finded offer in inputs
+    onChangeCityValue(city);
+    onChangeTitleValue(title);
+    onChangeRegionValue(region);
+    onChangeTypeValue(type);
+    onChangeDescriptionValue(description);
+  }, [reset]);
 
   // reset initial values in inputs
   const handleResetChanges = () => {
-    setUpdateCity(city);
-    setUpdateTitle(title);
-    setUpdateRegion(region);
-    setUpdateType(type);
-    setUpdateDescription(description);
+    setReset(!reset);
+  };
+
+  // submit the changes
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    setChange(id);
   };
 
   return (
     <div className="update">
       <button type="button">X</button>
-      <form>
+      <form onSubmit={handleSubmitForm}>
         <input
           className="update-form-input"
           type="text"
           name="title"
-          value={updateTitle}
+          value={titleValue}
           onChange={(event) => {
-            setUpdateTitle(event.target.value);
+            onChangeTitleValue(event.target.value);
           }}
           placeholder="titre"
         />
@@ -44,9 +66,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="region"
-          value={updateRegion}
+          value={regionValue}
           onChange={(event) => {
-            setUpdateRegion(event.target.value);
+            onChangeRegionValue(event.target.value);
           }}
           placeholder="région"
         />
@@ -54,9 +76,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="city"
-          value={updateCity}
+          value={cityValue}
           onChange={(event) => {
-            setUpdateCity(event.target.value);
+            onChangeCityValue(event.target.value);
           }}
           placeholder="ville"
         />
@@ -64,9 +86,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="type"
-          value={updateType}
+          value={typeValue}
           onChange={(event) => {
-            setUpdateType(event.target.value);
+            onChangeTypeValue(event.target.value);
           }}
           placeholder="type de contrat"
         />
@@ -76,9 +98,9 @@ export default function UpdateOffer({ jobList }) {
           cols="60"
           type="text"
           name="description"
-          value={updateDescription}
+          value={descriptionValue}
           onChange={(event) => {
-            setUpdateDescription(event.target.value);
+            onChangeDescriptionValue(event.target.value);
           }}
           placeholder="description de l'offre"
         />
@@ -97,4 +119,15 @@ UpdateOffer.propTypes = {
       city: PropTypes.string,
     }).isRequired,
   ).isRequired,
+  setChange: PropTypes.func.isRequired,
+  titleValue: PropTypes.string.isRequired,
+  descriptionValue: PropTypes.string.isRequired,
+  regionValue: PropTypes.string.isRequired,
+  cityValue: PropTypes.string.isRequired,
+  typeValue: PropTypes.string.isRequired,
+  onChangeTitleValue: PropTypes.func.isRequired,
+  onChangeRegionValue: PropTypes.func.isRequired,
+  onChangeCityValue: PropTypes.func.isRequired,
+  onChangeTypeValue: PropTypes.func.isRequired,
+  onChangeDescriptionValue: PropTypes.func.isRequired,
 };

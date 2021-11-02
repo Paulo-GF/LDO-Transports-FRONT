@@ -23,14 +23,21 @@ export default function App() {
   // == global state
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [newPasswordConfirm, setNewpasswordConfirm] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [offers, setOffers] = useState([]);
   const [updateOffers, setUpdateOffers] = useState(false);
   const [userFirstName, setUserFirstName] = useState('');
   const [userId, setUserId] = useState(0);
   const [accessToken, setAccessToken] = useState('');
+  // global state == part of the state for crud
+  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordConfirm, setNewpasswordConfirm] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [titleValue, setTitleValue] = useState('');
+  const [regionValue, setRegionValue] = useState('');
+  const [typeValue, setTypeValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
+
 
   // function to logout the user
   const logOut = () => {
@@ -122,6 +129,30 @@ export default function App() {
       });
   };
 
+  // request to update an offer
+  const updateAnOffer = (id) => {
+    console.log(id, titleValue, regionValue, typeValue, descriptionValue, cityValue);
+    // axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
+    //   title: titleValue,
+    //   region: regionValue,
+    //   type: typeValue,
+    //   description: descriptionValue,
+    //   city: cityValue,
+    // },
+    // {
+    //   headers: {
+    //     authorization: `Bearer ${accessToken}`,
+    //   },
+    // })
+    //   .then((response) => {
+    //     console.log(response);
+    //     setUpdateOffers(!updateOffers);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <div className="app">
       <Header
@@ -163,7 +194,20 @@ export default function App() {
             offers={offers}
             deleteOffer={deleteOffer}
           />
-          <UpdateOffer jobList={offers} />
+          <UpdateOffer
+            titleValue={titleValue}
+            descriptionValue={descriptionValue}
+            regionValue={regionValue}
+            cityValue={cityValue}
+            typeValue={typeValue}
+            onChangeTitleValue={setTitleValue}
+            onChangeRegionValue={setRegionValue}
+            onChangeCityValue={setCityValue}
+            onChangeTypeValue={setTypeValue}
+            onChangeDescriptionValue={setDescriptionValue}
+            setChange={updateAnOffer}
+            jobList={offers}
+          />
         </Route>
         <Route exact path="/mentions-legales">
           <Legalnotices />
