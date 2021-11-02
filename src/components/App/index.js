@@ -41,14 +41,6 @@ export default function App() {
   const [typeValue, setTypeValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
 
-
-
-  const [cityValue, setCityValue] = useState('');
-  const [titleValue, setTitleValue] = useState('');
-  const [regionValue, setRegionValue] = useState('');
-  const [typeValue, setTypeValue] = useState('');
-  const [descriptionValue, setDescriptionValue] = useState('');
-
   // function to logout the user
   const logOut = () => {
     setIsLogged(false);
@@ -217,6 +209,11 @@ export default function App() {
         )}
         <Route exact path="/add-job">
           <Createoffer
+            titleValue={titleValue}
+            descriptionValue={descriptionValue}
+            regionValue={regionValue}
+            cityValue={cityValue}
+            typeValue={typeValue}
             onChangeTitleValue={setTitleValue}
             onChangeRegionValue={setRegionValue}
             onChangeCityValue={setCityValue}
@@ -252,6 +249,7 @@ export default function App() {
             deleteOffer={deleteOffer}
             offers={offers}
           />
+        </Route>
         <Route exact path="/mentions-legales">
           <Legalnotices />
         </Route>
