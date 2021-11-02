@@ -18,15 +18,17 @@ export default function Joboffers({
       <div className="offers-container">
         {offers.map((offer) => (
           <div className="offer-card" key={offer.id}>
-            <FaTruck className="truck-icon" />
             {isLogged && (
               <button type="button" onClick={deleteOffer} className="delete-offer-button" id={offer.id}>
                 <FaTrash className="trash-icon" />
               </button>
             )}
-            <p className="card-content">
-              {offer.title} - {offer.city} - {offer.type}
-            </p>
+            <Link to={`/recrutement/${offer.id}`}>
+              <FaTruck className="truck-icon" />
+              <p className="card-content">
+                {offer.title} - {offer.city}
+              </p>
+            </Link>
           </div>
         ))}
       </div>

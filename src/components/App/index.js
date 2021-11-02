@@ -12,7 +12,9 @@ import Footer from 'src/components/Footer';
 import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
+import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
+
 
 // import styles
 import './styles.scss';
@@ -30,6 +32,7 @@ export default function App() {
   const [userFirstName, setUserFirstName] = useState('');
   const [userId, setUserId] = useState(0);
   const [accessToken, setAccessToken] = useState('');
+
 
   // function to logout the user
   const logOut = () => {
@@ -61,9 +64,9 @@ export default function App() {
         console.log(error);
       });
   };
-
-  */
+ */
   // request to delete a job offer
+
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
@@ -163,6 +166,12 @@ export default function App() {
             deleteOffer={deleteOffer}
           />
         </Route>
+        <Route exact path="/recrutement/:id">
+          <Focusedoffer
+            isLogged={isLogged}
+            deleteOffer={deleteOffer}
+            offers={offers}
+          />
         <Route exact path="/mentions-legales">
           <Legalnotices />
         </Route>
@@ -171,7 +180,7 @@ export default function App() {
     </div>
   );
 }
-
+// prendre exemple sur indeed pour les cartes.
 /*
 To add later on when all pages are ready
 <Route exact path="/contact">
