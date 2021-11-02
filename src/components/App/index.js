@@ -32,7 +32,7 @@ export default function App() {
   const [adminInfo, setAdminInfo] = useState('');
 
   const getIsLogged = () => {
-    setIsLogged(false);
+    setIsLogged(true);
     /*
     axios.get('https://ldo-transports.herokuapp.com/:adminId')
       .then((response) => {
@@ -89,11 +89,6 @@ export default function App() {
       });
   };
  */
-
-  const findOffer = (event) => {
-    const jobId = event.target.getAttribute('id');
-    offers.find((offer) => (offer.id === `${jobId}`));
-  };
 
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
@@ -200,8 +195,8 @@ export default function App() {
         <Route exact path="/recrutement/:id">
           <Focusedoffer
             isLogged={isLogged}
-            offer={findOffer}
             deleteOffer={deleteOffer}
+            offers={offers}
           />
         </Route>
       </Switch>

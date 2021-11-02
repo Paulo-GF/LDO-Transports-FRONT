@@ -28,6 +28,15 @@
   padding: 1%;
 }
 
+.offer-card:hover {
+  box-shadow: 0 0 10px 2px black;
+}
+
+.card-content:hover {
+  text-decoration: underline;
+  text-decoration-color: #a32610;
+}
+
 .delete-offer-button {
   position: inherit;
   height: 3rem;
