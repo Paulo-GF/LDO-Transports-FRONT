@@ -37,7 +37,7 @@ export default function Signin({
           />
           <input
             className="signin-content-form-input"
-            type="pasword"
+            type="password"
             name="password"
             value={passwordValue}
             placeholder="mot de passe"

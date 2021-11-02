@@ -1,14 +1,24 @@
 .footer {
-  background-color: grey;
+  background-color: rgb(221, 221, 221);
   margin-top: 3%;
   padding: 1rem;
   display: flex;
   justify-content: center;
-  justify-content: space-between;
+  border-top: solid 1px black;
+  font-size: 0.5em;
+  width: 100%;
+  bottom: 0;
 
   .footer-link, p {
     font-size: 2em;
     margin: 0% 1%;
   }
 
+  .footer-link:hover {
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+    text-decoration-thickness: 0.2em;
+  }
+
 }
+
