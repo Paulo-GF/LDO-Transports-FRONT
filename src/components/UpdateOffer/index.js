@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 export default function UpdateOffer({ jobList }) {
   const {
@@ -9,6 +10,22 @@ export default function UpdateOffer({ jobList }) {
     description,
   } = jobList.find((job) => job.id === 1);
 
+  // local state
+  const [updateCity, setUpdateCity] = useState(city);
+  const [updateTitle, setUpdateTitle] = useState(title);
+  const [updateRegion, setUpdateRegion] = useState(region);
+  const [updateType, setUpdateType] = useState(type);
+  const [updateDescription, setUpdateDescription] = useState(description);
+
+  // reset initial values in inputs
+  const handleResetChanges = () => {
+    setUpdateCity(city);
+    setUpdateTitle(title);
+    setUpdateRegion(region);
+    setUpdateType(type);
+    setUpdateDescription(description);
+  };
+
   return (
     <div className="update">
       <button type="button">X</button>
@@ -17,9 +34,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="title"
-          value={title}
+          value={updateTitle}
           onChange={(event) => {
-            console.log(event.target.value);
+            setUpdateTitle(event.target.value);
           }}
           placeholder="titre"
         />
@@ -27,9 +44,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="region"
-          value={region}
+          value={updateRegion}
           onChange={(event) => {
-            console.log(event.target.value);
+            setUpdateRegion(event.target.value);
           }}
           placeholder="région"
         />
@@ -37,9 +54,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="city"
-          value={city}
+          value={updateCity}
           onChange={(event) => {
-            console.log(event.target.value);
+            setUpdateCity(event.target.value);
           }}
           placeholder="ville"
         />
@@ -47,9 +64,9 @@ export default function UpdateOffer({ jobList }) {
           className="update-form-input"
           type="text"
           name="type"
-          value={type}
+          value={updateType}
           onChange={(event) => {
-            console.log(event.target.value);
+            setUpdateType(event.target.value);
           }}
           placeholder="type de contrat"
         />
@@ -59,15 +76,15 @@ export default function UpdateOffer({ jobList }) {
           cols="60"
           type="text"
           name="description"
-          value={description}
+          value={updateDescription}
           onChange={(event) => {
-            console.log(event.target.value);
+            setUpdateDescription(event.target.value);
           }}
           placeholder="description de l'offre"
         />
         <button className="update-form-button" type="submit"> Confirmer la modification </button>
       </form>
-      <button className="update-cancel-button" type="submit">Annuler la modicication </button>
+      <button className="update-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modicication </button>
     </div>
   );
 }
