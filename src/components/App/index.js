@@ -42,7 +42,7 @@ export default function App() {
   const getOffers = () => {
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setOffers(response.data);
       })
       .catch((error) => {
@@ -101,8 +101,8 @@ export default function App() {
 
   // request to change the password when admin is connected
   const changePassword = () => {
-    console.log('changePassword');
-    console.log(accessToken);
+    // console.log('changePassword');
+    // console.log(accessToken);
     axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
       userId,
       newPassword,
@@ -163,12 +163,12 @@ export default function App() {
             offers={offers}
             deleteOffer={deleteOffer}
           />
+          <UpdateOffer jobList={offers} />
         </Route>
         <Route exact path="/mentions-legales">
           <Legalnotices />
         </Route>
       </Switch>
-      <UpdateOffer />
       <Footer />
     </div>
   );

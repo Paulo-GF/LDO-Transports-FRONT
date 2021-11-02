@@ -1,4 +1,14 @@
-export default function UpdateOffer() {
+import PropTypes from 'prop-types';
+
+export default function UpdateOffer({ jobList }) {
+  const {
+    city,
+    region,
+    title,
+    type,
+    description,
+  } = jobList.find((job) => job.id === 1);
+
   return (
     <div className="update">
       <button type="button">X</button>
@@ -7,7 +17,7 @@ export default function UpdateOffer() {
           className="update-form-input"
           type="text"
           name="title"
-          value=""
+          value={title}
           onChange={(event) => {
             console.log(event.target.value);
           }}
@@ -17,7 +27,7 @@ export default function UpdateOffer() {
           className="update-form-input"
           type="text"
           name="region"
-          value=""
+          value={region}
           onChange={(event) => {
             console.log(event.target.value);
           }}
@@ -27,7 +37,7 @@ export default function UpdateOffer() {
           className="update-form-input"
           type="text"
           name="city"
-          value=""
+          value={city}
           onChange={(event) => {
             console.log(event.target.value);
           }}
@@ -37,17 +47,19 @@ export default function UpdateOffer() {
           className="update-form-input"
           type="text"
           name="type"
-          value=""
+          value={type}
           onChange={(event) => {
             console.log(event.target.value);
           }}
           placeholder="type de contrat"
         />
-        <input
+        <textarea
           className="update-form-input"
+          rows="40"
+          cols="60"
           type="text"
           name="description"
-          value=""
+          value={description}
           onChange={(event) => {
             console.log(event.target.value);
           }}
@@ -59,3 +71,13 @@ export default function UpdateOffer() {
     </div>
   );
 }
+
+UpdateOffer.propTypes = {
+  jobList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      city: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
+};
