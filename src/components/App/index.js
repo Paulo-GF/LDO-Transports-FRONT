@@ -14,6 +14,7 @@ import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
 import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
+import Createoffer from 'src/components/CreateOffer';
 import UpdateOffer from 'src/components/UpdateOffer';
 
 
@@ -42,6 +43,12 @@ export default function App() {
 
 
 
+  const [cityValue, setCityValue] = useState('');
+  const [titleValue, setTitleValue] = useState('');
+  const [regionValue, setRegionValue] = useState('');
+  const [typeValue, setTypeValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
+
   // function to logout the user
   const logOut = () => {
     setIsLogged(false);
@@ -61,18 +68,35 @@ export default function App() {
   };
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
   useEffect(getOffers, [updateOffers]);
-  /*
+
   // request to add a job offer
   const createOffer = () => {
-    axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job')
+    axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
+      title: titleValue,
+      region: regionValue,
+      type: typeValue,
+      description: descriptionValue,
+      city: cityValue,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((response) => {
-
+        console.log(response);
+        setTitleValue('');
+        setRegionValue('');
+        setTypeValue('');
+        setDescriptionValue('');
+        setCityValue('');
+        setUpdateOffers(!updateOffers);
       })
       .catch((error) => {
         console.log(error);
       });
   };
- */
+
   // request to delete a job offer
 
   const deleteOffer = (event) => {
@@ -191,6 +215,16 @@ export default function App() {
           />
         </Route>
         )}
+        <Route exact path="/add-job">
+          <Createoffer
+            onChangeTitleValue={setTitleValue}
+            onChangeRegionValue={setRegionValue}
+            onChangeCityValue={setCityValue}
+            onChangeTypeValue={setTypeValue}
+            onChangeDescriptionValue={setDescriptionValue}
+            onSubmitForm={createOffer}
+          />
+        </Route>
         <Route exact path="/recrutement">
           <Joboffers
             isLogged={isLogged}
@@ -231,12 +265,6 @@ export default function App() {
 To add later on when all pages are ready
 <Route exact path="/contact">
   <Contact />
-</Route>
-<Route >
-  <Createoffer
-    createOffer={createOffer}
-  />
-</Route>
   <404 />
 </Route>
 */
