@@ -13,6 +13,7 @@ import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
 import Legalnotices from 'src/components/Legalnotices';
+import UpdateOffer from 'src/components/UpdateOffer';
 
 // import styles
 import './styles.scss';
@@ -167,6 +168,7 @@ export default function App() {
           <Legalnotices />
         </Route>
       </Switch>
+      <UpdateOffer />
       <Footer />
     </div>
   );
