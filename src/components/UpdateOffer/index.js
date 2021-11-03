@@ -110,7 +110,7 @@ export default function UpdateOffer({
             />
             <button className="update-form-button" type="submit"> Confirmer la modification </button>
           </form>
-          <button className="update-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modicication </button>
+          <button className="update-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modification </button>
         </div>
       </div>
     </div>
