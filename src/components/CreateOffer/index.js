@@ -68,10 +68,12 @@ export default function Createoffer({
             }}
             placeholder="type de l'offre"
           />
-          <input
+          <textarea
             className="new-offer-content-form-input"
             type="text"
             name="description"
+            rows="40"
+            cols="60"
             value={descriptionValue}
             onChange={(event) => {
               onChangeDescriptionValue(event.target.value);

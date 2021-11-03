@@ -17,7 +17,6 @@ import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import UpdateOffer from 'src/components/UpdateOffer';
 
-
 // import styles
 import './styles.scss';
 
