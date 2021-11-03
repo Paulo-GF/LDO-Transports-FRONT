@@ -23,7 +23,8 @@ export default function FocusedOffer({
   deleteOffer,
 }) {
   const params = useParams();
-  const offer = offers.find((michel) => michel.id == `${params.id}`);
+  const paramsId = parseInt(params.id, 10);
+  const offer = offers.find((job) => job.id === paramsId);
 
   const [openModifyOfferModal, setOpenModifyOfferModal] = useState(false);
 
@@ -62,6 +63,7 @@ export default function FocusedOffer({
         </div>
       ) : (
         <UpdateOffer
+          offer={offer}
           titleValue={titleValue}
           descriptionValue={descriptionValue}
           regionValue={regionValue}
@@ -86,8 +88,10 @@ FocusedOffer.propTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       title: PropTypes.string,
+      region: PropTypes.string,
       city: PropTypes.string,
       type: PropTypes.string,
+      description: PropTypes.string,
     }).isRequired,
   ).isRequired,
   isLogged: PropTypes.bool.isRequired,

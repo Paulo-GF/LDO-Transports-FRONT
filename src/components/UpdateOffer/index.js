@@ -12,14 +12,13 @@ export default function UpdateOffer({
   onChangeCityValue,
   onChangeTypeValue,
   onChangeDescriptionValue,
-  jobList,
   setChange,
   hideModifyOfferModal,
+  offer,
 }) {
   // state local
   const [reset, setReset] = useState(false);
 
-  // find the good offer by id
   const {
     id,
     city,
@@ -27,7 +26,7 @@ export default function UpdateOffer({
     title,
     type,
     description,
-  } = jobList.find((job) => job.id === 1);
+  } = offer;
 
   useEffect(() => {
   // put the current values of the finded offer in inputs
@@ -118,13 +117,14 @@ export default function UpdateOffer({
 }
 
 UpdateOffer.propTypes = {
-  jobList: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      city: PropTypes.string,
-    }).isRequired,
-  ).isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    region: PropTypes.string,
+    city: PropTypes.string,
+    type: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
   setChange: PropTypes.func.isRequired,
   titleValue: PropTypes.string.isRequired,
   descriptionValue: PropTypes.string.isRequired,

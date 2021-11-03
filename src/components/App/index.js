@@ -15,7 +15,6 @@ import Joboffers from 'src/components/Joboffers';
 import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
-import UpdateOffer from 'src/components/UpdateOffer';
 
 // import styles
 import './styles.scss';
@@ -150,25 +149,31 @@ export default function App() {
   // request to update an offer
   const updateAnOffer = (id) => {
     console.log(id, titleValue, regionValue, typeValue, descriptionValue, cityValue);
-    // axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
-    //   title: titleValue,
-    //   region: regionValue,
-    //   type: typeValue,
-    //   description: descriptionValue,
-    //   city: cityValue,
-    // },
-    // {
-    //   headers: {
-    //     authorization: `Bearer ${accessToken}`,
-    //   },
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //     setUpdateOffers(!updateOffers);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
+      id: id,
+      title: titleValue,
+      region: regionValue,
+      city: cityValue,
+      type: typeValue,
+      description: descriptionValue,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        setTitleValue('');
+        setRegionValue('');
+        setTypeValue('');
+        setDescriptionValue('');
+        setCityValue('');
+        setUpdateOffers(!updateOffers);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
