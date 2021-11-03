@@ -15,6 +15,7 @@ import Joboffers from 'src/components/Joboffers';
 import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
+import Contact from 'src/components/Contact';
 
 // import styles
 import './styles.scss';
@@ -38,6 +39,11 @@ export default function App() {
   const [regionValue, setRegionValue] = useState('');
   const [typeValue, setTypeValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
+
+  const [mailValue, setMailValue] = useState('');
+  const [subjectValue, setSubjectValue] = useState('');
+  const [messageValue, setMessageValue] = useState('');
+  const [fileValue, setFileValue] = useState([]);
 
   // function to logout the user
   const logOut = () => {
@@ -87,8 +93,45 @@ export default function App() {
       });
   };
 
+  const sendContactMessage = () => {
+    const form = new FormData();
+    form.append('file', fileValue);
+    form.append('userMail', mailValue);
+    form.append('subject', fileValue);
+    form.append('message', messageValue);
+    console.log(fileValue);
+    axios.post('https://ldo-transports.herokuapp.com/contact', {
+      data: form,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+      .then((response) => {
+        console.log(response);
+        setMailValue('');
+        setSubjectValue('');
+        setMessageValue('');
+        setFileValue('');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  /*
+  axios({
+    method: "post",
+    url: "myurl",
+    data: bodyFormData,
+    headers: { "Content-Type": "multipart/form-data" },
+  })
+    .then(function (response) {
+      //handle success
+      console.log(response);
+    })
+    .catch(function (response) {
+      //handle error
+      console.log(response);
+    });
+    */
   // request to delete a job offer
-
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
@@ -257,6 +300,19 @@ export default function App() {
         <Route exact path="/mentions-legales">
           <Legalnotices />
         </Route>
+        <Route exact path="/contact">
+          <Contact
+            mailValue={mailValue}
+            subjectValue={subjectValue}
+            messageValue={messageValue}
+            fileValue={fileValue}
+            onChangeMailValue={setMailValue}
+            onChangeSubjectValue={setSubjectValue}
+            onChangeMessageValue={setMessageValue}
+            onChangeFileValue={setFileValue}
+            onSubmitForm={sendContactMessage}
+          />
+        </Route>
       </Switch>
       <Footer />
     </div>
@@ -265,8 +321,7 @@ export default function App() {
 // prendre exemple sur indeed pour les cartes.
 /*
 To add later on when all pages are ready
-<Route exact path="/contact">
-  <Contact />
+<Route >
   <404 />
 </Route>
 */
