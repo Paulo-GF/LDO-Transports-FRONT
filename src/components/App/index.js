@@ -196,7 +196,6 @@ export default function App() {
         {/** ternary expression to only allow access to the admin route if admin logged */}
         {isLogged
         && (
-        <>
           <Route path="/admin-logged">
             <Admin
               newPasswordValue={newPassword}
@@ -206,22 +205,24 @@ export default function App() {
               onSubmitForm={changePassword}
             />
           </Route>
-          <Route exact path="/add-job">
-            <Createoffer
-              titleValue={titleValue}
-              descriptionValue={descriptionValue}
-              regionValue={regionValue}
-              cityValue={cityValue}
-              typeValue={typeValue}
-              onChangeTitleValue={setTitleValue}
-              onChangeRegionValue={setRegionValue}
-              onChangeCityValue={setCityValue}
-              onChangeTypeValue={setTypeValue}
-              onChangeDescriptionValue={setDescriptionValue}
-              onSubmitForm={createOffer}
-            />
-          </Route>
-        </>
+        )}
+        {isLogged
+        && (
+        <Route exact path="/add-job">
+          <Createoffer
+            titleValue={titleValue}
+            descriptionValue={descriptionValue}
+            regionValue={regionValue}
+            cityValue={cityValue}
+            typeValue={typeValue}
+            onChangeTitleValue={setTitleValue}
+            onChangeRegionValue={setRegionValue}
+            onChangeCityValue={setCityValue}
+            onChangeTypeValue={setTypeValue}
+            onChangeDescriptionValue={setDescriptionValue}
+            onSubmitForm={createOffer}
+          />
+        </Route>
         )}
         <Route exact path="/recrutement">
           <Joboffers
@@ -229,7 +230,12 @@ export default function App() {
             offers={offers}
             deleteOffer={deleteOffer}
           />
-          <UpdateOffer
+        </Route>
+        <Route exact path="/recrutement/:id">
+          <Focusedoffer
+            isLogged={isLogged}
+            deleteOffer={deleteOffer}
+            offers={offers}
             titleValue={titleValue}
             descriptionValue={descriptionValue}
             regionValue={regionValue}
@@ -241,14 +247,6 @@ export default function App() {
             onChangeTypeValue={setTypeValue}
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
-            jobList={offers}
-          />
-        </Route>
-        <Route exact path="/recrutement/:id">
-          <Focusedoffer
-            isLogged={isLogged}
-            deleteOffer={deleteOffer}
-            offers={offers}
           />
         </Route>
         <Route exact path="/mentions-legales">

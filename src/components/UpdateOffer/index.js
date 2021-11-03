@@ -14,6 +14,7 @@ export default function UpdateOffer({
   onChangeDescriptionValue,
   jobList,
   setChange,
+  hideModifyOfferModal,
 }) {
   // state local
   const [reset, setReset] = useState(false);
@@ -46,67 +47,72 @@ export default function UpdateOffer({
   const handleSubmitForm = (event) => {
     event.preventDefault();
     setChange(id);
+    hideModifyOfferModal();
   };
 
   return (
     <div className="update">
-      <button type="button">X</button>
-      <form onSubmit={handleSubmitForm}>
-        <input
-          className="update-form-input"
-          type="text"
-          name="title"
-          value={titleValue}
-          onChange={(event) => {
-            onChangeTitleValue(event.target.value);
-          }}
-          placeholder="titre"
-        />
-        <input
-          className="update-form-input"
-          type="text"
-          name="region"
-          value={regionValue}
-          onChange={(event) => {
-            onChangeRegionValue(event.target.value);
-          }}
-          placeholder="région"
-        />
-        <input
-          className="update-form-input"
-          type="text"
-          name="city"
-          value={cityValue}
-          onChange={(event) => {
-            onChangeCityValue(event.target.value);
-          }}
-          placeholder="ville"
-        />
-        <input
-          className="update-form-input"
-          type="text"
-          name="type"
-          value={typeValue}
-          onChange={(event) => {
-            onChangeTypeValue(event.target.value);
-          }}
-          placeholder="type de contrat"
-        />
-        <textarea
-          className="update-form-input"
-          rows="40"
-          cols="60"
-          type="text"
-          name="description"
-          value={descriptionValue}
-          onChange={(event) => {
-            onChangeDescriptionValue(event.target.value);
-          }}
-          placeholder="description de l'offre"
-        />
-        <button className="update-form-button" type="submit"> Confirmer la modification </button>
-      </form>
-      <button className="update-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modicication </button>
+      <div className="update-modalBackground">
+        <div className="update-modalCard">
+          <button type="button" onClick={hideModifyOfferModal}>X</button>
+          <form onSubmit={handleSubmitForm}>
+            <input
+              className="update-form-input"
+              type="text"
+              name="title"
+              value={titleValue}
+              onChange={(event) => {
+                onChangeTitleValue(event.target.value);
+              }}
+              placeholder="titre"
+            />
+            <input
+              className="update-form-input"
+              type="text"
+              name="region"
+              value={regionValue}
+              onChange={(event) => {
+                onChangeRegionValue(event.target.value);
+              }}
+              placeholder="région"
+            />
+            <input
+              className="update-form-input"
+              type="text"
+              name="city"
+              value={cityValue}
+              onChange={(event) => {
+                onChangeCityValue(event.target.value);
+              }}
+              placeholder="ville"
+            />
+            <input
+              className="update-form-input"
+              type="text"
+              name="type"
+              value={typeValue}
+              onChange={(event) => {
+                onChangeTypeValue(event.target.value);
+              }}
+              placeholder="type de contrat"
+            />
+            <textarea
+              className="update-form-input"
+              rows="40"
+              cols="60"
+              type="text"
+              name="description"
+              value={descriptionValue}
+              onChange={(event) => {
+                onChangeDescriptionValue(event.target.value);
+              }}
+              placeholder="description de l'offre"
+            />
+            <button className="update-form-button" type="submit"> Confirmer la modification </button>
+          </form>
+          <button className="update-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modicication </button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -130,4 +136,5 @@ UpdateOffer.propTypes = {
   onChangeCityValue: PropTypes.func.isRequired,
   onChangeTypeValue: PropTypes.func.isRequired,
   onChangeDescriptionValue: PropTypes.func.isRequired,
+  hideModifyOfferModal: PropTypes.func.isRequired,
 };

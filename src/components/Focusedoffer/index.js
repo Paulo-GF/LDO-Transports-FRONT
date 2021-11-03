@@ -1,11 +1,23 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import UpdateOffer from 'src/components/UpdateOffer';
 
 // import styles
 import './styles.scss';
 
 export default function FocusedOffer({
+  titleValue,
+  descriptionValue,
+  regionValue,
+  cityValue,
+  typeValue,
+  onChangeTitleValue,
+  onChangeRegionValue,
+  onChangeCityValue,
+  onChangeTypeValue,
+  onChangeDescriptionValue,
+  setChange,
   isLogged,
   offers,
   deleteOffer,
@@ -24,7 +36,7 @@ export default function FocusedOffer({
 
   return (
     <div>
-      {!openModifyOfferModal && (
+      {!openModifyOfferModal ? (
         <div>
           <Link to="/recrutement" className="back-to-offers-link">
             Retour aux offres d'emploi
@@ -48,6 +60,22 @@ export default function FocusedOffer({
             )}
           </div>
         </div>
+      ) : (
+        <UpdateOffer
+          titleValue={titleValue}
+          descriptionValue={descriptionValue}
+          regionValue={regionValue}
+          cityValue={cityValue}
+          typeValue={typeValue}
+          onChangeTitleValue={onChangeTitleValue}
+          onChangeRegionValue={onChangeRegionValue}
+          onChangeCityValue={onChangeCityValue}
+          onChangeTypeValue={onChangeTypeValue}
+          onChangeDescriptionValue={onChangeDescriptionValue}
+          setChange={setChange}
+          jobList={offers}
+          hideModifyOfferModal={hideModifyOfferModal}
+        />
       )}
     </div>
   );
@@ -64,6 +92,17 @@ FocusedOffer.propTypes = {
   ).isRequired,
   isLogged: PropTypes.bool.isRequired,
   deleteOffer: PropTypes.func,
+  setChange: PropTypes.func.isRequired,
+  titleValue: PropTypes.string.isRequired,
+  descriptionValue: PropTypes.string.isRequired,
+  regionValue: PropTypes.string.isRequired,
+  cityValue: PropTypes.string.isRequired,
+  typeValue: PropTypes.string.isRequired,
+  onChangeTitleValue: PropTypes.func.isRequired,
+  onChangeRegionValue: PropTypes.func.isRequired,
+  onChangeCityValue: PropTypes.func.isRequired,
+  onChangeTypeValue: PropTypes.func.isRequired,
+  onChangeDescriptionValue: PropTypes.func.isRequired,
 };
 
 FocusedOffer.defaultProps = {
