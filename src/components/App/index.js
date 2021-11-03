@@ -196,31 +196,33 @@ export default function App() {
         {/** ternary expression to only allow access to the admin route if admin logged */}
         {isLogged
         && (
-        <Route path="/admin-logged">
-          <Admin
-            newPasswordValue={newPassword}
-            confirmNewPasswordValue={newPasswordConfirm}
-            onChangeNewPasswordValue={setNewPassword}
-            onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
-            onSubmitForm={changePassword}
-          />
-        </Route>
+        <>
+          <Route path="/admin-logged">
+            <Admin
+              newPasswordValue={newPassword}
+              confirmNewPasswordValue={newPasswordConfirm}
+              onChangeNewPasswordValue={setNewPassword}
+              onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
+              onSubmitForm={changePassword}
+            />
+          </Route>
+          <Route exact path="/add-job">
+            <Createoffer
+              titleValue={titleValue}
+              descriptionValue={descriptionValue}
+              regionValue={regionValue}
+              cityValue={cityValue}
+              typeValue={typeValue}
+              onChangeTitleValue={setTitleValue}
+              onChangeRegionValue={setRegionValue}
+              onChangeCityValue={setCityValue}
+              onChangeTypeValue={setTypeValue}
+              onChangeDescriptionValue={setDescriptionValue}
+              onSubmitForm={createOffer}
+            />
+          </Route>
+        </>
         )}
-        <Route exact path="/add-job">
-          <Createoffer
-            titleValue={titleValue}
-            descriptionValue={descriptionValue}
-            regionValue={regionValue}
-            cityValue={cityValue}
-            typeValue={typeValue}
-            onChangeTitleValue={setTitleValue}
-            onChangeRegionValue={setRegionValue}
-            onChangeCityValue={setCityValue}
-            onChangeTypeValue={setTypeValue}
-            onChangeDescriptionValue={setDescriptionValue}
-            onSubmitForm={createOffer}
-          />
-        </Route>
         <Route exact path="/recrutement">
           <Joboffers
             isLogged={isLogged}

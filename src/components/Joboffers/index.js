@@ -33,7 +33,7 @@ export default function Joboffers({
         ))}
       </div>
       {isLogged && (
-        <Link to="/Createoffer" className="create-offer-link">
+        <Link to="/add-job" className="create-offer-link">
           Créer une offre
         </Link>
       )}
