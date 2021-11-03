@@ -9,8 +9,8 @@ export default function News() {
     <div id="news" className="news">
       <h2 className="news-title">Nos actualités</h2>
       <article className="news-article">
-        <div className="news-image">
-          <img className="image" src={image} alt="truck1" />
+        <div className="news-imageContainer">
+          <img className="news-image" src={image} alt="truck1" />
         </div>
         <p className="news-content">LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
           de la SAS LDO Transports.

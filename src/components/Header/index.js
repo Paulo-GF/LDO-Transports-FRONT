@@ -30,25 +30,45 @@ export default function Header({ isLogged, adminInfo, logOut }) {
         <CgMenuGridR className={classnameBurger} />
       </a>
       <nav className={`navBar ${classnameNav}`}>
-        <NavLink to="/" className="menu-link">
+        <NavLink exact activeClassName="navBar-link--selected" to="/" className="navBar-link">
           Accueil
         </NavLink>
-        <NavLink to="/recrutement" className="menu-link">
+        <NavLink to="/recrutement" activeClassName="navBar-link--selected" className="navBar-link">
           Recrutement
         </NavLink>
-        <NavLink to="/contact" className="menu-link">
+        <NavLink to="/contact" activeClassName="navBar-link--selected" className="navBar-link">
           Contact
         </NavLink>
         {isLogged && (
-          <div className="menu-connected">
-            <NavLink to="/admin-logged" className="menu-link-admin">
+          <div className="navBar-connected">
+            <NavLink to="/admin-logged" activeClassName="navBar-link--selected" className="navBar-link navBar-connected-admin">
               Page Admin
             </NavLink>
-            <FaUserCircle className="menu-connected-userIcon" />
-            <div className="menu-connected-userInfo">
+            <FaUserCircle className="navBar-connected-userIcon" />
+            <div className="navBar-connected-userInfo">
               {adminInfo}
             </div>
-            <button className="deconnexion-button" type="button" onClick={logOut}> Déconnexion </button>
+            <button className="navBar-connected-deconnexion-button" type="button" onClick={logOut}> Déconnexion </button>
+          </div>
+        )}
+        {isLogged && (
+          <div className="menu-connected">
+            <div className="menu-connected-avatar">
+              <FaUserCircle className="icon" />
+              <p>{adminInfo}</p>
+            </div>
+            <ul className="menu-connected-avatar-dropdown">
+              <li className="menu-link-admin">
+                <NavLink to="/admin-logged">
+                  Page Admin
+                </NavLink>
+              </li>
+              <li className="deconnexion-li">
+                <button className="deconnexion-button" type="button" onClick={logOut}>
+                  Déconnexion
+                </button>
+              </li>
+            </ul>
           </div>
         )}
       </nav>

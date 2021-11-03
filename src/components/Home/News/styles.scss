@@ -1,25 +1,66 @@
+  //mobile first
 .news {
-    &-article {
-      line-height: 2rem;
-      width: 97%;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-    }
-    &-title {
-      margin: 1rem;
-      text-align: center;
-    }
-    &-image {
-      width : 50%;
-    }
-    &-content {
-      max-width: 50%;
-      padding: 1rem;
-    }
+  &-title {
+    margin: 0;
+    padding: 5rem 0 2rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
   }
-  
-  .image {
+  &-article {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 2em;
+    justify-content: space-between;
+  }
+  &-imageContainer {
+    width : 100%;
+  }
+  &-image {
     width: 100%;
     height: auto;
   }
+  &-content {
+    text-align: justify;
+    padding: 1rem;
+  }
+
+  }
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .news {
+    padding-bottom: 3rem;
+    &-title {
+      font-size: 2em;
+      font-weight: 600;
+      padding: 6rem 0 2rem 0;
+    }
+    &-article {
+      flex-direction: row;
+      padding: 0 1rem;
+      width: 100%;
+      line-height: 2em;
+    }
+    &-imageContainer {
+      width : 50%;
+    }
+    &-image {
+      width: 100%;
+      height: auto;
+    }
+    &-content {
+      width : 50%;
+      padding: 2rem;
+    }
+  }
+}

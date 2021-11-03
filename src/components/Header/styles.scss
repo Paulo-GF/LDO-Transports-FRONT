@@ -5,6 +5,10 @@
   // align-items: center;
 }
 
+.menu-connected {
+  display: none;
+}
+
 .logo-link {
   width: 100%;
   height: 155px;
@@ -27,6 +31,20 @@
   
   &_appear {
     animation: translateMenu 1s;
+  }
+
+  &-link {
+    padding: 0.5rem;
+  }
+
+  &-link:hover {
+    color: rgb(116, 6, 6);
+  }
+
+  &-link--selected {
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+    text-decoration-thickness: 0.2em;
   }
   // &_disappear {
   //   animation: translateMenu 1s;
@@ -68,27 +86,33 @@
   }
 
   .navBar {
+    color: rgb(71, 8, 34);
     display: flex;
     flex-direction: row;
     align-items:  center;
+    font-weight: 700;
+    font-size: 1.5em;
+    color: rgb(71, 8, 34);
+    padding-bottom: 1rem;
     
     &_hidden {
       display: flex;
     }
     
-  .menu-connected {
-    display: flex;
-    justify-content: space-between;
-    align-items:  center;
+    &-connected {
+      display: flex;
+      justify-content: space-between;
+      align-items:  center;
 
-    &-icon {
+      &-userIcon {
         margin: 0 1rem;    
       }
-  } 
 
-  .menu-link-admin,.menu-connected-userInfo,.deconnexion-button {
-    margin: 0 1rem;
-  }
+      &-admin, &-userInfo, &-deconnexion-button {
+        margin: 0 1rem;
+      }
+    } 
+
 
   }
 }
@@ -100,6 +124,10 @@
   .header {
     display: flex;
     align-items: center;
+  }
+
+  .navBar-connected {
+    display: none;
   }
 
   .logo-link {
@@ -115,14 +143,43 @@
   }
   
   .navBar {
+    font-weight: 800;
+    font-size: 1.7em;
+    color: rgb(71, 8, 34);
     width: 66%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 0;
   }
   
-  // .menu-connected {
-  //   display: inline-block;
-  //   }
+  .menu-connected {
+    display: inline-block;
+    &-avatar {
+      display: flex;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      &-dropdown {
+        padding: 1rem;  
+        border-radius: 4px;
+        display: none;
+        background-color: lightgrey;
+        min-width: 153px;
+        position: absolute;
+      }
+
+      &-dropdown li {
+        padding: 0.2rem;
+        display: block;
+        }
+    }
+  }
+  .menu-connected:hover .menu-connected-avatar-dropdown {
+    display: block;
+    }
 }

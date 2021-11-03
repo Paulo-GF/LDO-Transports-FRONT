@@ -1,24 +1,42 @@
+//mobile first
 .footer {
   background-color: rgb(221, 221, 221);
-  margin-top: 3%;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  border-top: solid 1px black;
-  font-size: 0.5em;
-  width: 100%;
+  position: absolute;
   bottom: 0;
+  top: 100%;
+  font-size: 0.8em;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  font-weight: 600;
 
-  .footer-link, p {
-    font-size: 2em;
-    margin: 0% 1%;
-  }
-
-  .footer-link:hover {
+  &-link:hover {
     text-decoration: underline;
     text-decoration-color: #a32610;
     text-decoration-thickness: 0.2em;
   }
 
+  &-link--selected {
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+    text-decoration-thickness: 0.2em;
+  }
+}
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .footer {
+    padding: 5rem;
+    font-size: 1.5em;
+  }
 }
 

@@ -1,5 +1,5 @@
 .job-offers {
-    height: 100vh;
+    height: 100%;
 }
 
 .offer-card:hover {
@@ -66,3 +66,16 @@
     color: white;
     padding: 0.5%;
   }
+
+  //mobile first
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+}

@@ -1,20 +1,21 @@
+//mobile first
+
 .homeNavBar {
   background-color: rgb(201, 77, 77);
   width: 100%;
-  margin: 1rem auto;
   display: flex;
-  justify-content: space-between;
-}
+  justify-content: space-around;
 
-.homeNavBar-ref {
-  margin: 1% 10%;
-  border: solid black 1px;
-  border-radius: 50%;
-  padding: 2%;
+  &-ref {
+    margin: 1rem 0;
+    border: solid black 1px;
+    border-radius: 50%;
+    padding: 1rem;
+  }
 }
 
 .icon-anchor {
-  font-size: 70px;
+  font-size: 3em;
 }
 
 .icon-anchor:hover {
@@ -26,3 +27,14 @@
     }
   }
 }  
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+}

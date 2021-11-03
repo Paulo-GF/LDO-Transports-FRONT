@@ -6,11 +6,11 @@ import './styles.scss';
 export default function Footer() {
   return (
     <nav className="footer">
-      <p>Tous droits réservés</p>
-      <NavLink to="/contact" className="footer-link">
+      <p className="footer-item">Tous droits réservés</p>
+      <NavLink to="/contact" activeClassName="footer-link--selected" className="footer-item footer-link">
         Contact
       </NavLink>
-      <NavLink to="/mentions-legales" className="footer-link">
+      <NavLink to="/mentions-legales" activeClassName="footer-link--selected" className="footer-item footer-link">
         Mentions légales
       </NavLink>
     </nav>
