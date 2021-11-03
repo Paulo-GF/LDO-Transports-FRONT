@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 
 // import styles
 import './styles.scss';
@@ -16,10 +18,18 @@ export default function Createoffer({
   onChangeDescriptionValue,
   onSubmitForm,
 }) {
+  // local state
+  const [redirected, setRedirected] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmitForm();
+    setRedirected(!redirected);
   };
+
+  if (redirected) {
+    return (<Redirect to="/recrutement" />);
+  }
 
   return (
     <div className="new-offer">

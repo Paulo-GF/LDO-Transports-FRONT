@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
 
 // import styles
@@ -26,6 +26,10 @@ export default function FocusedOffer({
   const paramsId = parseInt(params.id, 10);
   const offer = offers.find((job) => job.id === paramsId);
 
+  if (!offer) {
+    return (<Redirect to="/recrutement" />);
+  }
+
   const [openModifyOfferModal, setOpenModifyOfferModal] = useState(false);
 
   const showModifyOfferModal = () => {
@@ -33,6 +37,9 @@ export default function FocusedOffer({
   };
   const hideModifyOfferModal = () => {
     setOpenModifyOfferModal(false);
+  };
+  const handleDeleteClick = (event) => {
+    deleteOffer(event);
   };
 
   return (
@@ -55,7 +62,7 @@ export default function FocusedOffer({
             <p className="job-offer-type">{offer.type}</p>
             <p className="job-offer-desc">{offer.description}</p>
             {isLogged && (
-              <button type="button" onClick={deleteOffer} className="delete-offer-button">
+              <button type="button" onClick={handleDeleteClick} id={offer.id} className="delete-offer-button">
                 Supprimer l'offre
               </button>
             )}
