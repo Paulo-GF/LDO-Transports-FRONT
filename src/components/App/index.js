@@ -15,7 +15,6 @@ import Joboffers from 'src/components/Joboffers';
 import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
-import UpdateOffer from 'src/components/UpdateOffer';
 
 // import styles
 import './styles.scss';
@@ -150,25 +149,31 @@ export default function App() {
   // request to update an offer
   const updateAnOffer = (id) => {
     console.log(id, titleValue, regionValue, typeValue, descriptionValue, cityValue);
-    // axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
-    //   title: titleValue,
-    //   region: regionValue,
-    //   type: typeValue,
-    //   description: descriptionValue,
-    //   city: cityValue,
-    // },
-    // {
-    //   headers: {
-    //     authorization: `Bearer ${accessToken}`,
-    //   },
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //     setUpdateOffers(!updateOffers);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
+      id: id,
+      title: titleValue,
+      region: regionValue,
+      city: cityValue,
+      type: typeValue,
+      description: descriptionValue,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        setTitleValue('');
+        setRegionValue('');
+        setTypeValue('');
+        setDescriptionValue('');
+        setCityValue('');
+        setUpdateOffers(!updateOffers);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -196,16 +201,18 @@ export default function App() {
         {/** ternary expression to only allow access to the admin route if admin logged */}
         {isLogged
         && (
-        <Route path="/admin-logged">
-          <Admin
-            newPasswordValue={newPassword}
-            confirmNewPasswordValue={newPasswordConfirm}
-            onChangeNewPasswordValue={setNewPassword}
-            onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
-            onSubmitForm={changePassword}
-          />
-        </Route>
+          <Route path="/admin-logged">
+            <Admin
+              newPasswordValue={newPassword}
+              confirmNewPasswordValue={newPasswordConfirm}
+              onChangeNewPasswordValue={setNewPassword}
+              onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
+              onSubmitForm={changePassword}
+            />
+          </Route>
         )}
+        {isLogged
+        && (
         <Route exact path="/add-job">
           <Createoffer
             titleValue={titleValue}
@@ -221,13 +228,19 @@ export default function App() {
             onSubmitForm={createOffer}
           />
         </Route>
+        )}
         <Route exact path="/recrutement">
           <Joboffers
             isLogged={isLogged}
             offers={offers}
             deleteOffer={deleteOffer}
           />
-          <UpdateOffer
+        </Route>
+        <Route exact path="/recrutement/:id">
+          <Focusedoffer
+            isLogged={isLogged}
+            deleteOffer={deleteOffer}
+            offers={offers}
             titleValue={titleValue}
             descriptionValue={descriptionValue}
             regionValue={regionValue}
@@ -239,14 +252,6 @@ export default function App() {
             onChangeTypeValue={setTypeValue}
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
-            jobList={offers}
-          />
-        </Route>
-        <Route exact path="/recrutement/:id">
-          <Focusedoffer
-            isLogged={isLogged}
-            deleteOffer={deleteOffer}
-            offers={offers}
           />
         </Route>
         <Route exact path="/mentions-legales">
