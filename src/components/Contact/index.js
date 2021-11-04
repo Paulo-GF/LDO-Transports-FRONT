@@ -9,22 +9,23 @@ export default function Contact({
   mailValue,
   subjectValue,
   messageValue,
-  fileValue,
   onChangeMailValue,
   onChangeSubjectValue,
   onChangeMessageValue,
   onChangeFileValue,
   onSubmitForm,
 }) {
-  // local state
+  // local state pour le redirect
   const [redirected, setRedirected] = useState(false);
 
+  // submit func plus redirect state modification
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmitForm();
     setRedirected(!redirected);
   };
 
+  // to execute the redirection on submit
   if (redirected) {
     return (<Redirect to="/" />);
   }
@@ -71,10 +72,9 @@ export default function Contact({
           <input
             className="contact-content-form-input"
             type="file"
-            name="pdfFile"
-            value={fileValue}
+            name="file"
             onChange={(event) => {
-              onChangeFileValue(event.target.value);
+              onChangeFileValue(event.target.files);
             }}
             placeholder="Joindre un fichier"
           />
@@ -89,14 +89,9 @@ Contact.propTypes = {
   mailValue: PropTypes.string.isRequired,
   subjectValue: PropTypes.string.isRequired,
   messageValue: PropTypes.string.isRequired,
-  fileValue: PropTypes.any,
   onChangeMailValue: PropTypes.func.isRequired,
   onChangeSubjectValue: PropTypes.func.isRequired,
   onChangeMessageValue: PropTypes.func.isRequired,
   onChangeFileValue: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
-};
-
-Contact.defaultProps = {
-  fileValue: [],
 };

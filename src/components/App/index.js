@@ -43,7 +43,7 @@ export default function App() {
   const [mailValue, setMailValue] = useState('');
   const [subjectValue, setSubjectValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
-  const [fileValue, setFileValue] = useState([]);
+  const [fileValue, setFileValue] = useState();
 
   // function to logout the user
   const logOut = () => {
@@ -95,42 +95,25 @@ export default function App() {
 
   const sendContactMessage = () => {
     const form = new FormData();
-    form.append('file', fileValue);
+    form.append('file', fileValue[0]);
     form.append('userMail', mailValue);
-    form.append('subject', fileValue);
+    form.append('subject', subjectValue);
     form.append('message', messageValue);
-    console.log(fileValue);
-    axios.post('https://ldo-transports.herokuapp.com/contact', {
-      data: form,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
+    console.log(fileValue[0]);
+
+    axios.post('https://ldo-transports.herokuapp.com/contact', form)
       .then((response) => {
         console.log(response);
         setMailValue('');
         setSubjectValue('');
         setMessageValue('');
-        setFileValue('');
+        setFileValue();
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  /*
-  axios({
-    method: "post",
-    url: "myurl",
-    data: bodyFormData,
-    headers: { "Content-Type": "multipart/form-data" },
-  })
-    .then(function (response) {
-      //handle success
-      console.log(response);
-    })
-    .catch(function (response) {
-      //handle error
-      console.log(response);
-    });
-    */
+
   // request to delete a job offer
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
@@ -168,8 +151,6 @@ export default function App() {
 
   // request to change the password when admin is connected
   const changePassword = () => {
-    // console.log('changePassword');
-    // console.log(accessToken);
     axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
       userId,
       newPassword,
@@ -318,7 +299,6 @@ export default function App() {
     </div>
   );
 }
-// prendre exemple sur indeed pour les cartes.
 /*
 To add later on when all pages are ready
 <Route >
