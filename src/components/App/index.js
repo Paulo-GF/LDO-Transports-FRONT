@@ -197,10 +197,8 @@ export default function App() {
         <Route exact path="/">
           <Home />
         </Route>
-
         {/** ternary expression to only allow access to the admin route if admin logged */}
-        {isLogged
-        && (
+        {isLogged ? (
           <Route path="/admin-logged">
             <Admin
               newPasswordValue={newPassword}
@@ -210,24 +208,25 @@ export default function App() {
               onSubmitForm={changePassword}
             />
           </Route>
+        ) : (<Redirect from="/admin-logged" to="/" />
         )}
-        {isLogged
-        && (
-        <Route exact path="/add-job">
-          <Createoffer
-            titleValue={titleValue}
-            descriptionValue={descriptionValue}
-            regionValue={regionValue}
-            cityValue={cityValue}
-            typeValue={typeValue}
-            onChangeTitleValue={setTitleValue}
-            onChangeRegionValue={setRegionValue}
-            onChangeCityValue={setCityValue}
-            onChangeTypeValue={setTypeValue}
-            onChangeDescriptionValue={setDescriptionValue}
-            onSubmitForm={createOffer}
-          />
-        </Route>
+        {isLogged ? (
+          <Route exact path="/add-job">
+            <Createoffer
+              titleValue={titleValue}
+              descriptionValue={descriptionValue}
+              regionValue={regionValue}
+              cityValue={cityValue}
+              typeValue={typeValue}
+              onChangeTitleValue={setTitleValue}
+              onChangeRegionValue={setRegionValue}
+              onChangeCityValue={setCityValue}
+              onChangeTypeValue={setTypeValue}
+              onChangeDescriptionValue={setDescriptionValue}
+              onSubmitForm={createOffer}
+            />
+          </Route>
+        ) : (<Redirect from="/add-job" to="/" />
         )}
         <Route exact path="/recrutement">
           <Joboffers
