@@ -7,9 +7,13 @@ import './styles.scss';
 
 export default function Contact({
   mailValue,
+  firstNameValue,
+  lastNameValue,
   subjectValue,
   messageValue,
   onChangeMailValue,
+  onChangeFirstNameValue,
+  onChangeLastNameValue,
   onChangeSubjectValue,
   onChangeMessageValue,
   onChangeFileValue,
@@ -46,6 +50,26 @@ export default function Contact({
               onChangeMailValue(event.target.value);
             }}
             placeholder="Votre adresse e-mail"
+          />
+          <input
+            className="contact-content-form-input"
+            type="text"
+            name="firstName"
+            value={firstNameValue}
+            onChange={(event) => {
+              onChangeFirstNameValue(event.target.value);
+            }}
+            placeholder="Votre prénom"
+          />
+          <input
+            className="contact-content-form-input"
+            type="text"
+            name="lastName"
+            value={lastNameValue}
+            onChange={(event) => {
+              onChangeLastNameValue(event.target.value);
+            }}
+            placeholder="Votre nom"
           />
           <input
             className="contact-content-form-input"
@@ -87,9 +111,13 @@ export default function Contact({
 
 Contact.propTypes = {
   mailValue: PropTypes.string.isRequired,
+  firstNameValue: PropTypes.string.isRequired,
+  lastNameValue: PropTypes.string.isRequired,
   subjectValue: PropTypes.string.isRequired,
   messageValue: PropTypes.string.isRequired,
   onChangeMailValue: PropTypes.func.isRequired,
+  onChangeFirstNameValue: PropTypes.func.isRequired,
+  onChangeLastNameValue: PropTypes.func.isRequired,
   onChangeSubjectValue: PropTypes.func.isRequired,
   onChangeMessageValue: PropTypes.func.isRequired,
   onChangeFileValue: PropTypes.func.isRequired,

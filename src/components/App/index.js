@@ -40,10 +40,12 @@ export default function App() {
   const [typeValue, setTypeValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
 
+  const [firstNameValue, setFirstNameValue] = useState('');
+  const [lastNameValue, setLastNameValue] = useState('');
   const [mailValue, setMailValue] = useState('');
   const [subjectValue, setSubjectValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
-  const [fileValue, setFileValue] = useState();
+  const [fileValue, setFileValue] = useState(null);
 
   // function to logout the user
   const logOut = () => {
@@ -95,11 +97,15 @@ export default function App() {
 
   const sendContactMessage = () => {
     const form = new FormData();
-    form.append('file', fileValue[0]);
+    if (fileValue) {
+      form.append('file', fileValue[0]);
+    }
     form.append('userMail', mailValue);
+    form.append('firstName', firstNameValue);
+    form.append('lastName', lastNameValue);
     form.append('subject', subjectValue);
     form.append('message', messageValue);
-    console.log(fileValue[0]);
+    console.log(firstNameValue);
 
     axios.post('https://ldo-transports.herokuapp.com/contact', form)
       .then((response) => {
@@ -108,6 +114,8 @@ export default function App() {
         setSubjectValue('');
         setMessageValue('');
         setFileValue();
+        setFirstNameValue('');
+        setLastNameValue('');
       })
       .catch((error) => {
         console.log(error);
@@ -286,6 +294,8 @@ export default function App() {
             subjectValue={subjectValue}
             messageValue={messageValue}
             fileValue={fileValue}
+            onChangeFirstNameValue={setFirstNameValue}
+            onChangeLastNameValue={setLastNameValue}
             onChangeMailValue={setMailValue}
             onChangeSubjectValue={setSubjectValue}
             onChangeMessageValue={setMessageValue}
