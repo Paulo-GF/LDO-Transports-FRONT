@@ -43,26 +43,26 @@ export default function FocusedOffer({
   };
 
   return (
-    <div>
+    <div className="offer">
       {!openModifyOfferModal ? (
-        <div>
+        <div className="offer-focused">
           <Link to="/recrutement" className="back-to-offers-link">
             Retour aux offres d'emploi
           </Link>
-          <div className="focused-offer-card">
+          <div className="offer-focused-card">
             {isLogged && (
-              <>
-                <button type="button" onClick={showModifyOfferModal} className="modify-offer-button">
-                  Modifier l'annonce
-                </button>
-              </>
+              <button type="button" onClick={showModifyOfferModal} className="offer-focused-modifyButton">
+                Modifier l'annonce
+              </button>
             )}
-            <h1 className="job-offer-title">{offer.title}</h1>
-            <p className="job-offer-city">{offer.city}</p>
-            <p className="job-offer-type">{offer.type}</p>
-            <p className="job-offer-desc">{offer.description}</p>
+            <div className="offer-focused-card-content">
+              <h1 className="offer-focused-card-title">{offer.title}</h1>
+              <p className="offer-focused-card-city">{offer.city}</p>
+              <p className="offer-focused-card-type">{offer.type}</p>
+              <p className="offer-focused-card-desc">{offer.description}</p>
+            </div>
             {isLogged && (
-              <button type="button" onClick={handleDeleteClick} id={offer.id} className="delete-offer-button">
+              <button type="button" onClick={handleDeleteClick} id={offer.id} className="offer-focused-deleteButton">
                 Supprimer l'offre
               </button>
             )}

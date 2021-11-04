@@ -1,11 +1,11 @@
+//mobile first
 .admin {
-  display: flex;
-  justify-content: center;
+  padding: 1rem 0 3rem 0;
   &-container {
-      // to change when all css will be uniform
-    height: 400px;
-    width: 50%;
-    border: solid 1px black;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     background: linear-gradient(45deg,rgb(83, 24, 14), rgb(243, 63, 39));
     border-radius: 5px;
     padding: 1.5rem;
@@ -48,15 +48,34 @@
   }
 }
 
-//mobile first
-
 
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
+  .admin {
+    &-container {
+      width: 70%;
+    }
+  }
 }
 
 //desktop
 @media screen and (min-width : 1024px) {
   /* Styles for this Media Queries */
+  .admin {
+    &-container {
+      width: 60%;
+      border-radius: 10px;
+      padding: 1.5rem 0 3rem 0;
+    }
+
+    &-content {
+      &-form {
+        &-input{
+          width: 50%;
+        }
+      }
+      
+    }
+  }
 }

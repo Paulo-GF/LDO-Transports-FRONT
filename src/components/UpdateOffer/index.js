@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
+// import styles
+import './styles.scss';
+
 export default function UpdateOffer({
   titleValue,
   descriptionValue,
@@ -53,10 +56,10 @@ export default function UpdateOffer({
     <div className="update">
       <div className="update-modalBackground">
         <div className="update-modalCard">
-          <button type="button" onClick={hideModifyOfferModal}>X</button>
-          <form onSubmit={handleSubmitForm}>
+          <button className="update-modalCard-closeButton" type="button" onClick={hideModifyOfferModal}>X</button>
+          <form className="update-modalCard-form" onSubmit={handleSubmitForm}>
             <input
-              className="update-form-input"
+              className="update-modalCard-form-input"
               type="text"
               name="title"
               value={titleValue}
@@ -66,7 +69,7 @@ export default function UpdateOffer({
               placeholder="titre"
             />
             <input
-              className="update-form-input"
+              className="update-modalCard-form-input"
               type="text"
               name="region"
               value={regionValue}
@@ -76,7 +79,7 @@ export default function UpdateOffer({
               placeholder="région"
             />
             <input
-              className="update-form-input"
+              className="update-modalCard-form-input"
               type="text"
               name="city"
               value={cityValue}
@@ -86,7 +89,7 @@ export default function UpdateOffer({
               placeholder="ville"
             />
             <input
-              className="update-form-input"
+              className="update-modalCard-form-input"
               type="text"
               name="type"
               value={typeValue}
@@ -96,7 +99,7 @@ export default function UpdateOffer({
               placeholder="type de contrat"
             />
             <textarea
-              className="update-form-input"
+              className="update-modalCard-form-input"
               rows="40"
               cols="60"
               type="text"
@@ -107,9 +110,9 @@ export default function UpdateOffer({
               }}
               placeholder="description de l'offre"
             />
-            <button className="update-form-button" type="submit"> Confirmer la modification </button>
+            <button className="update-modalCard-form-submitButton" type="submit"> Confirmer la modification </button>
           </form>
-          <button className="update-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modification </button>
+          <button className="update-modalCard-cancel-button" onClick={handleResetChanges} type="submit">Annuler la modification </button>
         </div>
       </div>
     </div>

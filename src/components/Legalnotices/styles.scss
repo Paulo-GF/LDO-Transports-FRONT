@@ -1,21 +1,30 @@
-.legal-notices-title {
-  text-align: center;
-  font-size: 3em;
-  text-decoration: underline;
-  text-decoration-color: #a32610;
+//mobile first
+
+.legalNotice {
+  padding-top: 1rem;
+  &-title {
+    text-align: center;
+    font-size: 2em;
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+  }
+
+  &-container {
+    padding: 1rem;
+    &-content {
+      line-height: 1.5em;
+      margin: 2em 0;
+    }
+  }
+
+  
 }
 
 
-.legal-notices-container {
-  width: 60%;
-  padding: 2em;
-  margin: 1em auto;
-}
 
-.legal-notices-content {
-  line-height: 1.5em;
-  margin: 2em 0;
-}
+
+
+
 
 h2 {
   margin-bottom: 2em;
@@ -23,7 +32,7 @@ h2 {
   line-height: 1.2em;
 }
 
-//mobile first
+
 
 
 // tablettes

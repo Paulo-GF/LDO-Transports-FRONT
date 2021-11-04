@@ -20,7 +20,9 @@ export default function Signin({
   return (
     <div className="signin">
       <div className="signin-content">
-        <FaUserCircle className="signin-content-icon" />
+        <div className="signin-content-iconContainer">
+          <FaUserCircle className="signin-content-iconContainer-icon" />
+        </div>
         <form
           className="signin-content-form"
           onSubmit={handleSubmit}

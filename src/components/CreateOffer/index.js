@@ -90,7 +90,7 @@ export default function Createoffer({
             }}
             placeholder="description de l'offre"
           />
-          <button className="new-offer-form-button" type="submit">créer une nouvelle offre</button>
+          <button className="new-offer-content-form-button" type="submit">créer une nouvelle offre</button>
         </form>
       </div>
     </div>

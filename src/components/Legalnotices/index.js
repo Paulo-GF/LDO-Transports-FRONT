@@ -3,10 +3,10 @@ import './styles.scss';
 
 export default function Legalnotices() {
   return (
-    <>
-      <h1 className="legal-notices-title"> Mentions légales </h1>
-      <div className="legal-notices-container">
-        <article className="legal-notices-content">
+    <div className="legalNotice">
+      <h1 className="legalNotice-title"> Mentions légales </h1>
+      <div className="legalNotice-container">
+        <article className="legalNotice-container-content">
           <h2>
             Selon les dispositions de l’article 6 du Règlement (UE) 2016/679 relatif
             à la protection des données, lors d’un dépôt de candidature, vous
@@ -32,7 +32,7 @@ export default function Legalnotices() {
             suite à votre candidature.
           </p>
         </article>
-        <article className="legal-notices-content">
+        <article className="legalNotice-container-content">
           <h2>
             Lors d’une demande de contact, vous consentez au traitement de vos données à
             caractère personnel pour les seules finalités suivantes :
@@ -72,6 +72,6 @@ export default function Legalnotices() {
           </p>
         </article>
       </div>
-    </>
+    </div>
   );
 }
