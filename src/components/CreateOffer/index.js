@@ -34,6 +34,14 @@ export default function Createoffer({
   return (
     <div className="new-offer">
       <div className="new-offer-content">
+        <button
+          className="new-offer-closeButton"
+          type="button"
+          onClick={() => {
+            setRedirected(!redirected);
+          }}
+        >X
+        </button>
         <form
           className="new-offer-content-form"
           onSubmit={handleSubmit}

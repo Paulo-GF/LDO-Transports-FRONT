@@ -2,6 +2,16 @@
 .new-offer {
   width: 100%;
 
+  &-closeButton {
+    margin-bottom: 1rem;
+    width: 3rem;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(145, 129, 129);
+    }
+  }
+  
   &-content {
     background-color: grey;
     padding: 1rem;
