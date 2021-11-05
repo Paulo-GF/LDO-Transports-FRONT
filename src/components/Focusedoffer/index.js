@@ -102,7 +102,7 @@ export default function FocusedOffer({
               <p className="offer-focused-card-type">{offer.type}</p>
               <p className="offer-focused-card-desc">{offer.description}</p>
             </div>
-            {isLogged && (
+            {isLogged ? (
               <button
                 type="button"
                 onClick={() => {

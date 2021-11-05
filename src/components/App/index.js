@@ -26,7 +26,7 @@ export default function App() {
   // == global state
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [offers, setOffers] = useState([]);
   const [updateOffers, setUpdateOffers] = useState(false);
   const [userFirstName, setUserFirstName] = useState('');
@@ -353,7 +353,7 @@ export default function App() {
             onSubmitForm={sendContactMessage}
           />
         </Route>
-        <Route >
+        <Route>
           <Notfound />
         </Route>
       </Switch>
@@ -361,9 +361,3 @@ export default function App() {
     </div>
   );
 }
-/*
-To add later on when all pages are ready
-<Route >
-  <404 />
-</Route>
-*/
