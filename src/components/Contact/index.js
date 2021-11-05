@@ -45,6 +45,7 @@ export default function Contact({
             className="contact-content-form-input"
             type="text"
             name="mail"
+            required="required"
             value={mailValue}
             onChange={(event) => {
               onChangeMailValue(event.target.value);
@@ -55,6 +56,7 @@ export default function Contact({
             className="contact-content-form-input"
             type="text"
             name="firstName"
+            required="required"
             value={firstNameValue}
             onChange={(event) => {
               onChangeFirstNameValue(event.target.value);
@@ -65,6 +67,7 @@ export default function Contact({
             className="contact-content-form-input"
             type="text"
             name="lastName"
+            required="required"
             value={lastNameValue}
             onChange={(event) => {
               onChangeLastNameValue(event.target.value);
@@ -75,6 +78,7 @@ export default function Contact({
             className="contact-content-form-input"
             type="text"
             name="subject"
+            required="required"
             value={subjectValue}
             onChange={(event) => {
               onChangeSubjectValue(event.target.value);
@@ -85,6 +89,7 @@ export default function Contact({
             className="contact-content-form-input"
             type="text"
             name="message"
+            required="required"
             rows="3"
             cols="30"
             value={messageValue}

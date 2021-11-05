@@ -31,6 +31,7 @@ export default function Signin({
             className="signin-content-form-input"
             type="email"
             name="email"
+            required="required"
             value={emailValue}
             onChange={(event) => {
               onChangeEmailValue(event.target.value);
@@ -41,6 +42,7 @@ export default function Signin({
             className="signin-content-form-input"
             type="password"
             name="password"
+            required="required"
             value={passwordValue}
             placeholder="mot de passe"
             onChange={(event) => {
