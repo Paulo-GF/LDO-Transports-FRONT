@@ -16,6 +16,7 @@ import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
+import Notfound from 'src/components/Notfound';
 
 // import styles
 import './styles.scss';
@@ -302,6 +303,9 @@ export default function App() {
             onChangeFileValue={setFileValue}
             onSubmitForm={sendContactMessage}
           />
+        </Route>
+        <Route >
+          <Notfound />
         </Route>
       </Switch>
       <Footer />
