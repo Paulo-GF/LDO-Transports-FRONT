@@ -123,8 +123,8 @@ export default function App() {
   };
 
   // request to delete a job offer
-  const deleteOffer = (event) => {
-    const jobId = event.target.getAttribute('id');
+  const deleteOffer = (id) => {
+    const jobId = id;
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
       headers: {
         authorization: `Bearer ${accessToken}`,

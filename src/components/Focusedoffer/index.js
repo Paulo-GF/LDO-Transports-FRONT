@@ -52,8 +52,8 @@ export default function FocusedOffer({
   };
 
   // delete the offer
-  const handleDeleteClick = (event) => {
-    deleteOffer(event);
+  const handleDeleteClick = () => {
+    deleteOffer(offer.id);
   };
 
   // the code is diplayed conditionnally to the local state of openModifyOfferModal
@@ -96,7 +96,6 @@ export default function FocusedOffer({
                 setOpenModal(false);
               }}
               handleConfirm={handleDeleteClick}
-              idToConfirm={offer.id}
             />
           )}
 

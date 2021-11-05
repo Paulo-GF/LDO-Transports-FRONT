@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 // component to be used whenever we need a confirm message in modal
-export default function ConfirmModal({ message, closeModal, handleConfirm, idToConfirm }) {
+export default function ConfirmModal({ message, closeModal, handleConfirm }) {
   return (
     <div className="confirmModal">
       <button onClick={closeModal} type="button" className="confirmModal-closeButton">X</button>
       <div className="confirmModal-container">
         <p className="confirmModal-container-text"> { message } </p>
         <button
-          id={idToConfirm}
           onClick={handleConfirm}
           type="button"
           className="confirmModal-container-button"
@@ -27,5 +26,4 @@ ConfirmModal.propTypes = {
   message: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
   handleConfirm: PropTypes.func.isRequired,
-  idToConfirm: PropTypes.number.isRequired,
 };
