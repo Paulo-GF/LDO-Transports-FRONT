@@ -46,6 +46,7 @@ export default function App() {
   const [subjectValue, setSubjectValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const [fileValue, setFileValue] = useState(null);
+  const [phoneValue, setPhoneValue] = useState('');
 
   // function to logout the user
   const logOut = () => {
@@ -112,6 +113,39 @@ export default function App() {
         console.log(response);
         setMailValue('');
         setSubjectValue('');
+        setMessageValue('');
+        setFileValue();
+        setFirstNameValue('');
+        setLastNameValue('');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const sendApplication = (event) => {
+    const jobId = event.target.getAttribute('id');
+    const jobIdNumber = parseInt(jobId, 10);
+    const offer = offers.find((job) => job.id === jobIdNumber);
+    const offerURL = `https://ldo-transports.netlify.app/recrutement/${jobId}`;
+    const form = new FormData();
+    if (fileValue) {
+      form.append('file', fileValue[0]);
+    }
+    form.append('userMail', mailValue);
+    form.append('firstName', firstNameValue);
+    form.append('lastName', lastNameValue);
+    form.append('phone', phoneValue);
+    form.append('message', messageValue);
+    form.append('jobId', jobId);
+    form.append('offerURL', offerURL);
+    form.append('offerTitle', offer.title);
+
+    axios.post(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, form)
+      .then((response) => {
+        console.log(response);
+        setMailValue('');
+        setPhoneValue('');
         setMessageValue('');
         setFileValue();
         setFirstNameValue('');
@@ -283,6 +317,19 @@ export default function App() {
             onChangeTypeValue={setTypeValue}
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
+            mailValue={mailValue}
+            phoneValue={phoneValue}
+            messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
+            fileValue={fileValue}
+            onChangeFirstNameValue={setFirstNameValue}
+            onChangeLastNameValue={setLastNameValue}
+            onChangeMailValue={setMailValue}
+            onChangePhoneValue={setPhoneValue}
+            onChangeMessageValue={setMessageValue}
+            onChangeFileValue={setFileValue}
+            onSubmitForm={sendApplication}
           />
         </Route>
         <Route exact path="/mentions-legales">
@@ -293,6 +340,8 @@ export default function App() {
             mailValue={mailValue}
             subjectValue={subjectValue}
             messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
             fileValue={fileValue}
             onChangeFirstNameValue={setFirstNameValue}
             onChangeLastNameValue={setLastNameValue}
