@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
 
+// import components
+import ConfirmModal from 'src/components/ConfirmModal';
+
 // import styles
 import './styles.scss';
 
@@ -22,26 +25,39 @@ export default function FocusedOffer({
   offers,
   deleteOffer,
 }) {
+  // find the offer/job with the id in the road params (react router)
   const params = useParams();
   const paramsId = parseInt(params.id, 10);
   const offer = offers.find((job) => job.id === paramsId);
 
+  // if no offer find with this id redirect
   if (!offer) {
     return (<Redirect to="/recrutement" />);
   }
 
+  // == local state
+  // state value to controll the display of the modal to modify the offer
   const [openModifyOfferModal, setOpenModifyOfferModal] = useState(false);
+  // state value to controll the display of the modal to confirm the delete of the offer
+  const [openModal, setOpenModal] = useState(false);
 
+  // open the modal to modify the offer
   const showModifyOfferModal = () => {
     setOpenModifyOfferModal(true);
   };
+
+  // close the modal to modify the offer
   const hideModifyOfferModal = () => {
     setOpenModifyOfferModal(false);
   };
+
+  // delete the offer
   const handleDeleteClick = (event) => {
     deleteOffer(event);
   };
 
+  // the code is diplayed conditionnally to the local state of openModifyOfferModal
+  // and to the global state (isLogged) for admin items and admin actions
   return (
     <div className="offer">
       {!openModifyOfferModal ? (
@@ -62,11 +78,28 @@ export default function FocusedOffer({
               <p className="offer-focused-card-desc">{offer.description}</p>
             </div>
             {isLogged && (
-              <button type="button" onClick={handleDeleteClick} id={offer.id} className="offer-focused-deleteButton">
+              <button
+                type="button"
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+                className="offer-focused-deleteButton"
+              >
                 Supprimer l'offre
               </button>
             )}
           </div>
+          {openModal && (
+            <ConfirmModal
+              message="Etes-vous sûr de vouloir supprimer cette annonce ?"
+              closeModal={() => {
+                setOpenModal(false);
+              }}
+              handleConfirm={handleDeleteClick}
+              idToConfirm={offer.id}
+            />
+          )}
+
         </div>
       ) : (
         <UpdateOffer

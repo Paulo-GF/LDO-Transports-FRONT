@@ -4,11 +4,13 @@
   display: flex;
   justify-content: center;
   &-focused {
+    // position relative to fix the Confirm Modal
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 90%;
-
+    
     &-card {
       display: flex;
       flex-direction: column;

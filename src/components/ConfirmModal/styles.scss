@@ -1,0 +1,55 @@
+//mobile first
+.confirmModal {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  min-height: 100%;
+  z-index: 10;
+  background-color: white;
+  height: 150px;
+  color: black;
+  border-radius: 10px;
+  padding: 1rem;
+  border: solid 1px black;
+
+  &-closeButton {
+    padding: 0.3rem;
+    margin-bottom: 2rem;
+  }
+
+  &-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    &-text {
+      margin-bottom: 2rem;
+    }
+    &-button {
+      padding: 1rem;
+
+    }
+  }
+}
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .confirmModal {
+    border: none;
+  
+    &-container {
+      border: solid 1px black;
+      border-radius: 10px;
+      padding: 3rem;
+      width: 50%;
+    }
+  }
+}
