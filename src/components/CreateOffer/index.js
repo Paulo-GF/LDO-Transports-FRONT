@@ -50,6 +50,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="title"
+            required="required"
             value={titleValue}
             onChange={(event) => {
               onChangeTitleValue(event.target.value);
@@ -60,6 +61,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="region"
+            required="required"
             value={regionValue}
             onChange={(event) => {
               onChangeRegionValue(event.target.value);
@@ -70,6 +72,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="city"
+            required="required"
             value={cityValue}
             onChange={(event) => {
               onChangeCityValue(event.target.value);
@@ -80,6 +83,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="type"
+            required="required"
             value={typeValue}
             onChange={(event) => {
               onChangeTypeValue(event.target.value);
@@ -90,6 +94,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="description"
+            required="required"
             rows="40"
             cols="60"
             value={descriptionValue}
