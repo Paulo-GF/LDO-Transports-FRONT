@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 // == Imports
 import { useState, useEffect } from 'react';
@@ -57,11 +59,11 @@ export default function App() {
   const getOffers = () => {
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
-        // console.log(response);
         setOffers(response.data);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la récuperation des données`);
       });
   };
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
@@ -82,16 +84,17 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setTitleValue('');
         setRegionValue('');
         setTypeValue('');
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la creation de l'offre`);
       });
   };
 
@@ -105,38 +108,40 @@ export default function App() {
     form.append('lastName', lastNameValue);
     form.append('subject', subjectValue);
     form.append('message', messageValue);
-    console.log(firstNameValue);
 
     axios.post('https://ldo-transports.herokuapp.com/contact', form)
       .then((response) => {
-        console.log(response);
         setMailValue('');
         setSubjectValue('');
         setMessageValue('');
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
+        window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de l'envoi du message`);
       });
   };
 
   // request to delete a job offer
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
-    axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        setUpdateOffers(!updateOffers);
+    if (window.confirm('Êtes vous sûr de vouloir supprimer cette annonce ?')) {
+      axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          setUpdateOffers(!updateOffers);
+        })
+        .catch((error) => {
+          console.log(error);
+          window.alert(`Erreur lors de la suppression de l'annonce`);
+        });
+    }
   };
 
   // request to authenticate the user (admin)
@@ -150,15 +155,19 @@ export default function App() {
         setUserId(response.data.userId);
         setIsLogged(response.data.connected);
         setAccessToken(response.data.access_token);
-        console.log(response);
+        window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        window.alert('Mail/Mot de passe incorrect');
       });
   };
 
   // request to change the password when admin is connected
   const changePassword = () => {
+    if (newPassword !== newPasswordConfirm) {
+      window.alert('Le nouveau mot de passe et sa confirmation ne sont pas identiques');
+    }
     axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
       userId,
       newPassword,
@@ -171,16 +180,18 @@ export default function App() {
     })
       .then((response) => {
         console.log(response);
+        window.alert(response.data.message);
         logOut();
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la modification du mot de passe`);
+        // check if both inputs are the same
       });
   };
 
   // request to update an offer
   const updateAnOffer = (id) => {
-    console.log(id, titleValue, regionValue, typeValue, descriptionValue, cityValue);
     axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
       id: id,
       title: titleValue,
@@ -195,16 +206,17 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setTitleValue('');
         setRegionValue('');
         setTypeValue('');
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la modification de l'offre`);
       });
   };
 
