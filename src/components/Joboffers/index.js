@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 // import components
@@ -23,7 +23,7 @@ export default function Joboffers({
   // local state value to have the id of the offer to delete
   const [offerToDelete, setOfferToDelete] = useState(0);
 
-  // delete the offer
+  // delete the offer and close the confirm modal
   const handleDeleteClick = () => {
     deleteOffer(offerToDelete);
     setOpenModal(false);

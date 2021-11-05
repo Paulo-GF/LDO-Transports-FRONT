@@ -25,7 +25,7 @@ export default function App() {
   // == global state
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const [offers, setOffers] = useState([]);
   const [updateOffers, setUpdateOffers] = useState(false);
   const [userFirstName, setUserFirstName] = useState('');
