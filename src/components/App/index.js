@@ -26,7 +26,7 @@ export default function App() {
   // == global state
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const [offers, setOffers] = useState([]);
   const [updateOffers, setUpdateOffers] = useState(false);
   const [userFirstName, setUserFirstName] = useState('');
@@ -158,8 +158,8 @@ export default function App() {
   };
 
   // request to delete a job offer
-  const deleteOffer = (event) => {
-    const jobId = event.target.getAttribute('id');
+  const deleteOffer = (id) => {
+    const jobId = id;
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
       headers: {
         authorization: `Bearer ${accessToken}`,
