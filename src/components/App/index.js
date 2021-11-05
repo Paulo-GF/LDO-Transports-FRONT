@@ -117,7 +117,7 @@ export default function App() {
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
-        window.alert(response.data.message);
+        window.alert(response.data.message); // a revoir, alert ephemere ou modal d'helene
       })
       .catch((error) => {
         console.log(error);
@@ -128,20 +128,19 @@ export default function App() {
   // request to delete a job offer
   const deleteOffer = (event) => {
     const jobId = event.target.getAttribute('id');
-    if (window.confirm('Êtes vous sûr de vouloir supprimer cette annonce ?')) {
-      axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
+
+    axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        setUpdateOffers(!updateOffers);
       })
-        .then((response) => {
-          setUpdateOffers(!updateOffers);
-        })
-        .catch((error) => {
-          console.log(error);
-          window.alert(`Erreur lors de la suppression de l'annonce`);
-        });
-    }
+      .catch((error) => {
+        console.log(error);
+        window.alert(`Erreur lors de la suppression de l'annonce`);
+      });
   };
 
   // request to authenticate the user (admin)
@@ -155,7 +154,6 @@ export default function App() {
         setUserId(response.data.userId);
         setIsLogged(response.data.connected);
         setAccessToken(response.data.access_token);
-        window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
