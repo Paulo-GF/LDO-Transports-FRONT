@@ -1,7 +1,9 @@
 // import styles
 import './styles.scss';
 // import images
-import { FaTruck } from 'react-icons/fa';
+import { FaTrailer, FaTruckLoading } from 'react-icons/fa';
+import { GiHandTruck } from 'react-icons/gi';
+import { RiServiceFill } from 'react-icons/ri';
 
 export default function Activities() {
   return (
@@ -9,7 +11,7 @@ export default function Activities() {
       <h1 className="activities-title">Nos activités</h1>
       <div className="activities-content">
         <section className="activities-section">
-          <FaTruck className="section-icon" />
+          <FaTrailer className="section-icon" />
           <h2 className="activities-section-title">Traction</h2>
           <h3 className="activities-section-subtitle">Notre savoir-faire</h3>
           <p className="activities-section-decription">
@@ -20,7 +22,7 @@ export default function Activities() {
           </p>
         </section>
         <section className="activities-section">
-          <FaTruck className="section-icon" />
+          <FaTruckLoading className="section-icon" />
           <h2 className="activities-section-title">Affrètement</h2>
           <h3 className="activities-section-subtitle">Notre rapidité et notre technicité</h3>
           <p className="activities-section-decription">
@@ -29,7 +31,7 @@ export default function Activities() {
           </p>
         </section>
         <section className="activities-section">
-          <FaTruck className="section-icon" />
+          <GiHandTruck className="section-icon" />
           <h2 className="activities-section-title">Distribution</h2>
           <h3 className="activities-section-subtitle">Nos solutions à la carte</h3>
           <p className="activities-section-decription">
@@ -38,7 +40,7 @@ export default function Activities() {
           </p>
         </section>
         <section className="activities-section">
-          <FaTruck className="section-icon" />
+          <RiServiceFill className="section-icon" />
           <h2 className="activities-section-title">Contact</h2>
           <h3 className="activities-section-subtitle">Exprimez vous</h3>
           <p className="activities-section-decription">

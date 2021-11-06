@@ -2,15 +2,20 @@
 import './styles.scss';
 
 // import images
-import image from '../../../assets/truck2.jpg';
+import ldo from '../../../assets/ldo.png';
+import colibri from '../../../assets/colibri.png';
+import redRoad from '../../../assets/redRoad.jpg';
 
 export default function History() {
   return (
     <div id="history" className="history">
-      <h2 className="history-title">Notre histoire c'est notre logo</h2>
+      <h2 className="history-title">Notre histoire c'est notre logo
+        <img className="history-colibri" src={colibri} alt="colibri" />
+        <img className="history-ldo" src={ldo} alt="ldo" />
+      </h2>
       <article className="history-article">
         <div className="history-imageContainer">
-          <img className="history-image" src={image} alt="truck2" />
+          <img className="history-image" src={redRoad} alt="truck2" />
         </div>
         <p className="history-content">LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
           de la SAS LDO Transports.
