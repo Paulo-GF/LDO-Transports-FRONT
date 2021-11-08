@@ -10,6 +10,7 @@ export default function Admin({
   onChangeNewPasswordValue,
   onChangeConfirmNewPasswordValue,
   onSubmitForm,
+  UIMessage,
 }) {
   // on submit, call API to modify the user password
   const handleSubmit = (event) => {
@@ -22,7 +23,7 @@ export default function Admin({
       <div className="admin-container">
         <div className="admin-header">
           <FaUserCircle className="admin-header-icon" />
-          <p className="admin-header-title">Bonjour Benoit </p>
+          <p className="admin-header-title">Bonjour Benoit</p>
         </div>
         <div className="admin-content">
           <form className="admin-content-form" onSubmit={handleSubmit}>
@@ -46,6 +47,7 @@ export default function Admin({
               }}
               placeholder="Confirmer mot de passe"
             />
+            {UIMessage && (<p>{ UIMessage }</p>)}
             <ul className="admin-content-form-list">
               <li>entre 8 et 24 caractères</li>
               <li>au moins un caractère spécial</li>
@@ -65,4 +67,9 @@ Admin.propTypes = {
   onChangeNewPasswordValue: PropTypes.func.isRequired,
   onChangeConfirmNewPasswordValue: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
+  UIMessage: PropTypes.string,
+};
+
+Admin.defaultProps = {
+  UIMessage: null,
 };

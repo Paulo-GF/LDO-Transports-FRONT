@@ -49,6 +49,8 @@ export default function App() {
   const [messageValue, setMessageValue] = useState('');
   const [fileValue, setFileValue] = useState(null);
 
+  const [UIMessage, setUIMessage] = useState('');
+
   // function to logout the user
   const logOut = () => {
     setIsLogged(false);
@@ -90,11 +92,13 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
-        window.alert(response.data.message);
+        // window.alert(response.data.message);
+        setUIMessage('');
+        setUIMessage('Votre offre a bien été crée !');
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la creation de l'offre`);
+        window.alert(`Erreur lors de la création de l'offre.`);
       });
   };
 
@@ -117,11 +121,13 @@ export default function App() {
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
-        window.alert(response.data.message); // a revoir, alert ephemere ou modal d'helene
+        // window.alert(response.data.message);
+        setUIMessage('');
+        setUIMessage('Votre message a bien été envoyé !'); // a revoir, alert ephemere ou modal d'helene
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de l'envoi du message`);
+        window.alert(`Erreur lors de l'envoi du message.`);
       });
   };
 
@@ -139,7 +145,7 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la suppression de l'annonce`);
+        window.alert(`Erreur lors de la suppression de l'annonce.`);
       });
   };
 
@@ -157,35 +163,44 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        window.alert('Mail/Mot de passe incorrect');
+        setUIMessage('');
+        setUIMessage('Mail/Mot de passe incorrect.');
+        // window.alert('Mail/Mot de passe incorrect');
       });
   };
 
   // request to change the password when admin is connected
   const changePassword = () => {
     if (newPassword !== newPasswordConfirm) {
-      window.alert('Le nouveau mot de passe et sa confirmation ne sont pas identiques');
+      setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques.');
+      // window.alert('Le nouveau mot de passe et sa confirmation ne sont pas identiques');
     }
-    axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
-      userId,
-      newPassword,
-      newPasswordConfirm,
-    },
-    {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
+    else {
+      axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
+        userId,
+        newPassword,
+        newPasswordConfirm,
       },
-    })
-      .then((response) => {
-        console.log(response);
-        window.alert(response.data.message);
-        logOut();
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error);
-        window.alert(`Erreur lors de la modification du mot de passe`);
-        // check if both inputs are the same
-      });
+        .then((response) => {
+          console.log(response);
+          setUIMessage('');
+          setUIMessage('Mot de passe modifé !');
+          // window.alert(response.data.message);
+          logOut();
+        })
+        .catch((error) => {
+          console.log(error);
+          setUIMessage('');
+          setUIMessage(`Le nouveau mot de passe ne respecte pas le format securisé suivant:`);
+          // window.alert(`Erreur lors de la modification du mot de passe`);
+          // check if both inputs are the same
+        });
+    }
   };
 
   // request to update an offer
@@ -210,11 +225,12 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
-        window.alert(response.data.message);
+        setUIMessage(`Offre modifiée !`);
+        // window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la modification de l'offre`);
+        window.alert(`Erreur lors de la modification de l'offre.`);
       });
   };
 
@@ -234,6 +250,7 @@ export default function App() {
             onChangeEmailValue={setMail}
             onChangePasswordValue={setPassword}
             onSubmitForm={authenticateUser}
+            UIMessage={UIMessage}
           />
         </Route>
         <Route exact path="/">
@@ -248,6 +265,7 @@ export default function App() {
               onChangeNewPasswordValue={setNewPassword}
               onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
               onSubmitForm={changePassword}
+              UIMessage={UIMessage}
             />
           </Route>
         ) : (<Redirect from="/admin-logged" to="/" />
@@ -293,6 +311,7 @@ export default function App() {
             onChangeTypeValue={setTypeValue}
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
+            UIMessage={UIMessage}
           />
         </Route>
         <Route exact path="/mentions-legales">
@@ -311,6 +330,7 @@ export default function App() {
             onChangeMessageValue={setMessageValue}
             onChangeFileValue={setFileValue}
             onSubmitForm={sendContactMessage}
+            UIMessage={UIMessage}
           />
         </Route>
       </Switch>
