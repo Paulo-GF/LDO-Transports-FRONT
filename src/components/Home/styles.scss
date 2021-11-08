@@ -1,0 +1,15 @@
+//mobile first
+.home {
+  width: 100%;
+  height: auto;
+}
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+}

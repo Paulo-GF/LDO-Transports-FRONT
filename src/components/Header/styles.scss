@@ -1,0 +1,185 @@
+//mobile first
+.header {
+  width: 100%;
+  // display: flex;
+  // align-items: center;
+}
+
+.menu-connected {
+  display: none;
+}
+
+.logo-link {
+  width: 100%;
+  height: 155px;
+  text-align: center;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  &_hidden {
+    display: none
+  }
+  
+  &_appear {
+    animation: translateMenu 1s;
+  }
+
+  &-link {
+    padding: 0.5rem;
+  }
+
+  &-link:hover {
+    color: rgb(116, 6, 6);
+  }
+
+  &-link--selected {
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+    text-decoration-thickness: 0.2em;
+  }
+  // &_disappear {
+  //   animation: translateMenu 1s;
+  // }
+}
+
+.hamburger {
+  font-size: 3em;
+
+  &_open {
+    transform: rotate(45deg);
+    transition-duration: 1s;
+  }
+
+  &_close {
+    transform: rotate(0deg);
+    transition-duration: 1s;
+  }
+  
+}
+
+  @keyframes translateMenu{
+    0% {
+      transform: translateY(1em);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0em);
+      opacity: 1;
+    }
+  }
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+  .hamburger {
+    display: none;
+  }
+
+  .navBar {
+    color: rgb(71, 8, 34);
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    font-weight: 700;
+    font-size: 1.5em;
+    color: rgb(71, 8, 34);
+    padding-bottom: 1rem;
+    
+    &_hidden {
+      display: flex;
+    }
+    
+    &-connected {
+      display: flex;
+      justify-content: space-between;
+      align-items:  center;
+
+      &-userIcon {
+        margin: 0 1rem;    
+      }
+
+      &-admin, &-userInfo, &-deconnexion-button {
+        margin: 0 1rem;
+      }
+    } 
+
+
+  }
+}
+
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .header {
+    display: flex;
+    align-items: center;
+  }
+
+  .navBar-connected {
+    display: none;
+  }
+
+  .logo-link {
+    max-width: 680px;
+    width: 33%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .logo {
+    width: 100%;
+    // display: none;
+  }
+  
+  .navBar {
+    font-weight: 800;
+    font-size: 1.7em;
+    color: rgb(71, 8, 34);
+    width: 66%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 0;
+  }
+  
+  .menu-connected {
+    display: inline-block;
+    &-avatar {
+      display: flex;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      &-dropdown {
+        padding: 1rem;  
+        border-radius: 4px;
+        display: none;
+        background-color: lightgrey;
+        min-width: 153px;
+        position: absolute;
+      }
+
+      &-dropdown li {
+        padding: 0.2rem;
+        display: block;
+        }
+    }
+  }
+  .menu-connected:hover .menu-connected-avatar-dropdown {
+    display: block;
+    }
+}

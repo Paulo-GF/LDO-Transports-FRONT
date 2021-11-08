@@ -1,0 +1,42 @@
+//mobile first
+.footer {
+  background-color: rgb(221, 221, 221);
+  position: absolute;
+  bottom: 0;
+  top: 100%;
+  font-size: 0.9em;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: 600;
+
+  &-link:hover {
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+    text-decoration-thickness: 0.2em;
+  }
+
+  &-link--selected {
+    text-decoration: underline;
+    text-decoration-color: #a32610;
+    text-decoration-thickness: 0.2em;
+  }
+}
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .footer {
+    padding: 4rem;
+    font-size: 1.4em;
+  }
+}
+

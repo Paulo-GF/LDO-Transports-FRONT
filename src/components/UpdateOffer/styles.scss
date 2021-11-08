@@ -1,0 +1,74 @@
+//mobile first
+
+.update {
+  width: 100%;
+  padding: 3rem;
+
+  &-modalBackground {
+    background-color: grey;
+    margin-bottom: 2rem;
+    border-radius: 30px;
+  }
+  &-modalCard {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &-closeButton {
+      margin-bottom: 1rem;
+      width: 3rem;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: rgb(145, 129, 129);
+      }
+    }
+
+    &-form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      &-input {
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+      &-submitButton {
+        padding: 1rem;
+        border-radius: 5px;
+        &:hover{
+          background-color: rgb(145, 129, 129);
+        }
+      }
+    }
+
+    &-cancel-button {
+      padding: 1rem;
+      border-radius: 5px;
+      &:hover{
+        background-color: rgb(145, 129, 129);
+      }
+    }
+  }
+
+}
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+
+  .update {
+    &-modalBackground {
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+}
+

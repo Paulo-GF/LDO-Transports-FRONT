@@ -1,0 +1,34 @@
+.Notfound-container {
+  height: 30em;
+  margin-top: 5em;
+}
+
+.Notfound-title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 8em;
+  animation: colorRotate 1s linear 0s infinite, spin 1s infinite linear;
+}
+
+@keyframes colorRotate {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
+}
+
+@keyframes spin {
+  0%  {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}   
+}

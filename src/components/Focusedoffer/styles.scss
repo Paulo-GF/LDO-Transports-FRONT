@@ -1,0 +1,97 @@
+//mobile first
+.offer {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  &-focused {
+    // position relative to fix the Confirm Modal
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    
+    &-card {
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(185, 185, 185);
+      border-radius: 5px;
+      width: 100%;
+      margin: 1rem auto;
+      padding: 1rem;
+
+      &-content {
+        line-height: 2em;
+      }
+
+      &-title {
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+
+      &-city {
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+
+      &-type {
+        font-weight: 600;
+      }
+
+    }
+
+    &-deleteButton {
+      margin: 1rem auto 0 auto;
+      border-radius: 5px;
+    }
+
+    &-modifyButton {
+      margin: 0 auto 1rem auto;
+      border-radius: 5px;
+    }
+  }
+
+}
+
+.back-to-offers-link {
+  border: solid 1px black;
+  border-radius: 10px;
+  width: 8rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .offer {
+    &-focused {
+      display: flex;
+      flex-direction: row;
+      &-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 500px;
+        width: 50%;
+      }
+    }
+    .back-to-offers-link {
+      width: 10rem;
+      height: 5rem;
+      padding: 1rem;
+
+    }
+  }
+}
+
+.hide-apply-button {
+  display: none;
+}

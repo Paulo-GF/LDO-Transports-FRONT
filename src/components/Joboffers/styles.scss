@@ -1,0 +1,132 @@
+  //mobile first
+
+.job-offers {
+  // position relative to fix the Confirm Modal
+  position: relative;
+  height: 100%;
+  padding: 1rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-title {
+    padding: 1rem;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &-truck-icon {
+    height: 3rem;
+    width: 3rem;
+  }
+
+
+  &-container {
+    width: 90%;
+    margin: 0 auto 1rem auto;
+    padding: 1rem;
+    border: solid 1px black;
+    border-radius: 15px;
+    font-size: 1.3em;
+    background: linear-gradient(45deg,#53180e,#f33f27);
+  }
+
+  &-card {
+    border: solid 1px black;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 1.3em;
+    background-color: white;
+    width: 100%;
+    &-content {
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: #a32610;
+      }
+    }
+    &:hover {
+      box-shadow: 0 0 10px 2px black;
+    }
+  }
+}
+
+  
+.create-offer-link {
+  width: 25%;
+  text-align: center;
+  padding: 0.5rem;
+  border: solid 1px black;
+  border-radius: 15px;
+  background: linear-gradient(45deg,#53180e,#f33f27);
+  color: white;
+}
+  
+  
+.delete-offer {
+  &-button {
+    position: inherit;
+    height: 2rem;
+    width: 2rem;
+    float: right;
+  }
+
+  &-trash-icon {
+    height: 1rem;
+    width: 1rem;
+    pointer-events: none;
+  }
+}
+
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .job-offers {   
+    &-container {
+      width: 90%;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto 2rem auto;
+      padding: 1rem;
+      border: solid 1px black;
+      border-radius: 15px;
+      font-size: 1.3em;
+      background: linear-gradient(45deg,#53180e,#f33f27);
+    }
+  
+    &-card {
+      border: solid 1px black;
+      border-radius: 15px;
+      margin: 1rem;
+      padding: 1rem;
+      font-size: 1.3em;
+      background-color: white;
+      width: 30%;
+    }
+  }
+  
+    
+  .create-offer-link {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    width: 10rem;
+    height: 5rem;
+    text-align: center;
+    padding: 1rem;
+    border: solid 1px black;
+    border-radius: 15px;
+    background: linear-gradient(45deg,#53180e,#f33f27);
+    color: white;
+  }
+
+}
+

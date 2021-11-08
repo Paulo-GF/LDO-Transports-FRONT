@@ -1,0 +1,40 @@
+//mobile first
+
+.homeNavBar {
+  background-color: rgb(201, 77, 77);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  &-ref {
+    margin: 1rem 0;
+    border: solid black 1px;
+    border-radius: 50%;
+    padding: 1rem;
+  }
+}
+
+.icon-anchor {
+  font-size: 3em;
+}
+
+.icon-anchor:hover {
+  animation: rotateplane 3s infinite ease-in-out;
+
+  @keyframes rotateplane {
+    0% {
+      transform: perspective(0px) rotateX(0deg) rotateY(360deg);
+    }
+  }
+}  
+
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+}
