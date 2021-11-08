@@ -19,6 +19,7 @@ import Contact from 'src/components/Contact';
 
 // import styles
 import './styles.scss';
+import 'react-quill/dist/quill.bubble.css';
 
 // == Component
 export default function App() {

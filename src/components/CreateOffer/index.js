@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ReactQuill from 'react-quill';
+// import { useQuill } from 'react-quilljs';
+import 'react-quill/dist/quill.snow.css';
+// <link rel="stylesheet" href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css">
+
+/* <ReactQuill theme="snow" value={value} onChange={setValue}/> */
 
 // import styles
-import './styles.scss';
+// import './styles.scss';
 
 export default function Createoffer({
   titleValue,
@@ -20,6 +26,24 @@ export default function Createoffer({
 }) {
   // local state
   const [redirected, setRedirected] = useState(false);
+  // const [quillDescription, setQuilldescription] = useState();
+
+  // const { quill, quillRef } = useQuill();
+
+  // useEffect(() => {
+  //   if (quill) {
+  //     quill.on('text-change', ( delta, oldDelta, source) => {
+  //       // console.log('Text change!');
+  //       // console.log(quill.getText()); // Get text only
+  //       // console.log(quill.getContents()); // Get delta contents
+  //       // console.log(quill.root.innerHTML); // Get innerHTML using quill
+  //       const descriptionHTML = quill.root.innerHTML;
+  //       console.log(descriptionHTML);
+
+  //       setQuilldescription(descriptionHTML);
+  //     });
+  //   }
+  // }, [quill]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,8 +55,11 @@ export default function Createoffer({
     return (<Redirect to="/recrutement" />);
   }
 
+  // console.log(quill);    // undefined > Quill Object
+  // console.log(quillRef); // { current: undefined } > { current: Quill Editor Reference }
+
   return (
-    <div className="new-offer">
+    <div id="offer" className="new-offer">
       <div className="new-offer-content">
         <button
           className="new-offer-closeButton"
@@ -86,17 +113,19 @@ export default function Createoffer({
             }}
             placeholder="type de l'offre"
           />
-          <textarea
+          {/* <div ref={quillRef} /> */}
+          <ReactQuill
             className="new-offer-content-form-input"
-            type="text"
-            name="description"
-            rows="40"
-            cols="60"
+            theme="snow"
+            // type="text"
+            // name="description"
+            // rows="40"
+            // cols="60"
             value={descriptionValue}
             onChange={(event) => {
-              onChangeDescriptionValue(event.target.value);
+              onChangeDescriptionValue(event);
             }}
-            placeholder="description de l'offre"
+            // placeholder="description de l'offre"
           />
           <button className="new-offer-content-form-button" type="submit">créer une nouvelle offre</button>
         </form>

@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.bubble.css';
+import 'quill/dist/quill.snow.css';
 
 // import styles
 import './styles.scss';
@@ -27,6 +26,7 @@ export default function FocusedOffer({
   const params = useParams();
   const paramsId = parseInt(params.id, 10);
   const offer = offers.find((job) => job.id === paramsId);
+  const offerDescription = offer.description;
 
   if (!offer) {
     return (<Redirect to="/recrutement" />);
@@ -61,14 +61,8 @@ export default function FocusedOffer({
               <h1 className="offer-focused-card-title">{offer.title}</h1>
               <p className="offer-focused-card-city">{offer.city}</p>
               <p className="offer-focused-card-type">{offer.type}</p>
-              <ReactQuill
-                value={offer.description}
-                readOnly
-                theme="bubble"
-              />
-              {/*{offer.description}*/}
-              {/* <div dangerouslySetInnerHTML={{__html: `${offer.description}`}} /> */}
-              {/*<p className="offer-focused-card-desc">{offer.description}</p> */}
+              {offerDescription}
+              <p className="offer-focused-card-desc">{offer.description}</p>
             </div>
             {isLogged && (
               <button type="button" onClick={handleDeleteClick} id={offer.id} className="offer-focused-deleteButton">
