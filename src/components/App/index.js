@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 // == Imports
 import { useState, useEffect } from 'react';
@@ -49,6 +51,8 @@ export default function App() {
   const [fileValue, setFileValue] = useState(null);
   const [phoneValue, setPhoneValue] = useState('');
 
+  const [UIMessage, setUIMessage] = useState('');
+
   // function to logout the user
   const logOut = () => {
     setIsLogged(false);
@@ -59,11 +63,11 @@ export default function App() {
   const getOffers = () => {
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
-        // console.log(response);
         setOffers(response.data);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la récuperation des données`);
       });
   };
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
@@ -84,16 +88,19 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setTitleValue('');
         setRegionValue('');
         setTypeValue('');
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        // window.alert(response.data.message);
+        setUIMessage('');
+        setUIMessage('Votre offre a bien été crée !');
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la création de l'offre.`);
       });
   };
 
@@ -107,20 +114,22 @@ export default function App() {
     form.append('lastName', lastNameValue);
     form.append('subject', subjectValue);
     form.append('message', messageValue);
-    console.log(firstNameValue);
 
     axios.post('https://ldo-transports.herokuapp.com/contact', form)
       .then((response) => {
-        console.log(response);
         setMailValue('');
         setSubjectValue('');
         setMessageValue('');
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
+        // window.alert(response.data.message);
+        setUIMessage('');
+        setUIMessage('Votre message a bien été envoyé !'); // a revoir, alert ephemere ou modal d'helene
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de l'envoi du message.`);
       });
   };
 
@@ -166,11 +175,11 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setUpdateOffers(!updateOffers);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la suppression de l'annonce.`);
       });
   };
 
@@ -185,37 +194,51 @@ export default function App() {
         setUserId(response.data.userId);
         setIsLogged(response.data.connected);
         setAccessToken(response.data.access_token);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);
+        setUIMessage('');
+        setUIMessage('Mail/Mot de passe incorrect.');
+        // window.alert('Mail/Mot de passe incorrect');
       });
   };
 
   // request to change the password when admin is connected
   const changePassword = () => {
-    axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
-      userId,
-      newPassword,
-      newPasswordConfirm,
-    },
-    {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
+    if (newPassword !== newPasswordConfirm) {
+      setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques.');
+      // window.alert('Le nouveau mot de passe et sa confirmation ne sont pas identiques');
+    }
+    else {
+      axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
+        userId,
+        newPassword,
+        newPasswordConfirm,
       },
-    })
-      .then((response) => {
-        console.log(response);
-        logOut();
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          setUIMessage('');
+          setUIMessage('Mot de passe modifé !');
+          // window.alert(response.data.message);
+          logOut();
+        })
+        .catch((error) => {
+          console.log(error);
+          setUIMessage('');
+          setUIMessage(`Le nouveau mot de passe ne respecte pas le format securisé suivant:`);
+          // window.alert(`Erreur lors de la modification du mot de passe`);
+          // check if both inputs are the same
+        });
+    }
   };
 
   // request to update an offer
   const updateAnOffer = (id) => {
-    console.log(id, titleValue, regionValue, typeValue, descriptionValue, cityValue);
     axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
       id: id,
       title: titleValue,
@@ -230,16 +253,18 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setTitleValue('');
         setRegionValue('');
         setTypeValue('');
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        setUIMessage(`Offre modifiée !`);
+        // window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la modification de l'offre.`);
       });
   };
 
@@ -259,6 +284,7 @@ export default function App() {
             onChangeEmailValue={setMail}
             onChangePasswordValue={setPassword}
             onSubmitForm={authenticateUser}
+            UIMessage={UIMessage}
           />
         </Route>
         <Route exact path="/">
@@ -273,6 +299,7 @@ export default function App() {
               onChangeNewPasswordValue={setNewPassword}
               onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
               onSubmitForm={changePassword}
+              UIMessage={UIMessage}
             />
           </Route>
         ) : (<Redirect from="/admin-logged" to="/" />
@@ -318,6 +345,7 @@ export default function App() {
             onChangeTypeValue={setTypeValue}
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
+            UIMessage={UIMessage}
             mailValue={mailValue}
             phoneValue={phoneValue}
             messageValue={messageValue}
@@ -351,6 +379,7 @@ export default function App() {
             onChangeMessageValue={setMessageValue}
             onChangeFileValue={setFileValue}
             onSubmitForm={sendContactMessage}
+            UIMessage={UIMessage}
           />
         </Route>
         <Route>
