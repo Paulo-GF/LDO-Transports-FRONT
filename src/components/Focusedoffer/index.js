@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
+import ReactQuill from 'react-quill';
 
 // import components
 import ConfirmModal from 'src/components/ConfirmModal';
@@ -36,6 +37,7 @@ export default function FocusedOffer({
   onChangeMessageValue,
   onChangeFileValue,
   onSubmitForm,
+  UIMessage,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
@@ -105,7 +107,11 @@ export default function FocusedOffer({
               <h1 className="offer-focused-card-title">{offer.title}</h1>
               <p className="offer-focused-card-city">{offer.city}</p>
               <p className="offer-focused-card-type">{offer.type}</p>
-              <p className="offer-focused-card-desc">{offer.description}</p>
+              <ReactQuill
+                value={offer.description}
+                readOnly // no edition mode
+                theme="bubble" // in node_modules bubble is hidden
+              />
             </div>
             {isLogged ? (
               <button
@@ -201,6 +207,7 @@ export default function FocusedOffer({
                   <button type="submit" onClick={handleApplyFormSubmit} id={offer.id} className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
+                  {UIMessage && (<p>{ UIMessage }</p>)}
                 </form>
               </div>
             )}
@@ -274,6 +281,7 @@ FocusedOffer.propTypes = {
   onChangeMessageValue: PropTypes.func,
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
+  UIMessage: PropTypes.string,
 };
 
 FocusedOffer.defaultProps = {
@@ -290,4 +298,5 @@ FocusedOffer.defaultProps = {
   onChangeMessageValue: null,
   onChangeFileValue: null,
   onSubmitForm: null,
+  UIMessage: null,
 };
