@@ -36,6 +36,7 @@ export default function FocusedOffer({
   onChangeMessageValue,
   onChangeFileValue,
   onSubmitForm,
+  UIMessage,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
@@ -196,6 +197,7 @@ export default function FocusedOffer({
                   <button type="submit" onClick={handleApplyFormSubmit} id={offer.id} className="offer-focused-applyButton">
                     Confirmer votre candidature
                   </button>
+                  {UIMessage && (<p>{ UIMessage }</p>)}
                 </form>
               </div>
             )}
@@ -269,6 +271,7 @@ FocusedOffer.propTypes = {
   onChangeMessageValue: PropTypes.func,
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
+  UIMessage: PropTypes.string,
 };
 
 FocusedOffer.defaultProps = {
@@ -285,4 +288,5 @@ FocusedOffer.defaultProps = {
   onChangeMessageValue: null,
   onChangeFileValue: null,
   onSubmitForm: null,
+  UIMessage: null,
 };

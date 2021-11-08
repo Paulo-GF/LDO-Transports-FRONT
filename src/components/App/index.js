@@ -75,6 +75,7 @@ export default function App() {
 
   // request to add a job offer
   const createOffer = () => {
+    setUIMessage('');
     axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
       title: titleValue,
       region: regionValue,
@@ -94,7 +95,6 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
-        setUIMessage('');
         setUIMessage('Votre offre a bien été crée !');
       })
       .catch((error) => {
@@ -104,6 +104,7 @@ export default function App() {
   };
 
   const sendContactMessage = () => {
+    setUIMessage('');
     const form = new FormData();
     if (fileValue) {
       form.append('file', fileValue[0]);
@@ -122,7 +123,6 @@ export default function App() {
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
-        setUIMessage('');
         setUIMessage('Votre message a bien été envoyé !');
       })
       .catch((error) => {
@@ -132,6 +132,7 @@ export default function App() {
   };
 
   const sendApplication = (event) => {
+    setUIMessage('');
     const jobId = event.target.getAttribute('id');
     const jobIdNumber = parseInt(jobId, 10);
     const offer = offers.find((job) => job.id === jobIdNumber);
@@ -158,6 +159,7 @@ export default function App() {
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
+        setUIMessage('Votre candidature a bien été envoyée.');
       })
       .catch((error) => {
         console.log(error);
@@ -183,6 +185,7 @@ export default function App() {
 
   // request to authenticate the user (admin)
   const authenticateUser = () => {
+    setUIMessage('');
     axios.post('https://ldo-transports.herokuapp.com/admin-signin', {
       mail,
       password,
@@ -195,13 +198,13 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        setUIMessage('');
         setUIMessage('Mail/Mot de passe incorrect.');
       });
   };
 
   // request to change the password when admin is connected
   const changePassword = () => {
+    setUIMessage('');
     if (newPassword !== newPasswordConfirm) {
       setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques.');
     }
@@ -218,13 +221,11 @@ export default function App() {
       })
         .then((response) => {
           console.log(response);
-          setUIMessage('');
           setUIMessage('Mot de passe modifé !');
           logOut();
         })
         .catch((error) => {
           console.log(error);
-          setUIMessage('');
           setUIMessage(`Erreur lors de la modification du mot de passe`);
         });
     }
@@ -232,6 +233,7 @@ export default function App() {
 
   // request to update an offer
   const updateAnOffer = (id) => {
+    setUIMessage('');
     axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
       id: id,
       title: titleValue,
