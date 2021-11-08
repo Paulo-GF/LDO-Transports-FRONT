@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
 
 // import styles
 import './styles.scss';
@@ -98,17 +99,12 @@ export default function UpdateOffer({
               }}
               placeholder="type de contrat"
             />
-            <textarea
-              className="update-modalCard-form-input"
-              rows="40"
-              cols="60"
-              type="text"
-              name="description"
+            <ReactQuill
+              theme="snow"
               value={descriptionValue}
               onChange={(event) => {
-                onChangeDescriptionValue(event.target.value);
+                onChangeDescriptionValue(event);
               }}
-              placeholder="description de l'offre"
             />
             <button className="update-modalCard-form-submitButton" type="submit"> Confirmer la modification </button>
           </form>

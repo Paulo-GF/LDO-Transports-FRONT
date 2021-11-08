@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
+import ReactQuill from 'react-quill';
 
 // import components
 import ConfirmModal from 'src/components/ConfirmModal';
@@ -101,7 +102,11 @@ export default function FocusedOffer({
               <h1 className="offer-focused-card-title">{offer.title}</h1>
               <p className="offer-focused-card-city">{offer.city}</p>
               <p className="offer-focused-card-type">{offer.type}</p>
-              <p className="offer-focused-card-desc">{offer.description}</p>
+              <ReactQuill
+                value={offer.description}
+                readOnly // no edition mode
+                theme="bubble" // in node_modules bubble is hidden
+              />
             </div>
             {isLogged ? (
               <button
