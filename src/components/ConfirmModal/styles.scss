@@ -1,0 +1,58 @@
+//mobile first
+.confirmModal {
+  position: absolute;
+  width: 100%;
+  top: -1px;
+  left: -1px;
+  min-height: 100%;
+  z-index: 15;
+  background-color: white;
+  padding: 1rem;
+
+  &-closeButton {
+    padding: 0.3rem;
+    margin-bottom: 2rem;
+  }
+
+  &-container {
+    border: solid 1px black;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    &-text {
+      margin-bottom: 2rem;
+    }
+    &-button {
+      padding: 1rem;
+
+    }
+  }
+}
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .confirmModal {
+    border: none;
+
+    &-closeButton {
+      margin-left: 2rem;
+    }
+  
+    &-container {
+      border: solid 1px black;
+      border-radius: 10px;
+      padding: 3rem;
+      width: 50%;
+    }
+  }
+}

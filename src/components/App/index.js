@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 // == Imports
 import { useState, useEffect } from 'react';
@@ -16,6 +18,7 @@ import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
+import Notfound from 'src/components/Notfound';
 
 // import styles
 import './styles.scss';
@@ -48,6 +51,9 @@ export default function App() {
   const [subjectValue, setSubjectValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const [fileValue, setFileValue] = useState(null);
+  const [phoneValue, setPhoneValue] = useState('');
+
+  const [UIMessage, setUIMessage] = useState('');
 
   // function to logout the user
   const logOut = () => {
@@ -59,11 +65,11 @@ export default function App() {
   const getOffers = () => {
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
-        // console.log(response);
         setOffers(response.data);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la récuperation des données`);
       });
   };
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
@@ -71,6 +77,7 @@ export default function App() {
 
   // request to add a job offer
   const createOffer = () => {
+    setUIMessage('');
     axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
       title: titleValue,
       region: regionValue,
@@ -84,20 +91,22 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setTitleValue('');
         setRegionValue('');
         setTypeValue('');
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        setUIMessage('Votre offre a bien été crée !');
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la création de l'offre.`);
       });
   };
 
   const sendContactMessage = () => {
+    setUIMessage('');
     const form = new FormData();
     if (fileValue) {
       form.append('file', fileValue[0]);
@@ -107,17 +116,52 @@ export default function App() {
     form.append('lastName', lastNameValue);
     form.append('subject', subjectValue);
     form.append('message', messageValue);
-    console.log(firstNameValue);
 
     axios.post('https://ldo-transports.herokuapp.com/contact', form)
       .then((response) => {
-        console.log(response);
         setMailValue('');
         setSubjectValue('');
         setMessageValue('');
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
+        setUIMessage('Votre message a bien été envoyé !');
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert(`Erreur lors de l'envoi du message.`);
+      });
+  };
+
+  const sendApplication = (event) => {
+    setUIMessage('');
+    const jobId = event.target.getAttribute('id');
+    const jobIdNumber = parseInt(jobId, 10);
+    const offer = offers.find((job) => job.id === jobIdNumber);
+    const offerURL = `https://ldo-transports.netlify.app/recrutement/${jobId}`;
+    const form = new FormData();
+    if (fileValue) {
+      form.append('file', fileValue[0]);
+    }
+    form.append('userMail', mailValue);
+    form.append('firstName', firstNameValue);
+    form.append('lastName', lastNameValue);
+    form.append('phone', phoneValue);
+    form.append('message', messageValue);
+    form.append('jobId', jobId);
+    form.append('offerURL', offerURL);
+    form.append('offerTitle', offer.title);
+
+    axios.post(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, form)
+      .then((response) => {
+        console.log(response);
+        setMailValue('');
+        setPhoneValue('');
+        setMessageValue('');
+        setFileValue();
+        setFirstNameValue('');
+        setLastNameValue('');
+        setUIMessage('Votre candidature a bien été envoyée.');
       })
       .catch((error) => {
         console.log(error);
@@ -125,24 +169,25 @@ export default function App() {
   };
 
   // request to delete a job offer
-  const deleteOffer = (event) => {
-    const jobId = event.target.getAttribute('id');
+  const deleteOffer = (id) => {
+    const jobId = id;
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
       headers: {
         authorization: `Bearer ${accessToken}`,
       },
     })
       .then((response) => {
-        console.log(response);
         setUpdateOffers(!updateOffers);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la suppression de l'annonce.`);
       });
   };
 
   // request to authenticate the user (admin)
   const authenticateUser = () => {
+    setUIMessage('');
     axios.post('https://ldo-transports.herokuapp.com/admin-signin', {
       mail,
       password,
@@ -152,37 +197,45 @@ export default function App() {
         setUserId(response.data.userId);
         setIsLogged(response.data.connected);
         setAccessToken(response.data.access_token);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);
+        setUIMessage('Mail/Mot de passe incorrect.');
       });
   };
 
   // request to change the password when admin is connected
   const changePassword = () => {
-    axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
-      userId,
-      newPassword,
-      newPasswordConfirm,
-    },
-    {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
+    setUIMessage('');
+    if (newPassword !== newPasswordConfirm) {
+      setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques.');
+    }
+    else {
+      axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
+        userId,
+        newPassword,
+        newPasswordConfirm,
       },
-    })
-      .then((response) => {
-        console.log(response);
-        logOut();
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          setUIMessage('Mot de passe modifé !');
+          logOut();
+        })
+        .catch((error) => {
+          console.log(error);
+          setUIMessage(`Erreur lors de la modification du mot de passe`);
+        });
+    }
   };
 
   // request to update an offer
   const updateAnOffer = (id) => {
-    console.log(id, titleValue, regionValue, typeValue, descriptionValue, cityValue);
+    setUIMessage('');
     axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
       id: id,
       title: titleValue,
@@ -197,16 +250,18 @@ export default function App() {
       },
     })
       .then((response) => {
-        console.log(response);
         setTitleValue('');
         setRegionValue('');
         setTypeValue('');
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        setUIMessage(`Offre modifiée !`);
+        // window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        window.alert(`Erreur lors de la modification de l'offre.`);
       });
   };
 
@@ -226,6 +281,7 @@ export default function App() {
             onChangeEmailValue={setMail}
             onChangePasswordValue={setPassword}
             onSubmitForm={authenticateUser}
+            UIMessage={UIMessage}
           />
         </Route>
         <Route exact path="/">
@@ -240,6 +296,7 @@ export default function App() {
               onChangeNewPasswordValue={setNewPassword}
               onChangeConfirmNewPasswordValue={setNewpasswordConfirm}
               onSubmitForm={changePassword}
+              UIMessage={UIMessage}
             />
           </Route>
         ) : (<Redirect from="/admin-logged" to="/" />
@@ -285,6 +342,20 @@ export default function App() {
             onChangeTypeValue={setTypeValue}
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
+            UIMessage={UIMessage}
+            mailValue={mailValue}
+            phoneValue={phoneValue}
+            messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
+            fileValue={fileValue}
+            onChangeFirstNameValue={setFirstNameValue}
+            onChangeLastNameValue={setLastNameValue}
+            onChangeMailValue={setMailValue}
+            onChangePhoneValue={setPhoneValue}
+            onChangeMessageValue={setMessageValue}
+            onChangeFileValue={setFileValue}
+            onSubmitForm={sendApplication}
           />
         </Route>
         <Route exact path="/mentions-legales">
@@ -295,6 +366,8 @@ export default function App() {
             mailValue={mailValue}
             subjectValue={subjectValue}
             messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
             fileValue={fileValue}
             onChangeFirstNameValue={setFirstNameValue}
             onChangeLastNameValue={setLastNameValue}
@@ -303,16 +376,14 @@ export default function App() {
             onChangeMessageValue={setMessageValue}
             onChangeFileValue={setFileValue}
             onSubmitForm={sendContactMessage}
+            UIMessage={UIMessage}
           />
+        </Route>
+        <Route>
+          <Notfound />
         </Route>
       </Switch>
       <Footer />
     </div>
   );
 }
-/*
-To add later on when all pages are ready
-<Route >
-  <404 />
-</Route>
-*/
