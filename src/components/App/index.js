@@ -22,8 +22,8 @@ import Notfound from 'src/components/Notfound';
 
 // import styles
 import './styles.scss';
-import 'react-quill/dist/quill.bubble.css';
-import 'react-quill/dist/quill.snow.css';
+import './quill.bubble.css';
+import './quill.snow.css';
 
 // == Component
 export default function App() {
