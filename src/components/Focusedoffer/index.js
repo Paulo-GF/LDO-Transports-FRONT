@@ -63,12 +63,9 @@ export default function FocusedOffer({
               <p className="offer-focused-card-type">{offer.type}</p>
               <ReactQuill
                 value={offer.description}
-                readOnly
-                theme="bubble"
+                readOnly // no edition mode
+                theme="bubble" // in node_modules bubble is hidden
               />
-              {/*{offer.description}*/}
-              {/* <div dangerouslySetInnerHTML={{__html: `${offer.description}`}} /> */}
-              {/*<p className="offer-focused-card-desc">{offer.description}</p> */}
             </div>
             {isLogged && (
               <button type="button" onClick={handleDeleteClick} id={offer.id} className="offer-focused-deleteButton">
