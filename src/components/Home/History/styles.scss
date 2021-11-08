@@ -22,16 +22,13 @@
     line-height: 2em;
     justify-content: space-between;
   }
-  &-imageContainer {
-    width : 100%;
-  }
-  &-image {
-    width: 100%;
-    height: auto;
-  }
+
   &-content {
+    color: white;
+    width: 100%;
     padding: 1rem;
     text-align: justify;
+    font-weight: 400;
   }
 }
 
@@ -80,21 +77,9 @@
       width: 100%;
       line-height: 2em;
     }
-    &-imageContainer {
-      top: 0;
-      left: 0;
-      position: absolute;
-      width : 100%;
-      opacity: 0.7;
-    }
-    &-image {
-      width: 100%;
-      height: auto;
-    }
+
     &-content {
-      color: black;
-      z-index: 10;
-      width : 100%;
+      width : 50%;
       padding: 2rem;
     }
   }

@@ -60,9 +60,14 @@ export default function FocusedOffer({
     setOpenModifyOfferModal(true);
   };
 
-  // close the modal to modify the offer
+  // close the modal to modify the offer and reset all inputs
   const hideModifyOfferModal = () => {
     setOpenModifyOfferModal(false);
+    onChangeTitleValue('');
+    onChangeRegionValue('');
+    onChangeCityValue('');
+    onChangeTypeValue('');
+    onChangeDescriptionValue('');
   };
 
   // delete the offer
@@ -113,13 +118,13 @@ export default function FocusedOffer({
                 Supprimer l'offre
               </button>
             ) : (
-              <button type="button" onClick={showApplyFormClick} id={offer.id} className={`${classnameApplyButton}`}>
+              <button type="button" onClick={showApplyFormClick} id={offer.id} className={`offer-focused-applyButton ${classnameApplyButton}`}>
                 Postuler
               </button>
             )}
             {openApplyOfferForm && (
-              <div className="form-container">
-                <h2>Formulaire de recrutement</h2>
+              <div className="apply">
+                <h2 className="apply-title">Formulaire de recrutement</h2>
                 <form
                   className="aplly-content-form"
                   onSubmit={handleApplyFormSubmit}
@@ -190,10 +195,10 @@ export default function FocusedOffer({
                       />
                     </label>
                   </div>
-                  <button type="button" onClick={hideApplyFormClick} id={offer.id} className="offer-focused-applyButton">
+                  <button type="button" onClick={hideApplyFormClick} id={offer.id} className="apply-content-form-applyButton">
                     Annuler
                   </button>
-                  <button type="submit" onClick={handleApplyFormSubmit} id={offer.id} className="offer-focused-applyButton">
+                  <button type="submit" onClick={handleApplyFormSubmit} id={offer.id} className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
                 </form>

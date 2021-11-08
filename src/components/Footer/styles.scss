@@ -1,9 +1,10 @@
 //mobile first
 .footer {
+  min-height: 10vh;
   background-color: rgb(221, 221, 221);
   position: absolute;
   bottom: 0;
-  //top: 100%;
+  top: 100%;
   font-size: 0.9em;
   padding: 1.5rem;
   display: flex;
