@@ -94,7 +94,6 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
-        // window.alert(response.data.message);
         setUIMessage('');
         setUIMessage('Votre offre a bien été crée !');
       })
@@ -123,9 +122,8 @@ export default function App() {
         setFileValue();
         setFirstNameValue('');
         setLastNameValue('');
-        // window.alert(response.data.message);
         setUIMessage('');
-        setUIMessage('Votre message a bien été envoyé !'); // a revoir, alert ephemere ou modal d'helene
+        setUIMessage('Votre message a bien été envoyé !');
       })
       .catch((error) => {
         console.log(error);
@@ -199,7 +197,6 @@ export default function App() {
         console.log(error);
         setUIMessage('');
         setUIMessage('Mail/Mot de passe incorrect.');
-        // window.alert('Mail/Mot de passe incorrect');
       });
   };
 
@@ -207,7 +204,6 @@ export default function App() {
   const changePassword = () => {
     if (newPassword !== newPasswordConfirm) {
       setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques.');
-      // window.alert('Le nouveau mot de passe et sa confirmation ne sont pas identiques');
     }
     else {
       axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
@@ -224,15 +220,12 @@ export default function App() {
           console.log(response);
           setUIMessage('');
           setUIMessage('Mot de passe modifé !');
-          // window.alert(response.data.message);
           logOut();
         })
         .catch((error) => {
           console.log(error);
           setUIMessage('');
-          setUIMessage(`Le nouveau mot de passe ne respecte pas le format securisé suivant:`);
-          // window.alert(`Erreur lors de la modification du mot de passe`);
-          // check if both inputs are the same
+          setUIMessage(`Erreur lors de la modification du mot de passe`);
         });
     }
   };
