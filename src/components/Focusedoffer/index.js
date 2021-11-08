@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.bubble.css';
 
 // import styles
 import './styles.scss';

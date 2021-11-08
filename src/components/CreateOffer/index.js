@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 
 // import styles
 import './styles.scss';
