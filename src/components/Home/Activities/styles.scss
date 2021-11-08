@@ -1,10 +1,12 @@
 //mobile first
 .activities {
+  background: rgb(136, 38, 19);
+  background: linear-gradient(to bottom, rgb(136, 38, 19) 0%, rgb(255,255,255) 8%, rgb(255,255,255) 100%);
   text-align: center;
   &-title {
     font-size: 1.5rem;
     font-weight: 600;
-    padding: 1rem 0;
+    padding: 6rem 0 1rem 0;
   }
   &-content {
     justify-content: space-between;
@@ -45,6 +47,9 @@
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
+  .activities {
+    background: linear-gradient(to bottom, rgb(136, 38, 19) 0%, rgb(255,255,255) 12%, rgb(255,255,255) 100%);
+  }
 }
 
 //desktop
@@ -52,6 +57,7 @@
   /* Styles for this Media Queries */
 
   .activities {
+    background: linear-gradient(to bottom, rgb(136, 38, 19) 0%, rgb(255,255,255) 25%, rgb(255,255,255) 100%);
     &-title {
       font-size: 2em;
       font-weight: 600;
@@ -65,7 +71,7 @@
       justify-content: space-between;
     }
     &-section {
-      height: 15rem;
+      height: 18rem;
       border: solid 1px black;
       border-radius: 5px;
       padding: 2rem;

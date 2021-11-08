@@ -44,7 +44,7 @@ export default function Contact({
           <Link to="/">Revenir à l'acceuil</Link>
         </div>
       ) : (
-        <div className="contact-form">
+        <div className="contact">
           <div className="contact-content">
             <form
               className="contact-content-form"
@@ -111,7 +111,7 @@ export default function Contact({
                 }}
                 placeholder="Joindre un fichier"
               />
-              <button className="new-offer-form-button" type="submit">Envoyer votre message</button>
+              <button className="contact-content-form-button" type="submit">Envoyer votre message</button>
             </form>
           </div>
         </div>

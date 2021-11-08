@@ -40,6 +40,11 @@ export default function Createoffer({
           type="button"
           onClick={() => {
             setRedirected(!redirected);
+            onChangeTitleValue('');
+            onChangeRegionValue('');
+            onChangeCityValue('');
+            onChangeTypeValue('');
+            onChangeDescriptionValue('');
           }}
         >X
         </button>
