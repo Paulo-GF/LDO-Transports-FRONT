@@ -24,23 +24,33 @@ import './styles.scss';
 // == Component
 export default function App() {
   // == global state
+  // user
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-  const [offers, setOffers] = useState([]);
-  const [updateOffers, setUpdateOffers] = useState(false);
-  const [userFirstName, setUserFirstName] = useState('');
   const [userId, setUserId] = useState(0);
+  const [userFirstName, setUserFirstName] = useState('');
   const [accessToken, setAccessToken] = useState('');
-  // global state == part of the state for crud
+  // all offers
+  const [offers, setOffers] = useState([]);
+  // one offer
+  const [offer, setOffer] = useState({});
+  // state to launch the request for all offers
+  const [updateOffers, setUpdateOffers] = useState(false);
+  // state to launch the request for one offer
+  const [updateOneOffer, setUpdateOneOffer] = useState(false);
+
+  // == global state == part of the state for crud
+  // crud password
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordConfirm, setNewpasswordConfirm] = useState('');
+  // crud offers info
   const [cityValue, setCityValue] = useState('');
   const [titleValue, setTitleValue] = useState('');
   const [regionValue, setRegionValue] = useState('');
   const [typeValue, setTypeValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
-
+  // contact/apply info
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [mailValue, setMailValue] = useState('');
@@ -59,15 +69,29 @@ export default function App() {
   const getOffers = () => {
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
-        // console.log(response);
+        console.log(response.data);
         setOffers(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
   useEffect(getOffers, [updateOffers]);
+
+  // request to get one job offer
+  const getCertainOffer = (jobId) => {
+    console.log(jobId);
+    axios.get(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`)
+      .then((response) => {
+        console.log(response.data);
+        setOffer(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // request to add a job offer
   const createOffer = () => {
@@ -97,6 +121,7 @@ export default function App() {
       });
   };
 
+  // request to send a message
   const sendContactMessage = () => {
     const form = new FormData();
     if (fileValue) {
@@ -124,10 +149,11 @@ export default function App() {
       });
   };
 
+  // request to send application for a job offer
   const sendApplication = (event) => {
     const jobId = event.target.getAttribute('id');
     const jobIdNumber = parseInt(jobId, 10);
-    const offer = offers.find((job) => job.id === jobIdNumber);
+    const concernedOffer = offers.find((job) => job.id === jobIdNumber);
     const offerURL = `https://ldo-transports.netlify.app/recrutement/${jobId}`;
     const form = new FormData();
     if (fileValue) {
@@ -140,7 +166,7 @@ export default function App() {
     form.append('message', messageValue);
     form.append('jobId', jobId);
     form.append('offerURL', offerURL);
-    form.append('offerTitle', offer.title);
+    form.append('offerTitle', concernedOffer.title);
 
     axios.post(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, form)
       .then((response) => {
@@ -237,6 +263,7 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        setUpdateOneOffer(!updateOneOffer);
       })
       .catch((error) => {
         console.log(error);
@@ -299,6 +326,7 @@ export default function App() {
           <Joboffers
             isLogged={isLogged}
             offers={offers}
+            getCertainOffer={getCertainOffer}
             deleteOffer={deleteOffer}
           />
         </Route>
@@ -306,7 +334,7 @@ export default function App() {
           <Focusedoffer
             isLogged={isLogged}
             deleteOffer={deleteOffer}
-            offers={offers}
+            offer={offer}
             titleValue={titleValue}
             descriptionValue={descriptionValue}
             regionValue={regionValue}
@@ -331,6 +359,9 @@ export default function App() {
             onChangeMessageValue={setMessageValue}
             onChangeFileValue={setFileValue}
             onSubmitForm={sendApplication}
+            getCertainOffer={getCertainOffer}
+            updateOneOffer={updateOneOffer}
+            setUpdateOneOffer={updateOneOffer}
           />
         </Route>
         <Route exact path="/mentions-legales">
