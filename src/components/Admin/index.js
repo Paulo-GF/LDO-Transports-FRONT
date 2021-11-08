@@ -17,7 +17,6 @@ export default function Admin({
     event.preventDefault();
     onSubmitForm();
   };
-  // todo add reggex on inputs
   return (
     <div className="admin">
       <div className="admin-container">
@@ -30,6 +29,8 @@ export default function Admin({
             <input
               className="admin-content-form-input"
               type="password"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,24}$"
+              required="required"
               name="newPassword"
               value={newPasswordValue}
               onChange={(event) => {
@@ -40,6 +41,8 @@ export default function Admin({
             <input
               className="admin-content-form-input"
               type="password"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,24}$"
+              required="required"
               name="newPasswordConfirm"
               value={confirmNewPasswordValue}
               onChange={(event) => {

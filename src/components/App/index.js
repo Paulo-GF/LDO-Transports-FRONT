@@ -18,6 +18,7 @@ import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
+import Notfound from 'src/components/Notfound';
 
 // import styles
 import './styles.scss';
@@ -48,6 +49,7 @@ export default function App() {
   const [subjectValue, setSubjectValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const [fileValue, setFileValue] = useState(null);
+  const [phoneValue, setPhoneValue] = useState('');
 
   const [UIMessage, setUIMessage] = useState('');
 
@@ -131,10 +133,42 @@ export default function App() {
       });
   };
 
-  // request to delete a job offer
-  const deleteOffer = (event) => {
+  const sendApplication = (event) => {
     const jobId = event.target.getAttribute('id');
+    const jobIdNumber = parseInt(jobId, 10);
+    const offer = offers.find((job) => job.id === jobIdNumber);
+    const offerURL = `https://ldo-transports.netlify.app/recrutement/${jobId}`;
+    const form = new FormData();
+    if (fileValue) {
+      form.append('file', fileValue[0]);
+    }
+    form.append('userMail', mailValue);
+    form.append('firstName', firstNameValue);
+    form.append('lastName', lastNameValue);
+    form.append('phone', phoneValue);
+    form.append('message', messageValue);
+    form.append('jobId', jobId);
+    form.append('offerURL', offerURL);
+    form.append('offerTitle', offer.title);
 
+    axios.post(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, form)
+      .then((response) => {
+        console.log(response);
+        setMailValue('');
+        setPhoneValue('');
+        setMessageValue('');
+        setFileValue();
+        setFirstNameValue('');
+        setLastNameValue('');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // request to delete a job offer
+  const deleteOffer = (id) => {
+    const jobId = id;
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -312,6 +346,19 @@ export default function App() {
             onChangeDescriptionValue={setDescriptionValue}
             setChange={updateAnOffer}
             UIMessage={UIMessage}
+            mailValue={mailValue}
+            phoneValue={phoneValue}
+            messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
+            fileValue={fileValue}
+            onChangeFirstNameValue={setFirstNameValue}
+            onChangeLastNameValue={setLastNameValue}
+            onChangeMailValue={setMailValue}
+            onChangePhoneValue={setPhoneValue}
+            onChangeMessageValue={setMessageValue}
+            onChangeFileValue={setFileValue}
+            onSubmitForm={sendApplication}
           />
         </Route>
         <Route exact path="/mentions-legales">
@@ -322,6 +369,8 @@ export default function App() {
             mailValue={mailValue}
             subjectValue={subjectValue}
             messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
             fileValue={fileValue}
             onChangeFirstNameValue={setFirstNameValue}
             onChangeLastNameValue={setLastNameValue}
@@ -333,14 +382,11 @@ export default function App() {
             UIMessage={UIMessage}
           />
         </Route>
+        <Route>
+          <Notfound />
+        </Route>
       </Switch>
       <Footer />
     </div>
   );
 }
-/*
-To add later on when all pages are ready
-<Route >
-  <404 />
-</Route>
-*/
