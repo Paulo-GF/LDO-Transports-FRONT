@@ -7,6 +7,12 @@
     font-size: 1.5rem;
     font-weight: 600;
   }
+  &-colibri {
+    display: none
+  }
+  &-ldo {
+    display: none
+  }
   &-article {
     padding: 1rem;
     width: 100%;
@@ -16,16 +22,13 @@
     line-height: 2em;
     justify-content: space-between;
   }
-  &-imageContainer {
-    width : 100%;
-  }
-  &-image {
-    width: 100%;
-    height: auto;
-  }
+
   &-content {
+    color: white;
+    width: 100%;
     padding: 1rem;
     text-align: justify;
+    font-weight: 400;
   }
 }
 
@@ -37,28 +40,83 @@
 //desktop
 @media screen and (min-width : 1024px) {
   /* Styles for this Media Queries */
-  .history {
-    &-title {
-      font-size: 2em;
-      font-weight: 600;
-      padding: 6rem 0 2rem 0;
-    }
+  .history { 
+      &-colibri {
+        left: 17%;
+        top: 30%;
+        position: absolute;
+        display: block;
+        height: 7rem;
+        width: auto;
+        animation: slideinColibri 3s cubic-bezier(0, 0, 0.31, 1.65);
+      }
+  
+      &-ldo {
+        right: 18%;
+        top: 60%;
+        position: absolute;
+        display: block;
+        height: 2rem;
+        width: auto;
+        animation: slideinLdo 3s cubic-bezier(0, 0, 0.31, 1.65);
+      }
+  
+      &-title {
+        position: relative;
+        font-size: 2em;
+        font-weight: 600;
+        padding: 6rem 0 2rem 0;
+      }
+    
     &-article {
+      position: relative;
+      margin-top: 3rem;
       flex-direction: row;
-      padding: 0 1rem;
+      justify-content: flex-end;
+      font-weight: 600;
       width: 100%;
       line-height: 2em;
     }
-    &-imageContainer {
-      width : 50%;
-    }
-    &-image {
-      width: 100%;
-      height: auto;
-    }
+
     &-content {
       width : 50%;
       padding: 2rem;
+    }
+  }
+
+  @keyframes slideinLdo {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideinColibri {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+}
+}
+
+
+//big desktop
+@media screen and (min-width : 1450px) {
+  /* Styles for this Media Queries */
+  .history { 
+    &-colibri {
+      left: 25%;
+    }
+
+    &-ldo {
+      right: 25%;
     }
   }
 }

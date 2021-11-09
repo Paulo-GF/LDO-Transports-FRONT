@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
+import ReactQuill from 'react-quill';
 
 // import styles
 import './styles.scss';
@@ -32,13 +33,18 @@ export default function Createoffer({
   }
 
   return (
-    <div className="new-offer">
+    <div id="offer" className="new-offer">
       <div className="new-offer-content">
         <button
           className="new-offer-closeButton"
           type="button"
           onClick={() => {
             setRedirected(!redirected);
+            onChangeTitleValue('');
+            onChangeRegionValue('');
+            onChangeCityValue('');
+            onChangeTypeValue('');
+            onChangeDescriptionValue('');
           }}
         >X
         </button>
@@ -90,18 +96,13 @@ export default function Createoffer({
             }}
             placeholder="type de l'offre"
           />
-          <textarea
+          <ReactQuill
             className="new-offer-content-form-input"
-            type="text"
-            name="description"
-            required="required"
-            rows="40"
-            cols="60"
+            theme="snow" // snow is not hidden, there is an edition mode to create the description of the offer
             value={descriptionValue}
             onChange={(event) => {
-              onChangeDescriptionValue(event.target.value);
+              onChangeDescriptionValue(event);
             }}
-            placeholder="description de l'offre"
           />
           <button className="new-offer-content-form-button" type="submit">créer une nouvelle offre</button>
         </form>

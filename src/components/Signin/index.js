@@ -10,6 +10,7 @@ export default function Signin({
   onChangeEmailValue,
   onChangePasswordValue,
   onSubmitForm,
+  UIMessage,
 }) {
   // on submit, call API to authenticate the user
   const handleSubmit = (event) => {
@@ -49,6 +50,7 @@ export default function Signin({
               onChangePasswordValue(event.target.value);
             }}
           />
+          {UIMessage && (<p>{UIMessage}</p>)}
           <button className="signin-content-form-button" type="submit">Se connecter</button>
         </form>
       </div>
@@ -62,4 +64,9 @@ Signin.propTypes = {
   onChangeEmailValue: PropTypes.func.isRequired,
   onChangePasswordValue: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
+  UIMessage: PropTypes.string,
+};
+
+Signin.defaultProps = {
+  UIMessage: null,
 };

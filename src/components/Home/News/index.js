@@ -2,17 +2,18 @@
 import './styles.scss';
 
 // import images
-import image from '../../../assets/truck1.jpg';
+import image from '../../../assets/yellowRoad.jpg';
 
 export default function News() {
   return (
     <div id="news" className="news">
       <h2 className="news-title">Nos actualités</h2>
       <article className="news-article">
-        <div className="news-imageContainer">
-          <img className="news-image" src={image} alt="truck1" />
+        <div className="news-article-imageContainer">
+          <img className="news-article-image" src={image} alt="truck1" />
         </div>
-        <p className="news-content">LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
+        <p className="news-article-content">
+          LDO c’est le L de Laurent et le DO de Dogan, les deux actionnaires
           de la SAS LDO Transports.
           Laurent, c’est 20 ans d’expérience en direction administrative et financière.
           Dogan, c’est 17 ans d’expérience dans le transport, de chauffeur SPL
@@ -28,7 +29,6 @@ export default function News() {
           Cet oiseau, ces ailes, c’est évidemment la liberté d’entreprendre mais surtout
           celle de pouvoir porter, pour nos clients, notre savoir-faire
           et notre vision du transport de marchandises.
-
           Pourquoi le colibri ?
           Parce que c’est le seul oiseau au monde capable de voler en marche arrière ce qui
           est assez pratique pour une mise à quai ou l’accrochage d’une remorque ?
@@ -45,7 +45,6 @@ export default function News() {
           réchauffement climatique et aux enjeux environnementaux que nous devons relever.
           Elle nous interpelle également, de manière plus générale, sur ce que nous sommes
           capables de réaliser ensemble.
-
           Chez LDO nous sommes tous des colibris et, collectivement, nous écrivons
           aujourd’hui notre histoire et celle de nos clients.
         </p>
