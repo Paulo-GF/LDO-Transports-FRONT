@@ -22,9 +22,6 @@ export default function Contact({
   UIMessage,
   setUIMessage,
 }) {
-  // local state pour le redirect
-  // const [redirected, setRedirected] = useState(false);
-
   // submit func plus redirect state modification
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,12 +29,6 @@ export default function Contact({
     // setRedirected(!redirected);
   };
 
-  // to execute the redirection on submit
-  /*
-  if (redirected) {
-    return (<Redirect to="/" />);
-  }
-  */
   useEffect(() => {
     setUIMessage('');
   }, []);
@@ -59,6 +50,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="mail"
                 value={mailValue}
                 onChange={(event) => {
@@ -69,6 +61,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="firstName"
                 value={firstNameValue}
                 onChange={(event) => {
@@ -79,6 +72,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="lastName"
                 value={lastNameValue}
                 onChange={(event) => {
@@ -89,6 +83,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="subject"
                 value={subjectValue}
                 onChange={(event) => {
@@ -99,6 +94,7 @@ export default function Contact({
               <textarea
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="message"
                 rows="3"
                 cols="30"

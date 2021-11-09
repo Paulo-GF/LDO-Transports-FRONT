@@ -147,6 +147,7 @@ export default function FocusedOffer({
                   <input
                     className="apply-content-form-input"
                     type="text"
+                    required
                     name="lastName"
                     value={lastNameValue}
                     onChange={(event) => {
@@ -157,6 +158,7 @@ export default function FocusedOffer({
                   <input
                     className="apply-content-form-input"
                     type="text"
+                    required
                     name="firstName"
                     value={firstNameValue}
                     onChange={(event) => {
@@ -167,6 +169,7 @@ export default function FocusedOffer({
                   <input
                     className="apply-content-form-input"
                     type="text"
+                    required
                     name="mail"
                     value={mailValue}
                     onChange={(event) => {
@@ -177,6 +180,7 @@ export default function FocusedOffer({
                   <input
                     className="apply-content-form-input"
                     type="text"
+                    required
                     name="phone"
                     value={phoneValue}
                     onChange={(event) => {
@@ -201,6 +205,7 @@ export default function FocusedOffer({
                       <input
                         className="apply-content-form-input"
                         type="file"
+                        required
                         name="file"
                         id="file"
                         ref={ref}
@@ -213,7 +218,7 @@ export default function FocusedOffer({
                   <button type="button" onClick={hideApplyFormClick} id={offer.id} className="apply-content-form-applyButton">
                     Annuler
                   </button>
-                  <button type="submit" onClick={handleApplyFormSubmit} id={offer.id} className="apply-content-form-applyButton">
+                  <button type="submit" id={offer.id} className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
                   {UIMessage && (<p>{ UIMessage }</p>)}
