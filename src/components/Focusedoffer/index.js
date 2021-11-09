@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
+
 import UpdateOffer from 'src/components/UpdateOffer';
 import ReactQuill from 'react-quill';
 
@@ -23,7 +24,7 @@ export default function FocusedOffer({
   onChangeDescriptionValue,
   setChange,
   isLogged,
-  offers,
+  offer,
   deleteOffer,
   mailValue,
   firstNameValue,
@@ -37,17 +38,22 @@ export default function FocusedOffer({
   onChangeMessageValue,
   onChangeFileValue,
   onSubmitForm,
+  getCertainOffer,
+  updateOneOffer,
   UIMessage,
   setUIMessage,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
-  const paramsId = parseInt(params.id, 10);
-  const offer = offers.find((job) => job.id === paramsId);
+  const offerId = parseInt(params.id, 10);
+
+  useEffect(() => {
+    getCertainOffer(offerId);
+  }, [updateOneOffer]);
 
   // if no offer find with this id redirect
   if (!offer) {
-    return (<Redirect to="/recrutement" />);
+    return (<Redirect to="/Notfound" />);
   }
 
   // == local state
@@ -245,7 +251,6 @@ export default function FocusedOffer({
           onChangeTypeValue={onChangeTypeValue}
           onChangeDescriptionValue={onChangeDescriptionValue}
           setChange={setChange}
-          jobList={offers}
           hideModifyOfferModal={hideModifyOfferModal}
         />
       )}
@@ -254,16 +259,14 @@ export default function FocusedOffer({
 }
 
 FocusedOffer.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      region: PropTypes.string,
-      city: PropTypes.string,
-      type: PropTypes.string,
-      description: PropTypes.string,
-    }).isRequired,
-  ).isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    region: PropTypes.string,
+    city: PropTypes.string,
+    type: PropTypes.string,
+    description: PropTypes.string,
+  }),
   isLogged: PropTypes.bool.isRequired,
   deleteOffer: PropTypes.func,
   setChange: PropTypes.func.isRequired,
@@ -289,11 +292,14 @@ FocusedOffer.propTypes = {
   onChangeMessageValue: PropTypes.func,
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
+  getCertainOffer: PropTypes.func.isRequired,
+  updateOneOffer: PropTypes.bool.isRequired,
   UIMessage: PropTypes.string,
   setUIMessage: PropTypes.func,
 };
 
 FocusedOffer.defaultProps = {
+  offer: null,
   deleteOffer: null,
   mailValue: '',
   firstNameValue: '',
