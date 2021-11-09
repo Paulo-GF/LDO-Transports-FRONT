@@ -12,7 +12,7 @@
 .logo-link {
   display: block;
   width: 100%;
-  height: 200px;
+  height: 180px;
   text-align: center;
 }
 
@@ -24,7 +24,10 @@
 .navBar {
   display: flex;
   flex-direction: column;
+  width: 128px;
   justify-content: space-around;
+  align-items: center;
+  margin-left : 0rem;
 
   &_hidden {
     display: none
@@ -35,7 +38,8 @@
   }
 
   &-link {
-    padding: 0.5rem;
+    padding: 0.3rem;
+    margin: 0.5rem 0;
   }
 
   &-link:hover {
@@ -43,34 +47,43 @@
   }
 
   &-link--selected {
-    text-decoration: underline;
-    text-decoration-color: #a32610;
-    text-decoration-thickness: 0.2em;
+    border-bottom: 2px solid #a32610;
+
   }
   // &_disappear {
   //   animation: translateMenu 1s;
   // }
 
-  // &-connected {
-    
-  //   display: flex;
-  //   flex-direction: column;
-  //   &-user {
-  //     display: flex;
-  //     flex-direction: row;
-  //     padding: 0.5rem;
-  //     &-icon {
-  //       margin-right: 0.5rem;
-  //     }
-  //   }
-  //   &-deconnexion-button {
-  //     padding: 0.5rem;
-  //     width: 100%;
-  //   }
-  // }
+  &-connected {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgb(222, 221, 226);
+    border-radius: 5px;
+    padding: 0.5rem;
+
+    &-user {
+      display: flex;
+      padding: 0.5rem;
+      &-icon {
+        margin-right: 1rem;    
+      }
+    }
+
+    // &-admin {
+    //   margin: 0 ;
+    // }
+
+    &-deconnexion-button {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+    }
+  } 
 }
 
 .hamburger {
+  margin-left: 2.7rem;
   font-size: 3em;
 
   &_open {
@@ -110,14 +123,16 @@
   }
 
   .navBar {
+    width: 100%;
     color: rgb(71, 8, 34);
     display: flex;
     flex-direction: row;
     align-items:  center;
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: rgb(71, 8, 34);
     padding-bottom: 1rem;
+    margin-left : 0;
     
     &_hidden {
       display: flex;
@@ -125,18 +140,20 @@
     
     &-connected {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items:  center;
 
-      &-userIcon {
-        margin: 0 1rem;    
-      }
+      &-user {
+        &-icon {
+          margin: 0 1rem;    
+        }
+        }
 
-      &-admin, &-userInfo, &-deconnexion-button {
+      &-deconnexion-button {
         margin: 0 1rem;
       }
     } 
-
 
   }
 }
@@ -168,7 +185,7 @@
   
   .navBar {
     font-weight: 800;
-    font-size: 1.7em;
+    font-size: 1.5em;
     color: rgb(71, 8, 34);
     width: 66%;
     height: 100%;

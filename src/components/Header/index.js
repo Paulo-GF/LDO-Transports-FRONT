@@ -44,9 +44,11 @@ export default function Header({ isLogged, adminInfo, logOut }) {
             <NavLink to="/admin-logged" activeClassName="navBar-link--selected" className="navBar-link navBar-connected-admin">
               Page Admin
             </NavLink>
-            <FaUserCircle className="navBar-connected-userIcon" />
-            <div className="navBar-connected-userInfo">
-              {adminInfo}
+            <div className="navBar-connected-user">
+              <FaUserCircle className="navBar-connected-user-icon" />
+              <div className="navBar-connected-user-info">
+                {adminInfo}
+              </div>
             </div>
             <button className="navBar-connected-deconnexion-button" type="button" onClick={logOut}> Déconnexion </button>
           </div>
