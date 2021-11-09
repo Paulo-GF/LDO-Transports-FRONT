@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { useState } from 'react';
 
@@ -19,6 +20,7 @@ export default function Contact({
   onChangeFileValue,
   onSubmitForm,
   UIMessage,
+  setUIMessage,
 }) {
   // local state pour le redirect
   // const [redirected, setRedirected] = useState(false);
@@ -36,12 +38,16 @@ export default function Contact({
     return (<Redirect to="/" />);
   }
   */
+  useEffect(() => {
+    setUIMessage('');
+  }, []);
+
   return (
     <div>
       {UIMessage ? (
         <div>
           <h2>{UIMessage}</h2>
-          <Link to="/">Revenir à l'acceuil</Link>
+          <Link to="/">Revenir à l'accueil</Link>
         </div>
       ) : (
         <div className="contact">
@@ -134,8 +140,10 @@ Contact.propTypes = {
   onChangeFileValue: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   UIMessage: PropTypes.string,
+  setUIMessage: PropTypes.func,
 };
 
 Contact.defaultProps = {
   UIMessage: null,
+  setUIMessage: null,
 };
