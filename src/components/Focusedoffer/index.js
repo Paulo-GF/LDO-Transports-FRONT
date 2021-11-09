@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
 import ReactQuill from 'react-quill';
@@ -38,6 +38,7 @@ export default function FocusedOffer({
   onChangeFileValue,
   onSubmitForm,
   UIMessage,
+  setUIMessage,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
@@ -83,10 +84,17 @@ export default function FocusedOffer({
     setOpenApplyOfferForm(false);
   };
 
+  const ref = useRef();
+
   const handleApplyFormSubmit = (event) => {
     event.preventDefault();
     onSubmitForm(event);
+    ref.current.value = '';
   };
+
+  useEffect(() => {
+    setUIMessage('');
+  }, []);
 
   // the code is diplayed conditionnally to the local state of openModifyOfferModal
   // and to the global state (isLogged) for admin items and admin actions
@@ -195,6 +203,7 @@ export default function FocusedOffer({
                         type="file"
                         name="file"
                         id="file"
+                        ref={ref}
                         onChange={(event) => {
                           onChangeFileValue(event.target.files);
                         }}
@@ -221,7 +230,6 @@ export default function FocusedOffer({
               handleConfirm={handleDeleteClick}
             />
           )}
-
         </div>
       ) : (
         <UpdateOffer
@@ -282,6 +290,7 @@ FocusedOffer.propTypes = {
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
   UIMessage: PropTypes.string,
+  setUIMessage: PropTypes.func,
 };
 
 FocusedOffer.defaultProps = {
@@ -299,4 +308,5 @@ FocusedOffer.defaultProps = {
   onChangeFileValue: null,
   onSubmitForm: null,
   UIMessage: null,
+  setUIMessage: null,
 };

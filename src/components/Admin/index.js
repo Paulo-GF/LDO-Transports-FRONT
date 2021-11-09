@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { useEffect } from 'react';
 // import styles
 import './styles.scss';
 import { FaUserCircle } from 'react-icons/fa';
@@ -11,12 +11,18 @@ export default function Admin({
   onChangeConfirmNewPasswordValue,
   onSubmitForm,
   UIMessage,
+  setUIMessage,
 }) {
   // on submit, call API to modify the user password
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmitForm();
   };
+
+  useEffect(() => {
+    setUIMessage('');
+  }, []);
+
   return (
     <div className="admin">
       <div className="admin-container">
@@ -71,8 +77,10 @@ Admin.propTypes = {
   onChangeConfirmNewPasswordValue: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   UIMessage: PropTypes.string,
+  setUIMessage: PropTypes.func,
 };
 
 Admin.defaultProps = {
   UIMessage: null,
+  setUIMessage: null,
 };
