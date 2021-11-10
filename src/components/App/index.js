@@ -19,6 +19,7 @@ import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
 import Notfound from 'src/components/Notfound';
+import Aboutus from 'src/components/Aboutus';
 
 // import styles
 import './styles.scss';
@@ -293,6 +294,9 @@ export default function App() {
         logOut={logOut}
       />
       <Switch>
+        <Route exact path="/aboutus">
+          <Aboutus />
+        </Route>
         <Route exact path="/admin-signin">
           {isLogged && (<Redirect to="/" />)}
           <Signin
