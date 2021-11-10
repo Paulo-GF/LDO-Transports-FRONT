@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
 import ReactQuill from 'react-quill';
@@ -41,25 +41,25 @@ export default function FocusedOffer({
   redirected,
   getCertainOffer,
   getError,
+  setUIMessage,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
   const offerId = parseInt(params.id, 10);
-  // const offer = offers.find((job) => job.id === paramsId);
 
-  // if no offer find with this id redirect
-  // if () {
-  //   return (<Redirect to="/recrutement" />);
-  // }
+  // if error in get request to one offer, redirect to 404
   if (getError) {
     return (<Redirect to="/notfound" />);
   }
+  // if the offer is deleted, redirect to all offers page
   if (redirected) {
     return (<Redirect to="/recrutement" />);
   }
 
+  // get the offer and reset ui message
   useEffect(() => {
     getCertainOffer(offerId);
+    setUIMessage('');
   }, []);
 
   // == local state
@@ -67,8 +67,12 @@ export default function FocusedOffer({
   const [openModifyOfferModal, setOpenModifyOfferModal] = useState(false);
   // state value to controll the display of the modal to confirm the delete of the offer
   const [openModal, setOpenModal] = useState(false);
+  // state value to controll the display of the form to apply
   const [openApplyOfferForm, setOpenApplyOfferForm] = useState(false);
+  // hide or show the button to apply if the user is admin or visitor
   const classnameApplyButton = openApplyOfferForm ? 'hide-apply-button' : 'show-apply-button';
+
+  const ref = useRef();
 
   // open the modal to modify the offer
   const showModifyOfferModal = () => {
@@ -88,12 +92,13 @@ export default function FocusedOffer({
   // delete the offer
   const handleDeleteClick = () => {
     deleteOffer(offerId);
-    // setOpenModal(false);
   };
+
   // show apply form
   const showApplyFormClick = () => {
     setOpenApplyOfferForm(true);
   };
+
   // hide apply form and reset all inputs
   const hideApplyFormClick = () => {
     setOpenApplyOfferForm(false);
@@ -104,9 +109,11 @@ export default function FocusedOffer({
     onChangeMessageValue('');
   };
 
+  // submit the infos and doc to apply and reset the value of input file
   const handleApplyFormSubmit = (event) => {
     event.preventDefault();
-    onSubmitForm(event);
+    onSubmitForm();
+    ref.current.value = '';
   };
 
   // the code is diplayed conditionnally to the local state of openModifyOfferModal
@@ -145,7 +152,7 @@ export default function FocusedOffer({
                 Supprimer l'offre
               </button>
             ) : (
-              <button type="button" onClick={showApplyFormClick} id={offer.id} className={`offer-focused-applyButton ${classnameApplyButton}`}>
+              <button type="button" onClick={showApplyFormClick} className={`offer-focused-applyButton ${classnameApplyButton}`}>
                 Postuler
               </button>
             )}
@@ -155,12 +162,12 @@ export default function FocusedOffer({
                 <form
                   className="aplly-content-form"
                   onSubmit={handleApplyFormSubmit}
-                  id={offer.id}
                 >
                   <input
                     className="apply-content-form-input"
                     type="text"
                     name="lastName"
+                    required
                     value={lastNameValue}
                     onChange={(event) => {
                       onChangeLastNameValue(event.target.value);
@@ -171,6 +178,7 @@ export default function FocusedOffer({
                     className="apply-content-form-input"
                     type="text"
                     name="firstName"
+                    required
                     value={firstNameValue}
                     onChange={(event) => {
                       onChangeFirstNameValue(event.target.value);
@@ -181,6 +189,7 @@ export default function FocusedOffer({
                     className="apply-content-form-input"
                     type="text"
                     name="mail"
+                    required
                     value={mailValue}
                     onChange={(event) => {
                       onChangeMailValue(event.target.value);
@@ -191,6 +200,7 @@ export default function FocusedOffer({
                     className="apply-content-form-input"
                     type="text"
                     name="phone"
+                    required
                     value={phoneValue}
                     onChange={(event) => {
                       onChangePhoneValue(event.target.value);
@@ -215,6 +225,8 @@ export default function FocusedOffer({
                         className="apply-content-form-input"
                         type="file"
                         name="file"
+                        required
+                        ref={ref}
                         id="file"
                         onChange={(event) => {
                           onChangeFileValue(event.target.files);
@@ -222,10 +234,10 @@ export default function FocusedOffer({
                       />
                     </label>
                   </div>
-                  <button type="button" onClick={hideApplyFormClick} id={offer.id} className="apply-content-form-applyButton">
+                  <button type="button" onClick={hideApplyFormClick} className="apply-content-form-applyButton">
                     Annuler
                   </button>
-                  <button type="submit" onClick={handleApplyFormSubmit} id={offer.id} className="apply-content-form-applyButton">
+                  <button type="submit" onClick={handleApplyFormSubmit} className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
                   {UIMessage && (<p>{ UIMessage }</p>)}
@@ -242,7 +254,6 @@ export default function FocusedOffer({
               handleConfirm={handleDeleteClick}
             />
           )}
-
         </div>
       ) : (
         <UpdateOffer
@@ -258,7 +269,6 @@ export default function FocusedOffer({
           onChangeTypeValue={onChangeTypeValue}
           onChangeDescriptionValue={onChangeDescriptionValue}
           setChange={setChange}
-          // jobList={offers}
           hideModifyOfferModal={hideModifyOfferModal}
         />
       )}
@@ -304,6 +314,7 @@ FocusedOffer.propTypes = {
   redirected: PropTypes.bool.isRequired,
   getCertainOffer: PropTypes.func.isRequired,
   getError: PropTypes.string.isRequired,
+  setUIMessage: PropTypes.func,
 };
 
 FocusedOffer.defaultProps = {
@@ -321,4 +332,5 @@ FocusedOffer.defaultProps = {
   onChangeFileValue: null,
   onSubmitForm: null,
   UIMessage: null,
+  setUIMessage: null,
 };

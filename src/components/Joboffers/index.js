@@ -32,6 +32,7 @@ export default function Joboffers({
     setOpenModal(false);
   };
 
+  // get all offers on the first render and when updateOffers change, and reset the redirect
   useEffect(() => {
     getOffers();
     setRedirected(false);
@@ -51,7 +52,6 @@ export default function Joboffers({
                   setOfferToDelete(offer.id);
                 }}
                 className="delete-offer-button"
-                id={offer.id}
               >
                 <FaTrash className="delete-offer-trash-icon" />
               </button>

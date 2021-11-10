@@ -19,9 +19,10 @@ export default function Createoffer({
   onChangeDescriptionValue,
   onSubmitForm,
 }) {
-  // local state
+  // local state to redirect
   const [redirected, setRedirected] = useState(false);
 
+  // submit the new offer and set local state redirected to true
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmitForm();
@@ -56,7 +57,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="title"
-            required="required"
+            required
             value={titleValue}
             onChange={(event) => {
               onChangeTitleValue(event.target.value);
@@ -67,7 +68,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="region"
-            required="required"
+            required
             value={regionValue}
             onChange={(event) => {
               onChangeRegionValue(event.target.value);
@@ -78,7 +79,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="city"
-            required="required"
+            required
             value={cityValue}
             onChange={(event) => {
               onChangeCityValue(event.target.value);
@@ -89,7 +90,7 @@ export default function Createoffer({
             className="new-offer-content-form-input"
             type="text"
             name="type"
-            required="required"
+            required
             value={typeValue}
             onChange={(event) => {
               onChangeTypeValue(event.target.value);
@@ -99,6 +100,7 @@ export default function Createoffer({
           <ReactQuill
             className="new-offer-content-form-input"
             theme="snow" // snow is not hidden, there is an edition mode to create the description of the offer
+            required
             value={descriptionValue}
             onChange={(event) => {
               onChangeDescriptionValue(event);

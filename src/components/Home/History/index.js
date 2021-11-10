@@ -7,6 +7,7 @@ import colibri from '../../../assets/colibri.png';
 import redRoad from '../../../assets/redRoad.jpg';
 
 export default function History() {
+  // background image
   const historyContentStyle = {
     backgroundImage: `url(${redRoad})`,
     backgroundPosition: 'center',

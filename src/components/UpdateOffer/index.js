@@ -20,7 +20,7 @@ export default function UpdateOffer({
   hideModifyOfferModal,
   offer,
 }) {
-  // state local
+  // local state to reset initial values in inputs
   const [reset, setReset] = useState(false);
 
   const {
@@ -63,6 +63,7 @@ export default function UpdateOffer({
               className="update-modalCard-form-input"
               type="text"
               name="title"
+              required
               value={titleValue}
               onChange={(event) => {
                 onChangeTitleValue(event.target.value);
@@ -73,6 +74,7 @@ export default function UpdateOffer({
               className="update-modalCard-form-input"
               type="text"
               name="region"
+              required
               value={regionValue}
               onChange={(event) => {
                 onChangeRegionValue(event.target.value);
@@ -83,6 +85,7 @@ export default function UpdateOffer({
               className="update-modalCard-form-input"
               type="text"
               name="city"
+              required
               value={cityValue}
               onChange={(event) => {
                 onChangeCityValue(event.target.value);
@@ -93,6 +96,7 @@ export default function UpdateOffer({
               className="update-modalCard-form-input"
               type="text"
               name="type"
+              required
               value={typeValue}
               onChange={(event) => {
                 onChangeTypeValue(event.target.value);
@@ -101,6 +105,7 @@ export default function UpdateOffer({
             />
             <ReactQuill
               theme="snow"
+              required
               value={descriptionValue}
               onChange={(event) => {
                 onChangeDescriptionValue(event);

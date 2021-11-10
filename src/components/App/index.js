@@ -1,8 +1,5 @@
-/* eslint-disable quotes */
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
 // == Imports
-import { lazy, Suspense, useState } from 'react';
+import { useState } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
@@ -14,18 +11,17 @@ import Footer from 'src/components/Footer';
 import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
-// import Focusedoffer from 'src/components/Focusedoffer';
+import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
 import Notfound from 'src/components/Notfound';
+import Loading from 'src/components/App/Loading';
 
 // import styles
 import './styles.scss';
 import 'react-quill/dist/quill.bubble.css';
 import 'react-quill/dist/quill.snow.css';
-
-const Focusedoffer = lazy(() => import('src/components/Focusedoffer'));
 
 // == Component
 export default function App() {
@@ -69,159 +65,16 @@ export default function App() {
   const [messageContact, setMessageContact] = useState('');
   const [fileContact, setFileContact] = useState(null);
   // Ui messages
+  const [contactConfirm, setContactConfirm] = useState('');
+  const [applyConfirm, setApplyConfirm] = useState('');
+  // admin messages
   const [UIMessage, setUIMessage] = useState('');
   // value to set a redirect
   const [redirected, setRedirected] = useState(false);
-  //
-  const [error1, setError1] = useState('');
-
-  // function to logout the user
-  const logOut = () => {
-    setIsLogged(false);
-    setAccessToken('');
-  };
-
-  // request to get all the job offers
-  const getOffers = () => {
-    setError1('');
-    axios.get('https://ldo-transports.herokuapp.com/recrutement')
-      .then((response) => {
-        setOffers(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert(`Erreur lors de la récuperation des données`);
-      });
-  };
-  // when app is mounted and when updateOffers changes : get all offers and update the app with them
-  // useEffect(getOffers, [updateOffers]);
-
-  // request to get one job offer
-  const getCertainOffer = (jobId) => {
-    axios.get(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`)
-      .then((response) => {
-        console.log(response.data);
-        setOneOffer(response.data);
-      })
-      .catch((error) => {
-        console.log(error.response);
-        setError1(error.response);
-      });
-  };
-  // getCertainOffer(180);
-
-  // request to add a job offer
-  const createOffer = () => {
-    setUIMessage('');
-    axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
-      title: titleValue,
-      region: regionValue,
-      type: typeValue,
-      description: descriptionValue,
-      city: cityValue,
-    },
-    {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
-        setTitleValue('');
-        setRegionValue('');
-        setTypeValue('');
-        setDescriptionValue('');
-        setCityValue('');
-        setUpdateOffers(!updateOffers);
-        setUIMessage('Votre offre a bien été crée !');
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert(`Erreur lors de la création de l'offre.`);
-      });
-  };
-
-  const sendContactMessage = () => {
-    setUIMessage('');
-    const form = new FormData();
-    if (fileContact) {
-      form.append('file', fileContact[0]);
-    }
-    form.append('userMail', mailContact);
-    form.append('firstName', firstNameContact);
-    form.append('lastName', lastNameContact);
-    form.append('subject', subjectContact);
-    form.append('message', messageContact);
-
-    axios.post('https://ldo-transports.herokuapp.com/contact', form)
-      .then((response) => {
-        setMailContact('');
-        setSubjectContact('');
-        setMessageContact('');
-        setFileContact();
-        setFirstNameContact('');
-        setLastNameContact('');
-        setUIMessage('Votre message a bien été envoyé !');
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert(`Erreur lors de l'envoi du message.`);
-      });
-  };
-
-  const sendApplication = (event) => {
-    setUIMessage('');
-    const jobId = event.target.getAttribute('id');
-    const jobIdNumber = parseInt(jobId, 10);
-    const offer = offers.find((job) => job.id === jobIdNumber);
-    const offerURL = `https://ldo-transports.netlify.app/recrutement/${jobId}`;
-    const form = new FormData();
-    if (fileValue) {
-      form.append('file', fileValue[0]);
-    }
-    form.append('userMail', mailValue);
-    form.append('firstName', firstNameValue);
-    form.append('lastName', lastNameValue);
-    form.append('phone', phoneValue);
-    form.append('message', messageValue);
-    form.append('jobId', jobId);
-    form.append('offerURL', offerURL);
-    form.append('offerTitle', offer.title);
-
-    axios.post(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, form)
-      .then((response) => {
-        console.log(response);
-        setMailValue('');
-        setPhoneValue('');
-        setMessageValue('');
-        setFileValue();
-        setFirstNameValue('');
-        setLastNameValue('');
-        setUIMessage('Votre candidature a bien été envoyée.');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  // request to delete a job offer
-  const deleteOffer = (id) => {
-    const jobId = id;
-    axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
-        setUpdateOffers(!updateOffers);
-        console.log(response);
-        setRedirected(true);
-        setOneOffer({});
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert(`Erreur lors de la suppression de l'annonce.`);
-      });
-  };
+  // if request for an offer catch an error
+  const [errorOneOffer, setErrorOneOffer] = useState('');
+  // value to display the loader
+  const [loading, setLoading] = useState(false);
 
   // request to authenticate the user (admin)
   const authenticateUser = () => {
@@ -271,9 +124,71 @@ export default function App() {
     }
   };
 
+  // function to logout the user
+  const logOut = () => {
+    setIsLogged(false);
+    setAccessToken('');
+  };
+
+  // request to get all the job offers
+  const getOffers = () => {
+    setErrorOneOffer('');
+    axios.get('https://ldo-transports.herokuapp.com/recrutement')
+      .then((response) => {
+        setOffers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert(`Erreur lors de la récuperation des données`);
+      });
+  };
+
+  // request to get one job offer
+  const getCertainOffer = (jobId) => {
+    setLoading(true);
+    axios.get(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`)
+      .then((response) => {
+        setOneOffer(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorOneOffer(error.response);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  // request to add a job offer
+  const createOffer = () => {
+    axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
+      title: titleValue,
+      region: regionValue,
+      type: typeValue,
+      description: descriptionValue,
+      city: cityValue,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        setTitleValue('');
+        setRegionValue('');
+        setTypeValue('');
+        setDescriptionValue('');
+        setCityValue('');
+        setUpdateOffers(!updateOffers);
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert(`Erreur lors de la création de l'offre.`);
+      });
+  };
+
   // request to update an offer
   const updateAnOffer = (id) => {
-    setUIMessage('');
     axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
       id: id,
       title: titleValue,
@@ -294,14 +209,92 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
-        console.log(response.data);
         setOneOffer(response.data);
-        setUIMessage(`Offre modifiée !`);
-        // window.alert(response.data.message);
       })
       .catch((error) => {
         console.log(error);
         window.alert(`Erreur lors de la modification de l'offre.`);
+      });
+  };
+
+  // request to delete a job offer
+  const deleteOffer = (id) => {
+    const jobId = id;
+    axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        setUpdateOffers(!updateOffers);
+        setRedirected(true);
+        setOneOffer({});
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert(`Erreur lors de la suppression de l'annonce.`);
+      });
+  };
+
+  // send apply infos and document to ldo mail
+  const sendApplication = () => {
+    setApplyConfirm('');
+    const offerURL = `https://ldo-transports.netlify.app/recrutement/${oneOffer.id}`;
+    const form = new FormData();
+    if (fileValue) {
+      form.append('file', fileValue[0]);
+    }
+    form.append('userMail', mailValue);
+    form.append('firstName', firstNameValue);
+    form.append('lastName', lastNameValue);
+    form.append('phone', phoneValue);
+    form.append('message', messageValue);
+    form.append('jobId', oneOffer.id);
+    form.append('offerURL', offerURL);
+    form.append('offerTitle', oneOffer.title);
+
+    axios.post(`https://ldo-transports.herokuapp.com/recrutement/${oneOffer.id}`, form)
+      .then((response) => {
+        setMailValue('');
+        setPhoneValue('');
+        setMessageValue('');
+        setFileValue();
+        setFirstNameValue('');
+        setLastNameValue('');
+        setApplyConfirm('Votre candidature a bien été envoyée');
+      })
+      .catch((error) => {
+        console.log(error);
+        setApplyConfirm("Il y a eu une erreur, votre candidature n'a pas pu être envoyée");
+      });
+  };
+
+  // send the contact message to ldo email
+  const sendContactMessage = () => {
+    setContactConfirm('');
+    const form = new FormData();
+    if (fileContact) {
+      form.append('file', fileContact[0]);
+    }
+    form.append('userMail', mailContact);
+    form.append('firstName', firstNameContact);
+    form.append('lastName', lastNameContact);
+    form.append('subject', subjectContact);
+    form.append('message', messageContact);
+
+    axios.post('https://ldo-transports.herokuapp.com/contact', form)
+      .then((response) => {
+        setMailContact('');
+        setSubjectContact('');
+        setMessageContact('');
+        setFileContact();
+        setFirstNameContact('');
+        setLastNameContact('');
+        setContactConfirm('Votre message a bien été envoyé !');
+      })
+      .catch((error) => {
+        console.log(error);
+        setContactConfirm("Il y a eu une erreur, votre message n'a pas pu être envoyé");
       });
   };
 
@@ -312,8 +305,10 @@ export default function App() {
         isLogged={isLogged}
         logOut={logOut}
       />
+      {loading && <Loading />}
       <Switch>
         <Route exact path="/admin-signin">
+          {/** ternary expression to only allow access to the signin route if admin logged */}
           {isLogged && (<Redirect to="/" />)}
           <Signin
             emailValue={mail}
@@ -371,42 +366,41 @@ export default function App() {
           />
         </Route>
         <Route exact path="/recrutement/:id">
-          <Suspense fallback={<h1>Loading... </h1>}>
-            <Focusedoffer
-              isLogged={isLogged}
-              deleteOffer={deleteOffer}
-              offer={oneOffer}
-              titleValue={titleValue}
-              descriptionValue={descriptionValue}
-              regionValue={regionValue}
-              cityValue={cityValue}
-              typeValue={typeValue}
-              onChangeTitleValue={setTitleValue}
-              onChangeRegionValue={setRegionValue}
-              onChangeCityValue={setCityValue}
-              onChangeTypeValue={setTypeValue}
-              onChangeDescriptionValue={setDescriptionValue}
-              setChange={updateAnOffer}
-              UIMessage={UIMessage}
-              mailValue={mailValue}
-              phoneValue={phoneValue}
-              messageValue={messageValue}
-              firstNameValue={firstNameValue}
-              lastNameValue={lastNameValue}
-              fileValue={fileValue}
-              onChangeFirstNameValue={setFirstNameValue}
-              onChangeLastNameValue={setLastNameValue}
-              onChangeMailValue={setMailValue}
-              onChangePhoneValue={setPhoneValue}
-              onChangeMessageValue={setMessageValue}
-              onChangeFileValue={setFileValue}
-              onSubmitForm={sendApplication}
-              getCertainOffer={getCertainOffer}
-              redirected={redirected}
-              setRedirected={setRedirected}
-              getError={error1}
-            />
-          </Suspense>
+          <Focusedoffer
+            isLogged={isLogged}
+            deleteOffer={deleteOffer}
+            offer={oneOffer}
+            titleValue={titleValue}
+            descriptionValue={descriptionValue}
+            regionValue={regionValue}
+            cityValue={cityValue}
+            typeValue={typeValue}
+            onChangeTitleValue={setTitleValue}
+            onChangeRegionValue={setRegionValue}
+            onChangeCityValue={setCityValue}
+            onChangeTypeValue={setTypeValue}
+            onChangeDescriptionValue={setDescriptionValue}
+            setChange={updateAnOffer}
+            UIMessage={applyConfirm}
+            mailValue={mailValue}
+            phoneValue={phoneValue}
+            messageValue={messageValue}
+            firstNameValue={firstNameValue}
+            lastNameValue={lastNameValue}
+            fileValue={fileValue}
+            onChangeFirstNameValue={setFirstNameValue}
+            onChangeLastNameValue={setLastNameValue}
+            onChangeMailValue={setMailValue}
+            onChangePhoneValue={setPhoneValue}
+            onChangeMessageValue={setMessageValue}
+            onChangeFileValue={setFileValue}
+            onSubmitForm={sendApplication}
+            getCertainOffer={getCertainOffer}
+            redirected={redirected}
+            setRedirected={setRedirected}
+            getError={errorOneOffer}
+            setUIMessage={setApplyConfirm}
+          />
         </Route>
         <Route exact path="/mentions-legales">
           <Legalnotices />
@@ -426,7 +420,8 @@ export default function App() {
             onChangeMessageValue={setMessageContact}
             onChangeFileValue={setFileContact}
             onSubmitForm={sendContactMessage}
-            UIMessage={UIMessage}
+            UIMessage={contactConfirm}
+            setUIMessage={setContactConfirm}
           />
         </Route>
         <Route>
