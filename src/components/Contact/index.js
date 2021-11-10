@@ -36,6 +36,7 @@ export default function Contact({
     return (<Redirect to="/" />);
   }
   */
+
   return (
     <div>
       {UIMessage ? (

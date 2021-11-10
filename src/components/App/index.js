@@ -2,7 +2,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 // == Imports
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
@@ -28,32 +28,48 @@ import 'react-quill/dist/quill.snow.css';
 // == Component
 export default function App() {
   // == global state
+  // user infos
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-  const [offers, setOffers] = useState([]);
-  const [updateOffers, setUpdateOffers] = useState(false);
   const [userFirstName, setUserFirstName] = useState('');
   const [userId, setUserId] = useState(0);
   const [accessToken, setAccessToken] = useState('');
+
+  // offers info
+  const [offers, setOffers] = useState([]);
+  const [oneOffer, setOneOffer] = useState({});
+  // value to display the request for all offers
+  const [updateOffers, setUpdateOffers] = useState(false);
+
   // global state == part of the state for crud
+  // password
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordConfirm, setNewpasswordConfirm] = useState('');
+  // infos to create and modify an offer
   const [cityValue, setCityValue] = useState('');
   const [titleValue, setTitleValue] = useState('');
   const [regionValue, setRegionValue] = useState('');
   const [typeValue, setTypeValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
-
+  // infos to apply to an offer
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [mailValue, setMailValue] = useState('');
-  const [subjectValue, setSubjectValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const [fileValue, setFileValue] = useState(null);
   const [phoneValue, setPhoneValue] = useState('');
-
+  // infos to contact
+  const [subjectContact, setSubjectContact] = useState('');
+  const [firstNameContact, setFirstNameContact] = useState('');
+  const [lastNameContact, setLastNameContact] = useState('');
+  const [mailContact, setMailContact] = useState('');
+  const [messageContact, setMessageContact] = useState('');
+  const [fileContact, setFileContact] = useState(null);
+  // Ui messages
   const [UIMessage, setUIMessage] = useState('');
+  // value to set a redirect
+  const [redirected, setRedirected] = useState(false);
 
   // function to logout the user
   const logOut = () => {
@@ -73,7 +89,20 @@ export default function App() {
       });
   };
   // when app is mounted and when updateOffers changes : get all offers and update the app with them
-  useEffect(getOffers, [updateOffers]);
+  // useEffect(getOffers, [updateOffers]);
+
+  // request to get one job offer
+  const getCertainOffer = (jobId) => {
+    axios.get(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`)
+      .then((response) => {
+        console.log(response.data);
+        setOneOffer(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  // getCertainOffer(180);
 
   // request to add a job offer
   const createOffer = () => {
@@ -108,23 +137,23 @@ export default function App() {
   const sendContactMessage = () => {
     setUIMessage('');
     const form = new FormData();
-    if (fileValue) {
-      form.append('file', fileValue[0]);
+    if (fileContact) {
+      form.append('file', fileContact[0]);
     }
-    form.append('userMail', mailValue);
-    form.append('firstName', firstNameValue);
-    form.append('lastName', lastNameValue);
-    form.append('subject', subjectValue);
-    form.append('message', messageValue);
+    form.append('userMail', mailContact);
+    form.append('firstName', firstNameContact);
+    form.append('lastName', lastNameContact);
+    form.append('subject', subjectContact);
+    form.append('message', messageContact);
 
     axios.post('https://ldo-transports.herokuapp.com/contact', form)
       .then((response) => {
-        setMailValue('');
-        setSubjectValue('');
-        setMessageValue('');
-        setFileValue();
-        setFirstNameValue('');
-        setLastNameValue('');
+        setMailContact('');
+        setSubjectContact('');
+        setMessageContact('');
+        setFileContact();
+        setFirstNameContact('');
+        setLastNameContact('');
         setUIMessage('Votre message a bien été envoyé !');
       })
       .catch((error) => {
@@ -178,6 +207,9 @@ export default function App() {
     })
       .then((response) => {
         setUpdateOffers(!updateOffers);
+        console.log(response);
+        setRedirected(true);
+        setOneOffer({});
       })
       .catch((error) => {
         console.log(error);
@@ -256,6 +288,8 @@ export default function App() {
         setDescriptionValue('');
         setCityValue('');
         setUpdateOffers(!updateOffers);
+        console.log(response.data);
+        setOneOffer(response.data);
         setUIMessage(`Offre modifiée !`);
         // window.alert(response.data.message);
       })
@@ -324,13 +358,17 @@ export default function App() {
             isLogged={isLogged}
             offers={offers}
             deleteOffer={deleteOffer}
+            getOffers={getOffers}
+            updateOffers={updateOffers}
+            redirected={redirected}
+            setRedirected={setRedirected}
           />
         </Route>
         <Route exact path="/recrutement/:id">
           <Focusedoffer
             isLogged={isLogged}
             deleteOffer={deleteOffer}
-            offers={offers}
+            offer={oneOffer}
             titleValue={titleValue}
             descriptionValue={descriptionValue}
             regionValue={regionValue}
@@ -356,25 +394,29 @@ export default function App() {
             onChangeMessageValue={setMessageValue}
             onChangeFileValue={setFileValue}
             onSubmitForm={sendApplication}
+            getCertainOffer={getCertainOffer}
+            redirected={redirected}
+            setRedirected={setRedirected}
           />
+
         </Route>
         <Route exact path="/mentions-legales">
           <Legalnotices />
         </Route>
         <Route exact path="/contact">
           <Contact
-            mailValue={mailValue}
-            subjectValue={subjectValue}
-            messageValue={messageValue}
-            firstNameValue={firstNameValue}
-            lastNameValue={lastNameValue}
-            fileValue={fileValue}
-            onChangeFirstNameValue={setFirstNameValue}
-            onChangeLastNameValue={setLastNameValue}
-            onChangeMailValue={setMailValue}
-            onChangeSubjectValue={setSubjectValue}
-            onChangeMessageValue={setMessageValue}
-            onChangeFileValue={setFileValue}
+            mailValue={mailContact}
+            subjectValue={subjectContact}
+            messageValue={messageContact}
+            firstNameValue={firstNameContact}
+            lastNameValue={lastNameContact}
+            fileValue={fileContact}
+            onChangeFirstNameValue={setFirstNameContact}
+            onChangeLastNameValue={setLastNameContact}
+            onChangeMailValue={setMailContact}
+            onChangeSubjectValue={setSubjectContact}
+            onChangeMessageValue={setMessageContact}
+            onChangeFileValue={setFileContact}
             onSubmitForm={sendContactMessage}
             UIMessage={UIMessage}
           />

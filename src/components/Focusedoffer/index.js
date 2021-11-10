@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import UpdateOffer from 'src/components/UpdateOffer';
 import ReactQuill from 'react-quill';
@@ -23,7 +23,7 @@ export default function FocusedOffer({
   onChangeDescriptionValue,
   setChange,
   isLogged,
-  offers,
+  offer,
   deleteOffer,
   mailValue,
   firstNameValue,
@@ -38,16 +38,22 @@ export default function FocusedOffer({
   onChangeFileValue,
   onSubmitForm,
   UIMessage,
+  redirected,
+  getCertainOffer,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
-  const paramsId = parseInt(params.id, 10);
-  const offer = offers.find((job) => job.id === paramsId);
+  const offerId = parseInt(params.id, 10);
+  // const offer = offers.find((job) => job.id === paramsId);
 
   // if no offer find with this id redirect
-  if (!offer) {
+  if (redirected) {
     return (<Redirect to="/recrutement" />);
   }
+
+  useEffect(() => {
+    getCertainOffer(offerId);
+  }, []);
 
   // == local state
   // state value to controll the display of the modal to modify the offer
@@ -74,13 +80,21 @@ export default function FocusedOffer({
 
   // delete the offer
   const handleDeleteClick = () => {
-    deleteOffer(offer.id);
+    deleteOffer(offerId);
+    // setOpenModal(false);
   };
+  // show apply form
   const showApplyFormClick = () => {
     setOpenApplyOfferForm(true);
   };
+  // hide apply form and reset all inputs
   const hideApplyFormClick = () => {
     setOpenApplyOfferForm(false);
+    onChangeMailValue('');
+    onChangeFirstNameValue('');
+    onChangeLastNameValue('');
+    onChangePhoneValue('');
+    onChangeMessageValue('');
   };
 
   const handleApplyFormSubmit = (event) => {
@@ -94,7 +108,7 @@ export default function FocusedOffer({
     <div className="offer">
       {!openModifyOfferModal ? (
         <div className="offer-focused">
-          <Link to="/recrutement" className="back-to-offers-link">
+          <Link to="/recrutement" className="back-to-offers-link" onClick={hideApplyFormClick}>
             Retour aux offres d'emploi
           </Link>
           <div className="offer-focused-card">
@@ -237,7 +251,7 @@ export default function FocusedOffer({
           onChangeTypeValue={onChangeTypeValue}
           onChangeDescriptionValue={onChangeDescriptionValue}
           setChange={setChange}
-          jobList={offers}
+          // jobList={offers}
           hideModifyOfferModal={hideModifyOfferModal}
         />
       )}
@@ -246,16 +260,14 @@ export default function FocusedOffer({
 }
 
 FocusedOffer.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      region: PropTypes.string,
-      city: PropTypes.string,
-      type: PropTypes.string,
-      description: PropTypes.string,
-    }).isRequired,
-  ).isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    region: PropTypes.string,
+    city: PropTypes.string,
+    type: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
   isLogged: PropTypes.bool.isRequired,
   deleteOffer: PropTypes.func,
   setChange: PropTypes.func.isRequired,
@@ -282,6 +294,8 @@ FocusedOffer.propTypes = {
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
   UIMessage: PropTypes.string,
+  redirected: PropTypes.bool.isRequired,
+  getCertainOffer: PropTypes.func.isRequired,
 };
 
 FocusedOffer.defaultProps = {

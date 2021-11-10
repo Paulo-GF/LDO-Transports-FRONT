@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // import components
 import ConfirmModal from 'src/components/ConfirmModal';
@@ -16,6 +16,9 @@ export default function Joboffers({
   isLogged,
   offers,
   deleteOffer,
+  getOffers,
+  updateOffers,
+  setRedirected,
 }) {
   // loacl state value to controll the display of the modal to confirm the delete of the offer
   const [openModal, setOpenModal] = useState(false);
@@ -28,6 +31,11 @@ export default function Joboffers({
     deleteOffer(offerToDelete);
     setOpenModal(false);
   };
+
+  useEffect(() => {
+    getOffers();
+    setRedirected(false);
+  }, [updateOffers]);
 
   return (
     <div className="job-offers">
@@ -85,6 +93,9 @@ Joboffers.propTypes = {
   ).isRequired,
   isLogged: PropTypes.bool.isRequired,
   deleteOffer: PropTypes.func,
+  getOffers: PropTypes.func.isRequired,
+  updateOffers: PropTypes.bool.isRequired,
+  setRedirected: PropTypes.func.isRequired,
 };
 
 // default props are needed since createOffer and deleteOffer are not required
