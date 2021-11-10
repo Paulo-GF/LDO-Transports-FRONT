@@ -2,7 +2,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 // == Imports
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
@@ -14,7 +14,7 @@ import Footer from 'src/components/Footer';
 import Signin from 'src/components/Signin';
 import Admin from 'src/components/Admin';
 import Joboffers from 'src/components/Joboffers';
-import Focusedoffer from 'src/components/Focusedoffer';
+// import Focusedoffer from 'src/components/Focusedoffer';
 import Legalnotices from 'src/components/Legalnotices';
 import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
@@ -24,6 +24,8 @@ import Notfound from 'src/components/Notfound';
 import './styles.scss';
 import 'react-quill/dist/quill.bubble.css';
 import 'react-quill/dist/quill.snow.css';
+
+const Focusedoffer = lazy(() => import('src/components/Focusedoffer'));
 
 // == Component
 export default function App() {
@@ -70,6 +72,8 @@ export default function App() {
   const [UIMessage, setUIMessage] = useState('');
   // value to set a redirect
   const [redirected, setRedirected] = useState(false);
+  //
+  const [error1, setError1] = useState('');
 
   // function to logout the user
   const logOut = () => {
@@ -79,6 +83,7 @@ export default function App() {
 
   // request to get all the job offers
   const getOffers = () => {
+    setError1('');
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
         setOffers(response.data);
@@ -99,7 +104,8 @@ export default function App() {
         setOneOffer(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response);
+        setError1(error.response);
       });
   };
   // getCertainOffer(180);
@@ -365,40 +371,42 @@ export default function App() {
           />
         </Route>
         <Route exact path="/recrutement/:id">
-          <Focusedoffer
-            isLogged={isLogged}
-            deleteOffer={deleteOffer}
-            offer={oneOffer}
-            titleValue={titleValue}
-            descriptionValue={descriptionValue}
-            regionValue={regionValue}
-            cityValue={cityValue}
-            typeValue={typeValue}
-            onChangeTitleValue={setTitleValue}
-            onChangeRegionValue={setRegionValue}
-            onChangeCityValue={setCityValue}
-            onChangeTypeValue={setTypeValue}
-            onChangeDescriptionValue={setDescriptionValue}
-            setChange={updateAnOffer}
-            UIMessage={UIMessage}
-            mailValue={mailValue}
-            phoneValue={phoneValue}
-            messageValue={messageValue}
-            firstNameValue={firstNameValue}
-            lastNameValue={lastNameValue}
-            fileValue={fileValue}
-            onChangeFirstNameValue={setFirstNameValue}
-            onChangeLastNameValue={setLastNameValue}
-            onChangeMailValue={setMailValue}
-            onChangePhoneValue={setPhoneValue}
-            onChangeMessageValue={setMessageValue}
-            onChangeFileValue={setFileValue}
-            onSubmitForm={sendApplication}
-            getCertainOffer={getCertainOffer}
-            redirected={redirected}
-            setRedirected={setRedirected}
-          />
-
+          <Suspense fallback={<h1>Loading... </h1>}>
+            <Focusedoffer
+              isLogged={isLogged}
+              deleteOffer={deleteOffer}
+              offer={oneOffer}
+              titleValue={titleValue}
+              descriptionValue={descriptionValue}
+              regionValue={regionValue}
+              cityValue={cityValue}
+              typeValue={typeValue}
+              onChangeTitleValue={setTitleValue}
+              onChangeRegionValue={setRegionValue}
+              onChangeCityValue={setCityValue}
+              onChangeTypeValue={setTypeValue}
+              onChangeDescriptionValue={setDescriptionValue}
+              setChange={updateAnOffer}
+              UIMessage={UIMessage}
+              mailValue={mailValue}
+              phoneValue={phoneValue}
+              messageValue={messageValue}
+              firstNameValue={firstNameValue}
+              lastNameValue={lastNameValue}
+              fileValue={fileValue}
+              onChangeFirstNameValue={setFirstNameValue}
+              onChangeLastNameValue={setLastNameValue}
+              onChangeMailValue={setMailValue}
+              onChangePhoneValue={setPhoneValue}
+              onChangeMessageValue={setMessageValue}
+              onChangeFileValue={setFileValue}
+              onSubmitForm={sendApplication}
+              getCertainOffer={getCertainOffer}
+              redirected={redirected}
+              setRedirected={setRedirected}
+              getError={error1}
+            />
+          </Suspense>
         </Route>
         <Route exact path="/mentions-legales">
           <Legalnotices />

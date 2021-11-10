@@ -40,6 +40,7 @@ export default function FocusedOffer({
   UIMessage,
   redirected,
   getCertainOffer,
+  getError,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
@@ -47,6 +48,12 @@ export default function FocusedOffer({
   // const offer = offers.find((job) => job.id === paramsId);
 
   // if no offer find with this id redirect
+  // if () {
+  //   return (<Redirect to="/recrutement" />);
+  // }
+  if (getError) {
+    return (<Redirect to="/notfound" />);
+  }
   if (redirected) {
     return (<Redirect to="/recrutement" />);
   }
@@ -296,6 +303,7 @@ FocusedOffer.propTypes = {
   UIMessage: PropTypes.string,
   redirected: PropTypes.bool.isRequired,
   getCertainOffer: PropTypes.func.isRequired,
+  getError: PropTypes.string.isRequired,
 };
 
 FocusedOffer.defaultProps = {
