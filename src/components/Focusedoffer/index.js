@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRef, useState, useEffect } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
+
 import UpdateOffer from 'src/components/UpdateOffer';
 import ReactQuill from 'react-quill';
 
@@ -37,6 +38,8 @@ export default function FocusedOffer({
   onChangeMessageValue,
   onChangeFileValue,
   onSubmitForm,
+  getCertainOffer,
+  updateOneOffer,
   UIMessage,
   redirected,
   getCertainOffer,
@@ -45,9 +48,7 @@ export default function FocusedOffer({
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
-  console.log(params);
   const offerId = Number(params.id);
-  console.log(offerId);
 
   // if error in get request to one offer, redirect to 404
   if (getError) {
@@ -117,6 +118,10 @@ export default function FocusedOffer({
     onSubmitForm();
     ref.current.value = '';
   };
+
+  useEffect(() => {
+    setUIMessage('');
+  }, []);
 
   // the code is diplayed conditionnally to the local state of openModifyOfferModal
   // and to the global state (isLogged) for admin items and admin actions
@@ -237,10 +242,12 @@ export default function FocusedOffer({
                       <input
                         className="apply-content-form-input"
                         type="file"
+                        required
                         name="file"
                         required
                         ref={ref}
                         id="file"
+                        ref={ref}
                         onChange={(event) => {
                           onChangeFileValue(event.target.files);
                         }}
@@ -323,6 +330,8 @@ FocusedOffer.propTypes = {
   onChangeMessageValue: PropTypes.func,
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
+  getCertainOffer: PropTypes.func.isRequired,
+  updateOneOffer: PropTypes.bool.isRequired,
   UIMessage: PropTypes.string,
   redirected: PropTypes.bool.isRequired,
   getCertainOffer: PropTypes.func.isRequired,
@@ -331,6 +340,7 @@ FocusedOffer.propTypes = {
 };
 
 FocusedOffer.defaultProps = {
+  offer: null,
   deleteOffer: null,
   mailValue: '',
   firstNameValue: '',

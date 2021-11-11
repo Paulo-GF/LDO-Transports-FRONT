@@ -17,6 +17,7 @@ import Createoffer from 'src/components/CreateOffer';
 import Contact from 'src/components/Contact';
 import Notfound from 'src/components/Notfound';
 import Loading from 'src/components/App/Loading';
+import Aboutus from 'src/components/Aboutus';
 
 // import styles
 import './styles.scss';
@@ -335,6 +336,9 @@ export default function App() {
       />
       {loading && <Loading />}
       <Switch>
+        <Route>
+          <Aboutus />
+        <Route>
         <Route exact path="/admin-signin">
           {/** ternary expression to only allow access to the signin route if admin logged */}
           {isLogged && (<Redirect to="/" />)}

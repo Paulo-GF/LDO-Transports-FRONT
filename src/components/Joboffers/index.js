@@ -58,7 +58,7 @@ export default function Joboffers({
             )}
             <Link to={`/recrutement/${offer.id}`}>
               <FaTruck className="job-offers-truck-icon" />
-              <p className="job-offers-card-content">
+              <p className="job-offers-card-content" id={offer.id}>
                 {offer.title} - {offer.city}
               </p>
             </Link>

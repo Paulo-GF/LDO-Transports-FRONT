@@ -46,6 +46,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="mail"
                 pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
                 required
@@ -60,6 +61,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="firstName"
                 required
                 value={firstNameValue}
@@ -73,6 +75,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="lastName"
                 required
                 value={lastNameValue}
@@ -86,6 +89,7 @@ export default function Contact({
               <input
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="subject"
                 required
                 value={subjectValue}
@@ -99,6 +103,7 @@ export default function Contact({
               <textarea
                 className="contact-content-form-input"
                 type="text"
+                required
                 name="message"
                 rows="3"
                 cols="30"
