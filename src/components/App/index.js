@@ -338,7 +338,7 @@ export default function App() {
       <Switch>
         <Route>
           <Aboutus />
-        <Route>
+        </Route>
         <Route exact path="/admin-signin">
           {/** ternary expression to only allow access to the signin route if admin logged */}
           {isLogged && (<Redirect to="/" />)}
