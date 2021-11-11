@@ -233,7 +233,7 @@ export default function FocusedOffer({
                     />
                   </label>
                   <div>
-                    <label htmlFor="file">Ajouter votre CV (JPG, PDF)
+                    <label htmlFor="file">Ajouter votre CV
                       <input
                         className="apply-content-form-input"
                         type="file"

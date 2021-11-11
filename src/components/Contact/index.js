@@ -110,7 +110,7 @@ export default function Contact({
                 placeholder="Votre message"
               />
             </label>
-            <label htmlFor="file">Ajouter un fichier (JPG, PDF)
+            <label htmlFor="file">Ajouter un fichier
               <input
                 className="contact-content-form-input"
                 type="file"
