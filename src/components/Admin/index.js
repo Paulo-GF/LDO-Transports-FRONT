@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+
 // import styles
 import './styles.scss';
 import { FaUserCircle } from 'react-icons/fa';
@@ -11,17 +11,12 @@ export default function Admin({
   onChangeConfirmNewPasswordValue,
   onSubmitForm,
   UIMessage,
-  setUIMessage,
 }) {
   // on submit, call API to modify the user password
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmitForm();
   };
-
-  useEffect(() => {
-    setUIMessage('');
-  }, []);
 
   return (
     <div className="admin">
@@ -36,7 +31,7 @@ export default function Admin({
               className="admin-content-form-input"
               type="password"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,24}$"
-              required="required"
+              required
               name="newPassword"
               value={newPasswordValue}
               onChange={(event) => {
@@ -48,7 +43,7 @@ export default function Admin({
               className="admin-content-form-input"
               type="password"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,24}$"
-              required="required"
+              required
               name="newPasswordConfirm"
               value={confirmNewPasswordValue}
               onChange={(event) => {
@@ -77,10 +72,8 @@ Admin.propTypes = {
   onChangeConfirmNewPasswordValue: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   UIMessage: PropTypes.string,
-  setUIMessage: PropTypes.func,
 };
 
 Admin.defaultProps = {
   UIMessage: null,
-  setUIMessage: null,
 };
