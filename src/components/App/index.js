@@ -336,7 +336,7 @@ export default function App() {
       />
       {loading && <Loading />}
       <Switch>
-        <Route>
+        <Route exact path="/aboutus">
           <Aboutus />
         </Route>
         <Route exact path="/admin-signin">
