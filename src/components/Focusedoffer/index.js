@@ -45,7 +45,9 @@ export default function FocusedOffer({
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
-  const offerId = parseInt(params.id, 10);
+  console.log(params);
+  const offerId = Number(params.id);
+  console.log(offerId);
 
   // if error in get request to one offer, redirect to 404
   if (getError) {
@@ -163,64 +165,75 @@ export default function FocusedOffer({
                   className="aplly-content-form"
                   onSubmit={handleApplyFormSubmit}
                 >
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    name="lastName"
-                    required
-                    value={lastNameValue}
-                    onChange={(event) => {
-                      onChangeLastNameValue(event.target.value);
-                    }}
-                    placeholder="Nom"
-                  />
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    name="firstName"
-                    required
-                    value={firstNameValue}
-                    onChange={(event) => {
-                      onChangeFirstNameValue(event.target.value);
-                    }}
-                    placeholder="Prénom"
-                  />
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    name="mail"
-                    required
-                    value={mailValue}
-                    onChange={(event) => {
-                      onChangeMailValue(event.target.value);
-                    }}
-                    placeholder="Adresse e-mail"
-                  />
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    name="phone"
-                    required
-                    value={phoneValue}
-                    onChange={(event) => {
-                      onChangePhoneValue(event.target.value);
-                    }}
-                    placeholder="Numero de telephone"
-                  />
-                  <textarea
-                    className="apply-content-form-input"
-                    type="text"
-                    name="message"
-                    rows="3"
-                    cols="30"
-                    value={messageValue}
-                    onChange={(event) => {
-                      onChangeMessageValue(event.target.value);
-                    }}
-                    placeholder="Votre message"
-                  />
+                  <label htmlFor="lastname">Nom
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="lastName"
+                      required
+                      value={lastNameValue}
+                      onChange={(event) => {
+                        onChangeLastNameValue(event.target.value);
+                      }}
+                      placeholder="Nom"
+                    />
+                  </label>
+                  <label htmlFor="firstname">Prénom
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="firstName"
+                      required
+                      value={firstNameValue}
+                      onChange={(event) => {
+                        onChangeFirstNameValue(event.target.value);
+                      }}
+                      placeholder="Prénom"
+                    />
+                  </label>
+                  <label htmlFor="mail">Email
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="mail"
+                      pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                      required
+                      value={mailValue}
+                      onChange={(event) => {
+                        onChangeMailValue(event.target.value);
+                      }}
+                      placeholder="Adresse e-mail"
+                    />
+                  </label>
+                  <label htmlFor="phone">Téléphone
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="phone"
+                      required
+                      value={phoneValue}
+                      onChange={(event) => {
+                        onChangePhoneValue(event.target.value);
+                      }}
+                      placeholder="Numero de telephone"
+                    />
+                  </label>
+                  <label htmlFor="message">Message
+                    <textarea
+                      className="apply-content-form-input"
+                      type="text"
+                      name="message"
+                      rows="3"
+                      cols="30"
+                      value={messageValue}
+                      onChange={(event) => {
+                        onChangeMessageValue(event.target.value);
+                      }}
+                      placeholder="Votre message"
+                    />
+                  </label>
                   <div>
-                    <label htmlFor="file">Ajouter votre CV
+                    <label htmlFor="file">Ajouter votre CV (JPG, PDF)
                       <input
                         className="apply-content-form-input"
                         type="file"
@@ -237,7 +250,7 @@ export default function FocusedOffer({
                   <button type="button" onClick={hideApplyFormClick} className="apply-content-form-applyButton">
                     Annuler
                   </button>
-                  <button type="submit" onClick={handleApplyFormSubmit} className="apply-content-form-applyButton">
+                  <button type="submit" className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
                   {UIMessage && (<p>{ UIMessage }</p>)}

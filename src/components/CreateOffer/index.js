@@ -53,50 +53,59 @@ export default function Createoffer({
           className="new-offer-content-form"
           onSubmit={handleSubmit}
         >
-          <input
-            className="new-offer-content-form-input"
-            type="text"
-            name="title"
-            required
-            value={titleValue}
-            onChange={(event) => {
-              onChangeTitleValue(event.target.value);
-            }}
-            placeholder="titre de l'offre"
-          />
-          <input
-            className="new-offer-content-form-input"
-            type="text"
-            name="region"
-            required
-            value={regionValue}
-            onChange={(event) => {
-              onChangeRegionValue(event.target.value);
-            }}
-            placeholder="région de l'offre"
-          />
-          <input
-            className="new-offer-content-form-input"
-            type="text"
-            name="city"
-            required
-            value={cityValue}
-            onChange={(event) => {
-              onChangeCityValue(event.target.value);
-            }}
-            placeholder="ville de l'offre"
-          />
-          <input
-            className="new-offer-content-form-input"
-            type="text"
-            name="type"
-            required
-            value={typeValue}
-            onChange={(event) => {
-              onChangeTypeValue(event.target.value);
-            }}
-            placeholder="type de l'offre"
-          />
+          <label htmlFor="title">Titre
+            <input
+              className="new-offer-content-form-input"
+              type="text"
+              name="title"
+              required
+              value={titleValue}
+              onChange={(event) => {
+                onChangeTitleValue(event.target.value);
+              }}
+              placeholder="titre de l'offre"
+            />
+          </label>
+          <label htmlFor="region">Région
+            <input
+              className="new-offer-content-form-input"
+              type="text"
+              name="region"
+              required
+              value={regionValue}
+              onChange={(event) => {
+                onChangeRegionValue(event.target.value);
+              }}
+              placeholder="région de l'offre"
+            />
+          </label>
+          <label htmlFor="city">Ville
+            <input
+              className="new-offer-content-form-input"
+              type="text"
+              name="city"
+              required
+              value={cityValue}
+              onChange={(event) => {
+                onChangeCityValue(event.target.value);
+              }}
+              placeholder="ville de l'offre"
+            />
+          </label>
+          <label htmlFor="type">Type de contrat
+            <input
+              className="new-offer-content-form-input"
+              type="text"
+              name="type"
+              required
+              value={typeValue}
+              onChange={(event) => {
+                onChangeTypeValue(event.target.value);
+              }}
+              placeholder="type de l'offre"
+            />
+          </label>
+          <p className="new-offer-content-form-description">Description</p>
           <ReactQuill
             className="new-offer-content-form-input"
             theme="snow" // snow is not hidden, there is an edition mode to create the description of the offer

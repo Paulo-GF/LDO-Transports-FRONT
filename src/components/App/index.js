@@ -20,8 +20,8 @@ import Loading from 'src/components/App/Loading';
 
 // import styles
 import './styles.scss';
-import 'react-quill/dist/quill.bubble.css';
-import 'react-quill/dist/quill.snow.css';
+import './quill.bubble.css';
+import './quill.snow.css';
 
 // == Component
 export default function App() {
@@ -91,15 +91,21 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        setUIMessage('Mail/Mot de passe incorrect.');
+        setUIMessage('Mail/Mot de passe incorrect');
       });
+  };
+
+  // function to logout the user
+  const logOut = () => {
+    setIsLogged(false);
+    setAccessToken('');
   };
 
   // request to change the password when admin is connected
   const changePassword = () => {
     setUIMessage('');
     if (newPassword !== newPasswordConfirm) {
-      setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques.');
+      setUIMessage('Le nouveau mot de passe et sa confirmation ne sont pas identiques');
     }
     else {
       axios.patch('https://ldo-transports.herokuapp.com/admin-logged', {
@@ -119,19 +125,14 @@ export default function App() {
         })
         .catch((error) => {
           console.log(error);
-          setUIMessage(`Erreur lors de la modification du mot de passe`);
+          setUIMessage('Erreur lors de la modification du mot de passe');
         });
     }
   };
 
-  // function to logout the user
-  const logOut = () => {
-    setIsLogged(false);
-    setAccessToken('');
-  };
-
   // request to get all the job offers
   const getOffers = () => {
+    setLoading(true);
     setErrorOneOffer('');
     axios.get('https://ldo-transports.herokuapp.com/recrutement')
       .then((response) => {
@@ -139,12 +140,19 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la récuperation des données`);
+        window.alert('Erreur lors de la récuperation des données');
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   // request to get one job offer
   const getCertainOffer = (jobId) => {
+    if (Number.isNaN(jobId)) {
+      setErrorOneOffer('test not a number');
+      return;
+    }
     setLoading(true);
     axios.get(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`)
       .then((response) => {
@@ -161,6 +169,7 @@ export default function App() {
 
   // request to add a job offer
   const createOffer = () => {
+    setLoading(true);
     axios.post('https://ldo-transports.herokuapp.com/recrutement/add-job', {
       title: titleValue,
       region: regionValue,
@@ -183,12 +192,16 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la création de l'offre.`);
+        window.alert("Erreur lors de la création de l'offre");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   // request to update an offer
   const updateAnOffer = (id) => {
+    setLoading(true);
     axios.patch(`https://ldo-transports.herokuapp.com/recrutement/${id}`, {
       id: id,
       title: titleValue,
@@ -213,12 +226,16 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la modification de l'offre.`);
+        window.alert("Erreur lors de la modification de l'offre");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   // request to delete a job offer
   const deleteOffer = (id) => {
+    setLoading(true);
     const jobId = id;
     axios.delete(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`, {
       headers: {
@@ -232,12 +249,16 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(`Erreur lors de la suppression de l'annonce.`);
+        window.alert("Erreur lors de la suppression de l'annonce");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   // send apply infos and document to ldo mail
   const sendApplication = () => {
+    setLoading(true);
     setApplyConfirm('');
     const offerURL = `https://ldo-transports.netlify.app/recrutement/${oneOffer.id}`;
     const form = new FormData();
@@ -266,11 +287,15 @@ export default function App() {
       .catch((error) => {
         console.log(error);
         setApplyConfirm("Il y a eu une erreur, votre candidature n'a pas pu être envoyée");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   // send the contact message to ldo email
   const sendContactMessage = () => {
+    setLoading(true);
     setContactConfirm('');
     const form = new FormData();
     if (fileContact) {
@@ -295,6 +320,9 @@ export default function App() {
       .catch((error) => {
         console.log(error);
         setContactConfirm("Il y a eu une erreur, votre message n'a pas pu être envoyé");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
