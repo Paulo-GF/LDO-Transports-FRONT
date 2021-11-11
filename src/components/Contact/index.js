@@ -49,7 +49,6 @@ export default function Contact({
                 required
                 name="mail"
                 pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                required
                 value={mailValue}
                 onChange={(event) => {
                   onChangeMailValue(event.target.value);
@@ -63,7 +62,6 @@ export default function Contact({
                 type="text"
                 required
                 name="firstName"
-                required
                 value={firstNameValue}
                 onChange={(event) => {
                   onChangeFirstNameValue(event.target.value);
@@ -77,7 +75,6 @@ export default function Contact({
                 type="text"
                 required
                 name="lastName"
-                required
                 value={lastNameValue}
                 onChange={(event) => {
                   onChangeLastNameValue(event.target.value);
@@ -91,7 +88,6 @@ export default function Contact({
                 type="text"
                 required
                 name="subject"
-                required
                 value={subjectValue}
                 onChange={(event) => {
                   onChangeSubjectValue(event.target.value);
@@ -107,7 +103,6 @@ export default function Contact({
                 name="message"
                 rows="3"
                 cols="30"
-                required
                 value={messageValue}
                 onChange={(event) => {
                   onChangeMessageValue(event.target.value);

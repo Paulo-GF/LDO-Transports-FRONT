@@ -39,10 +39,8 @@ export default function FocusedOffer({
   onChangeFileValue,
   onSubmitForm,
   getCertainOffer,
-  updateOneOffer,
   UIMessage,
   redirected,
-  getCertainOffer,
   getError,
   setUIMessage,
 }) {
@@ -244,8 +242,6 @@ export default function FocusedOffer({
                         type="file"
                         required
                         name="file"
-                        required
-                        ref={ref}
                         id="file"
                         ref={ref}
                         onChange={(event) => {
@@ -331,16 +327,13 @@ FocusedOffer.propTypes = {
   onChangeFileValue: PropTypes.func,
   onSubmitForm: PropTypes.func,
   getCertainOffer: PropTypes.func.isRequired,
-  updateOneOffer: PropTypes.bool.isRequired,
   UIMessage: PropTypes.string,
   redirected: PropTypes.bool.isRequired,
-  getCertainOffer: PropTypes.func.isRequired,
   getError: PropTypes.string.isRequired,
   setUIMessage: PropTypes.func,
 };
 
 FocusedOffer.defaultProps = {
-  offer: null,
   deleteOffer: null,
   mailValue: '',
   firstNameValue: '',
