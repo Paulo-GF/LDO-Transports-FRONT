@@ -593,12 +593,15 @@
 }
 .ql-bubble .ql-editor h1 {
   font-size: 4em;
+  font-family: 'Nunito';
 }
 .ql-bubble .ql-editor h2 {
   font-size: 3em;
+  font-family: 'Nunito';
 }
 .ql-bubble .ql-editor h3 {
   font-size: 2em;
+  font-family: 'Nunito';
 }
 .ql-bubble .ql-editor p {
   font-family: 'Nunito';
