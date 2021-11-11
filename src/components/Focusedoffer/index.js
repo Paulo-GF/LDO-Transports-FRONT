@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect, useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 
 import UpdateOffer from 'src/components/UpdateOffer';
@@ -41,28 +41,41 @@ export default function FocusedOffer({
   getCertainOffer,
   updateOneOffer,
   UIMessage,
+  redirected,
+  getCertainOffer,
+  getError,
   setUIMessage,
 }) {
   // find the offer/job with the id in the road params (react router)
   const params = useParams();
-  const offerId = parseInt(params.id, 10);
+  const offerId = Number(params.id);
 
+  // if error in get request to one offer, redirect to 404
+  if (getError) {
+    return (<Redirect to="/notfound" />);
+  }
+  // if the offer is deleted, redirect to all offers page
+  if (redirected) {
+    return (<Redirect to="/recrutement" />);
+  }
+
+  // get the offer and reset ui message
   useEffect(() => {
     getCertainOffer(offerId);
-  }, [updateOneOffer]);
-
-  // if no offer find with this id redirect
-  if (!offer) {
-    return (<Redirect to="/Notfound" />);
-  }
+    setUIMessage('');
+  }, []);
 
   // == local state
   // state value to controll the display of the modal to modify the offer
   const [openModifyOfferModal, setOpenModifyOfferModal] = useState(false);
   // state value to controll the display of the modal to confirm the delete of the offer
   const [openModal, setOpenModal] = useState(false);
+  // state value to controll the display of the form to apply
   const [openApplyOfferForm, setOpenApplyOfferForm] = useState(false);
+  // hide or show the button to apply if the user is admin or visitor
   const classnameApplyButton = openApplyOfferForm ? 'hide-apply-button' : 'show-apply-button';
+
+  const ref = useRef();
 
   // open the modal to modify the offer
   const showModifyOfferModal = () => {
@@ -81,20 +94,28 @@ export default function FocusedOffer({
 
   // delete the offer
   const handleDeleteClick = () => {
-    deleteOffer(offer.id);
+    deleteOffer(offerId);
   };
+
+  // show apply form
   const showApplyFormClick = () => {
     setOpenApplyOfferForm(true);
   };
+
+  // hide apply form and reset all inputs
   const hideApplyFormClick = () => {
     setOpenApplyOfferForm(false);
+    onChangeMailValue('');
+    onChangeFirstNameValue('');
+    onChangeLastNameValue('');
+    onChangePhoneValue('');
+    onChangeMessageValue('');
   };
 
-  const ref = useRef();
-
+  // submit the infos and doc to apply and reset the value of input file
   const handleApplyFormSubmit = (event) => {
     event.preventDefault();
-    onSubmitForm(event);
+    onSubmitForm();
     ref.current.value = '';
   };
 
@@ -108,7 +129,7 @@ export default function FocusedOffer({
     <div className="offer">
       {!openModifyOfferModal ? (
         <div className="offer-focused">
-          <Link to="/recrutement" className="back-to-offers-link">
+          <Link to="/recrutement" className="back-to-offers-link" onClick={hideApplyFormClick}>
             Retour aux offres d'emploi
           </Link>
           <div className="offer-focused-card">
@@ -138,7 +159,7 @@ export default function FocusedOffer({
                 Supprimer l'offre
               </button>
             ) : (
-              <button type="button" onClick={showApplyFormClick} id={offer.id} className={`offer-focused-applyButton ${classnameApplyButton}`}>
+              <button type="button" onClick={showApplyFormClick} className={`offer-focused-applyButton ${classnameApplyButton}`}>
                 Postuler
               </button>
             )}
@@ -148,64 +169,74 @@ export default function FocusedOffer({
                 <form
                   className="aplly-content-form"
                   onSubmit={handleApplyFormSubmit}
-                  id={offer.id}
                 >
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    required
-                    name="lastName"
-                    value={lastNameValue}
-                    onChange={(event) => {
-                      onChangeLastNameValue(event.target.value);
-                    }}
-                    placeholder="Nom"
-                  />
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    required
-                    name="firstName"
-                    value={firstNameValue}
-                    onChange={(event) => {
-                      onChangeFirstNameValue(event.target.value);
-                    }}
-                    placeholder="Prénom"
-                  />
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    required
-                    name="mail"
-                    value={mailValue}
-                    onChange={(event) => {
-                      onChangeMailValue(event.target.value);
-                    }}
-                    placeholder="Adresse e-mail"
-                  />
-                  <input
-                    className="apply-content-form-input"
-                    type="text"
-                    required
-                    name="phone"
-                    value={phoneValue}
-                    onChange={(event) => {
-                      onChangePhoneValue(event.target.value);
-                    }}
-                    placeholder="Numero de telephone"
-                  />
-                  <textarea
-                    className="apply-content-form-input"
-                    type="text"
-                    name="message"
-                    rows="3"
-                    cols="30"
-                    value={messageValue}
-                    onChange={(event) => {
-                      onChangeMessageValue(event.target.value);
-                    }}
-                    placeholder="Votre message"
-                  />
+                  <label htmlFor="lastname">Nom
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="lastName"
+                      required
+                      value={lastNameValue}
+                      onChange={(event) => {
+                        onChangeLastNameValue(event.target.value);
+                      }}
+                      placeholder="Nom"
+                    />
+                  </label>
+                  <label htmlFor="firstname">Prénom
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="firstName"
+                      required
+                      value={firstNameValue}
+                      onChange={(event) => {
+                        onChangeFirstNameValue(event.target.value);
+                      }}
+                      placeholder="Prénom"
+                    />
+                  </label>
+                  <label htmlFor="mail">Email
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="mail"
+                      pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                      required
+                      value={mailValue}
+                      onChange={(event) => {
+                        onChangeMailValue(event.target.value);
+                      }}
+                      placeholder="Adresse e-mail"
+                    />
+                  </label>
+                  <label htmlFor="phone">Téléphone
+                    <input
+                      className="apply-content-form-input"
+                      type="text"
+                      name="phone"
+                      required
+                      value={phoneValue}
+                      onChange={(event) => {
+                        onChangePhoneValue(event.target.value);
+                      }}
+                      placeholder="Numero de telephone"
+                    />
+                  </label>
+                  <label htmlFor="message">Message
+                    <textarea
+                      className="apply-content-form-input"
+                      type="text"
+                      name="message"
+                      rows="3"
+                      cols="30"
+                      value={messageValue}
+                      onChange={(event) => {
+                        onChangeMessageValue(event.target.value);
+                      }}
+                      placeholder="Votre message"
+                    />
+                  </label>
                   <div>
                     <label htmlFor="file">Ajouter votre CV
                       <input
@@ -213,6 +244,8 @@ export default function FocusedOffer({
                         type="file"
                         required
                         name="file"
+                        required
+                        ref={ref}
                         id="file"
                         ref={ref}
                         onChange={(event) => {
@@ -221,10 +254,10 @@ export default function FocusedOffer({
                       />
                     </label>
                   </div>
-                  <button type="button" onClick={hideApplyFormClick} id={offer.id} className="apply-content-form-applyButton">
+                  <button type="button" onClick={hideApplyFormClick} className="apply-content-form-applyButton">
                     Annuler
                   </button>
-                  <button type="submit" id={offer.id} className="apply-content-form-applyButton">
+                  <button type="submit" className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
                   {UIMessage && (<p>{ UIMessage }</p>)}
@@ -271,7 +304,7 @@ FocusedOffer.propTypes = {
     city: PropTypes.string,
     type: PropTypes.string,
     description: PropTypes.string,
-  }),
+  }).isRequired,
   isLogged: PropTypes.bool.isRequired,
   deleteOffer: PropTypes.func,
   setChange: PropTypes.func.isRequired,
@@ -300,6 +333,9 @@ FocusedOffer.propTypes = {
   getCertainOffer: PropTypes.func.isRequired,
   updateOneOffer: PropTypes.bool.isRequired,
   UIMessage: PropTypes.string,
+  redirected: PropTypes.bool.isRequired,
+  getCertainOffer: PropTypes.func.isRequired,
+  getError: PropTypes.string.isRequired,
   setUIMessage: PropTypes.func,
 };
 

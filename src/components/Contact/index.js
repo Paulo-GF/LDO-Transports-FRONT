@@ -1,7 +1,5 @@
+import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import { useState } from 'react';
 
 // import styles
 import './styles.scss';
@@ -22,75 +20,86 @@ export default function Contact({
   UIMessage,
   setUIMessage,
 }) {
-  // submit func plus redirect state modification
+  const ref = useRef();
+
+  // submit message and reset input file
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmitForm();
-    // setRedirected(!redirected);
+    ref.current.value = '';
   };
 
+  // reset ui message
   useEffect(() => {
     setUIMessage('');
   }, []);
 
   return (
     <div>
-      {UIMessage ? (
-        <div>
-          <h2>{UIMessage}</h2>
-          <Link to="/">Revenir à l'accueil</Link>
-        </div>
-      ) : (
-        <div className="contact">
-          <div className="contact-content">
-            <form
-              className="contact-content-form"
-              onSubmit={handleSubmit}
-            >
+      <div className="contact">
+        <div className="contact-content">
+          <form
+            className="contact-content-form"
+            onSubmit={handleSubmit}
+          >
+            <label htmlFor="mail">Email
               <input
                 className="contact-content-form-input"
                 type="text"
                 required
                 name="mail"
+                pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                required
                 value={mailValue}
                 onChange={(event) => {
                   onChangeMailValue(event.target.value);
                 }}
                 placeholder="Votre adresse e-mail"
               />
+            </label>
+            <label htmlFor="firstname">Prénom
               <input
                 className="contact-content-form-input"
                 type="text"
                 required
                 name="firstName"
+                required
                 value={firstNameValue}
                 onChange={(event) => {
                   onChangeFirstNameValue(event.target.value);
                 }}
                 placeholder="Votre prénom"
               />
+            </label>
+            <label htmlFor="lastname">Nom
               <input
                 className="contact-content-form-input"
                 type="text"
                 required
                 name="lastName"
+                required
                 value={lastNameValue}
                 onChange={(event) => {
                   onChangeLastNameValue(event.target.value);
                 }}
                 placeholder="Votre nom"
               />
+            </label>
+            <label htmlFor="subject">Sujet
               <input
                 className="contact-content-form-input"
                 type="text"
                 required
                 name="subject"
+                required
                 value={subjectValue}
                 onChange={(event) => {
                   onChangeSubjectValue(event.target.value);
                 }}
                 placeholder="Sujet de votre message"
               />
+            </label>
+            <label htmlFor="message">Message
               <textarea
                 className="contact-content-form-input"
                 type="text"
@@ -98,26 +107,31 @@ export default function Contact({
                 name="message"
                 rows="3"
                 cols="30"
+                required
                 value={messageValue}
                 onChange={(event) => {
                   onChangeMessageValue(event.target.value);
                 }}
                 placeholder="Votre message"
               />
+            </label>
+            <label htmlFor="file">Ajouter un fichier
               <input
                 className="contact-content-form-input"
                 type="file"
                 name="file"
+                ref={ref}
                 onChange={(event) => {
                   onChangeFileValue(event.target.files);
                 }}
                 placeholder="Joindre un fichier"
               />
-              <button className="contact-content-form-button" type="submit">Envoyer votre message</button>
-            </form>
-          </div>
+            </label>
+            <button className="contact-content-form-button" type="submit">Envoyer votre message</button>
+            {UIMessage && (<h2>{ UIMessage }</h2>)}
+          </form>
         </div>
-      )}
+      </div>
     </div>
   );
 }

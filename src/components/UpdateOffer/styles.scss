@@ -1,5 +1,4 @@
 //mobile first
-
 .update {
   width: 100%;
   padding: 3rem;
@@ -29,21 +28,29 @@
       flex-direction: column;
       margin-bottom: 1rem;
       &-input {
+        width: 100%;
         border: none;
         padding: 1rem;
         border-radius: 8px;
-        margin-bottom: 1rem;
+        margin: 1rem 0;
       }
       &-submitButton {
+        margin-top: 2rem;
+        margin-left: 38%;
+        width: 100%;
         padding: 1rem;
         border-radius: 5px;
         &:hover{
           background-color: rgb(145, 129, 129);
         }
       }
+      &-description {
+        margin: 1rem 0;
+      }
     }
 
     &-cancel-button {
+      margin-left: 38%;
       padding: 1rem;
       border-radius: 5px;
       &:hover{
@@ -69,6 +76,19 @@
       width: 70%;
       margin: 0 auto;
     }
+    &-modalCard {
+      &-form {
+        padding: 1rem;
+        &-submitButton {
+          width: 25%;
+          }
+      }
+  
+      &-cancel-button {
+        width: 25%;
+      } 
+    }
+ 
   }
 }
 

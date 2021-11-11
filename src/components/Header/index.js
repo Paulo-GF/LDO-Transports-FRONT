@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { useState } from 'react';
 
+// == import styles
 // import of the icon from the react-icon lib
 import { FaUserCircle } from 'react-icons/fa';
 import { CgMenuGridR } from 'react-icons/cg';
@@ -11,10 +12,11 @@ import './styles.scss';
 
 // is Logged is gonna be the boolean fetched from the backend
 // adminInfo aka name is gonna be the string fetched from the backend
-// logOut is gonna be the function that logs out the admin, waiting for the
-// feature to be ready to code the func
+// logOut is gonna be the function that logs out the admin
 export default function Header({ isLogged, adminInfo, logOut }) {
+  // local state for burger menu
   const [isOpen, setIsOpen] = useState(false);
+  // class names for media queries
   const classnameNav = isOpen ? 'navBar_appear' : 'navBar_hidden';
   const classnameBurger = isOpen ? 'hamburger hamburger_open' : 'hamburger hamburger_close';
 

@@ -20,7 +20,7 @@ export default function UpdateOffer({
   hideModifyOfferModal,
   offer,
 }) {
-  // state local
+  // local state to reset initial values in inputs
   const [reset, setReset] = useState(false);
 
   const {
@@ -59,48 +59,62 @@ export default function UpdateOffer({
         <div className="update-modalCard">
           <button className="update-modalCard-closeButton" type="button" onClick={hideModifyOfferModal}>X</button>
           <form className="update-modalCard-form" onSubmit={handleSubmitForm}>
-            <input
-              className="update-modalCard-form-input"
-              type="text"
-              name="title"
-              value={titleValue}
-              onChange={(event) => {
-                onChangeTitleValue(event.target.value);
-              }}
-              placeholder="titre"
-            />
-            <input
-              className="update-modalCard-form-input"
-              type="text"
-              name="region"
-              value={regionValue}
-              onChange={(event) => {
-                onChangeRegionValue(event.target.value);
-              }}
-              placeholder="région"
-            />
-            <input
-              className="update-modalCard-form-input"
-              type="text"
-              name="city"
-              value={cityValue}
-              onChange={(event) => {
-                onChangeCityValue(event.target.value);
-              }}
-              placeholder="ville"
-            />
-            <input
-              className="update-modalCard-form-input"
-              type="text"
-              name="type"
-              value={typeValue}
-              onChange={(event) => {
-                onChangeTypeValue(event.target.value);
-              }}
-              placeholder="type de contrat"
-            />
+            <label htmlFor="title">Titre
+              <input
+                className="update-modalCard-form-input"
+                type="text"
+                name="title"
+                required
+                value={titleValue}
+                onChange={(event) => {
+                  onChangeTitleValue(event.target.value);
+                }}
+                placeholder="titre"
+              />
+            </label>
+            <label htmlFor="region">Région
+              <input
+                className="update-modalCard-form-input"
+                type="text"
+                name="region"
+                required
+                value={regionValue}
+                onChange={(event) => {
+                  onChangeRegionValue(event.target.value);
+                }}
+                placeholder="région"
+              />
+            </label>
+            <label htmlFor="city">Ville
+              <input
+                className="update-modalCard-form-input"
+                type="text"
+                name="city"
+                required
+                value={cityValue}
+                onChange={(event) => {
+                  onChangeCityValue(event.target.value);
+                }}
+                placeholder="ville"
+              />
+            </label>
+            <label htmlFor="type">Type de contrat
+              <input
+                className="update-modalCard-form-input"
+                type="text"
+                name="type"
+                required
+                value={typeValue}
+                onChange={(event) => {
+                  onChangeTypeValue(event.target.value);
+                }}
+                placeholder="type de contrat"
+              />
+            </label>
+            <p className="update-modalCard-form-description"> Description </p>
             <ReactQuill
               theme="snow"
+              required
               value={descriptionValue}
               onChange={(event) => {
                 onChangeDescriptionValue(event);
