@@ -7,7 +7,7 @@ export default function Aboutus() {
     <div>
       <div className="aboutus-container">
         <div className="aboutus-card">
-          <img src="https://github.com/Neemko.png" alt="Thomaspic" className="profilepic" />
+          <img src="https://github.com/Neemko.png" alt="Thomaspic" className="aboutus-card-profilepic" />
           <p>Thomas Capo</p>
           <p>Product Owner</p>
           <div className="linkedin">
@@ -18,7 +18,7 @@ export default function Aboutus() {
           </div>
         </div>
         <div className="aboutus-card">
-          <img src="https://github.com/Paulo-GF.png" alt="" className="profilepic" />
+          <img src="https://github.com/Paulo-GF.png" alt="" className="aboutus-card-profilepic" />
           <p>Paulo Goncalves Ferreira</p>
           <p>Lead Dev Back</p>
           <div className="linkedin">
@@ -29,7 +29,7 @@ export default function Aboutus() {
           </div>
         </div>
         <div className="aboutus-card">
-          <img src="https://github.com/HeleneLoriot.png" alt="" className="profilepic" />
+          <img src="https://github.com/HeleneLoriot.png" alt="" className="aboutus-card-profilepic" />
           <p>Helene Loriot</p>
           <p>SCRUM Master</p>
           <div className="linkedin">
@@ -40,7 +40,7 @@ export default function Aboutus() {
           </div>
         </div>
         <div className="aboutus-card">
-          <img src="https://github.com/OdinAsgard.png" alt="" className="profilepic" />
+          <img src="https://github.com/OdinAsgard.png" alt="" className="aboutus-card-profilepic" />
           <p>Basile Marguerie</p>
           <p>GIT Master</p>
           <div className="linkedin">
@@ -51,7 +51,7 @@ export default function Aboutus() {
           </div>
         </div>
         <div className="aboutus-card">
-          <img src="https://github.com/RemiHENRY0117.png" alt="" className="profilepic" />
+          <img src="https://github.com/RemiHENRY0117.png" alt="" className="aboutus-card-profilepic" />
           <p>Remi Henry</p>
           <p>Lead Dev Front</p>
           <div className="linkedin">
