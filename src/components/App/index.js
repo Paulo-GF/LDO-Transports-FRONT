@@ -157,6 +157,7 @@ export default function App() {
     setLoading(true);
     axios.get(`https://ldo-transports.herokuapp.com/recrutement/${jobId}`)
       .then((response) => {
+        console.log(response.data);
         setOneOffer(response.data);
       })
       .catch((error) => {
