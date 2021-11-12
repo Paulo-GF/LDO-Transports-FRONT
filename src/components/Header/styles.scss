@@ -1,8 +1,15 @@
 //mobile first
 .header {
+  background: linear-gradient(45deg,rgba(18,67,86,.87),rgb(250 251 255 / 49%));
   width: 100%;
-  // display: flex;
+  display: flex;
+  position: relative;
+  position: fixed;
+  z-index: 10;
   // align-items: center;
+  &-burger {
+    margin-top: 2rem;
+  }
 }
 
 .menu-connected {
@@ -10,23 +17,30 @@
 }
 
 .logo-link {
+  position: relative;
   display: block;
   width: 100%;
-  height: 180px;
+  height: 100px;
   text-align: center;
 }
 
 .logo {
   width: auto;
   height: 100%;
+  animation: popLogo 5s;
 }
 
 .navBar {
+  position : absolute;
+  background-color: rgb(222, 221, 226);
+  border-radius: 0 0 5px 0;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  width: 128px;
+  width: 120px;
   justify-content: space-around;
   align-items: center;
+  margin-top: 6.25rem;
   margin-left : 0rem;
 
   &_hidden {
@@ -42,12 +56,8 @@
     margin: 0.5rem 0;
   }
 
-  &-link:hover {
-    color: rgb(116, 6, 6);
-  }
-
   &-link--selected {
-    border-bottom: 2px solid #a32610;
+    border-bottom: 2px solid #aca2a1;
 
   }
   // &_disappear {
@@ -83,7 +93,7 @@
 }
 
 .hamburger {
-  margin-left: 2.7rem;
+  margin-left: 2rem;
   font-size: 3em;
 
   &_open {
@@ -109,13 +119,30 @@
     }
   }
 
+  @keyframes popLogo {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
 
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
 
+  .header {
+    display: flex;
+    flex-direction: column;
+    &-burger {
+      display: none;
+    }
+  }
+
   .logo-link {
-    height: 250px;
+    height: 180px;
   }
 
   .hamburger {
@@ -123,16 +150,26 @@
   }
 
   .navBar {
+    border-radius: 0;
+    position: relative;
     width: 100%;
-    color: rgb(71, 8, 34);
+    height: 3.5rem;
+    background: linear-gradient(45deg,rgb(87, 12, 7), rgb(151, 150, 163));
+    color: white;
     display: flex;
     flex-direction: row;
     align-items:  center;
     font-weight: 700;
     font-size: 1.2em;
-    color: rgb(71, 8, 34);
-    padding-bottom: 1rem;
+    padding: 1rem;
     margin-left : 0;
+    margin-top: 0;
+
+    &-link {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+    }
+
     
     &_hidden {
       display: flex;
@@ -163,7 +200,6 @@
 @media screen and (min-width : 1024px) {
   /* Styles for this Media Queries */
   .header {
-    display: flex;
     align-items: center;
   }
 
@@ -187,13 +223,20 @@
     font-weight: 800;
     font-size: 1.5em;
     color: rgb(71, 8, 34);
-    width: 66%;
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-bottom: 0;
     padding-bottom: 0;
+
+    &-link:hover {
+      border-radius: 5px;
+      background-color: #dfdad9;
+      color: #501c13;
+      opacity: 0.5;
+    }
   }
   
   .menu-connected {

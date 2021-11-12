@@ -1,24 +1,25 @@
 //mobile first
 
 .homeNavBar {
+  //margin-top: 100px;
   width: 100%;
   display: flex;
+  padding: 9.5rem 0 .5rem 0;
   justify-content: space-around;
-  padding: 1rem;
-  background: rgb(136, 38, 19);
-  background: linear-gradient(to top, rgb(136, 38, 19) 0%, rgb(243, 242, 240) 7%, rgb(255,255,255) 100%);
-  //background: linear-gradient(360deg,rgb(146, 27, 6), rgb(255, 255, 255));
-
+  
   &-ref {
-    margin: 1rem 0;
-    border: solid rgb(78, 18, 6) 2px;
+    margin-top: 1rem;
+    border: solid white 2px;
+    background: linear-gradient(45deg,rgba(61,76,82,.87),rgb(250 251 255 / 49%));
     border-radius: 50%;
     padding: 1rem;
   }
 }
 
 .icon-anchor {
-  font-size: 3em;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 
