@@ -19,15 +19,17 @@
     flex-direction: column;
 
     &-form {
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       margin-bottom: 1rem;
 
       &-input {
+        width: 100%;
         border: none;
         padding: 1rem;
         border-radius: 8px;
-        margin-bottom: 1rem;
+        margin: 1rem 0;
       }
 
       &-button {
@@ -63,22 +65,25 @@
       width: 80%;
 
       &-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: block;
+        width: 100%;
         &-input {
-          width: 70%;
+          width: 100%;
           border: none;
           padding: 1rem;
           border-radius: 8px;
           margin-bottom: 1rem;
         }
+
+        &-description {
+          margin: 1rem 0;
+        }
   
         &-button {
+          margin-left: 38%;
           font-size: 1.2rem;
           font-weight: 400;
-          width: 50%;
-          margin: auto;
+          width: 25%;
           padding: 2rem;
           border-radius: 10px;
           &:hover{

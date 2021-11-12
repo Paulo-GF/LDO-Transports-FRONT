@@ -1,5 +1,42 @@
 //mobile first
+.contact {
+  width: 100%;
+  &-content {
+    margin: 1rem auto 0 auto;
+    background-color: grey;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
 
+    &-form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      &-input {
+        width: 100%;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+      }
+
+      &-button {
+        font-weight: 400;
+        width: 50%;
+        margin: auto;
+        padding: 1rem;
+        border-radius: 10px;
+        &:hover{
+          background-color: rgb(145, 129, 129);
+        }
+      }
+    }
+  }
+}
+label {
+  cursor: auto;
+}
 
 // tablettes
 @media screen and (min-width : 768px) {
@@ -9,4 +46,32 @@
 //desktop
 @media screen and (min-width : 1024px) {
   /* Styles for this Media Queries */
+  .contact {
+    &-content {
+      margin: 0 auto 2rem auto;
+      width: 80%;
+      border-radius: 10px;
+
+      &-form {
+        display: block;
+        width: 100%;
+        padding: 2rem;
+
+        &-input {
+          width: 100%;
+          margin-top: 1rem;
+        }
+  
+        &-button {
+          margin-left: 38%;
+          font-size: 1.2rem;
+          width: 25%;
+          padding: 2rem;
+          &:hover{
+            background-color: rgb(145, 129, 129);
+          }
+        }
+      }
+    }
+  }
 }
