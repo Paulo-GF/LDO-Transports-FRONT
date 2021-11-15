@@ -50,7 +50,7 @@ export default function Signin({
               onChangePasswordValue(event.target.value);
             }}
           />
-          {UIMessage && (<p>{UIMessage}</p>)}
+          {UIMessage && (<p className="messageAdmin">{UIMessage}</p>)}
           <button className="signin-content-form-button" type="submit">Se connecter</button>
         </form>
       </div>
