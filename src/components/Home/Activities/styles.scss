@@ -46,9 +46,7 @@
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
-  .activities {
-    background: linear-gradient(to bottom, rgb(136, 38, 19) 0%, rgb(255,255,255) 12%, rgb(255,255,255) 100%);
-  }
+
 }
 
 //desktop
@@ -56,7 +54,7 @@
   /* Styles for this Media Queries */
 
   .activities {
-    background: linear-gradient(to bottom, rgb(136, 38, 19) 0%, rgb(255,255,255) 25%, rgb(255,255,255) 100%);
+    
     &-title {
       font-size: 2em;
       font-weight: 600;

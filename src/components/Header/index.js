@@ -77,7 +77,7 @@ export default function Header({ isLogged, adminInfo, logOut }) {
               activeClassName="navBar-link--selected"
               className="navBar-link navBar-connected-admin"
             >
-              Page Admin
+              Mon profil
             </NavLink>
             <div className="navBar-connected-user">
               <FaUserCircle className="navBar-connected-user-icon" />
@@ -91,13 +91,13 @@ export default function Header({ isLogged, adminInfo, logOut }) {
         {isLogged && (
           <div className="menu-connected">
             <div className="menu-connected-avatar">
-              <FaUserCircle className="icon" />
+              <FaUserCircle className="menu-connected-avatar-icon" />
               <p>{adminInfo}</p>
             </div>
             <ul className="menu-connected-avatar-dropdown">
               <li className="menu-link-admin">
                 <NavLink to="/admin-logged">
-                  Page Admin
+                  Mon profil
                 </NavLink>
               </li>
               <li className="deconnexion-li">

@@ -28,7 +28,7 @@
   /* Styles for this Media Queries */
 
   .homeNavBar {
-    border-top: solid 3px rgb(190,45,16);
+    padding: 10rem 0 .5rem 0;
   }
 }
 
@@ -39,7 +39,12 @@
     border-top: none;
   }
 
-  .icon-anchor:hover {
-    transform: rotateY(180deg);
-  } 
+  .icon-anchor{
+    font-size: 3.5em;
+    &:hover {
+      transform: rotateY(180deg);
+    } 
+  }
+
+  
 }

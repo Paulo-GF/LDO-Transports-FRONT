@@ -6,7 +6,6 @@
   position: relative;
   position: fixed;
   z-index: 10;
-  // align-items: center;
   &-burger {
     margin-top: 2rem;
   }
@@ -17,6 +16,7 @@
 }
 
 .logo-link {
+  padding: 1rem 0;
   position: relative;
   display: block;
   width: 100%;
@@ -77,13 +77,9 @@
       display: flex;
       padding: 0.5rem;
       &-icon {
-        margin-right: 1rem;    
+        margin-right: .5rem;    
       }
     }
-
-    // &-admin {
-    //   margin: 0 ;
-    // }
 
     &-deconnexion-button {
       margin-top: 0.5rem;
@@ -134,7 +130,9 @@
   /* Styles for this Media Queries */
 
   .header {
+    position: static;
     display: flex;
+    background: none;
     flex-direction: column;
     &-burger {
       display: none;
@@ -142,7 +140,9 @@
   }
 
   .logo-link {
-    height: 180px;
+    background: linear-gradient(45deg,rgba(18,67,86,.87),rgb(250 251 255 / 49%));
+    margin-top: 3.5rem;
+    height: 150px;
   }
 
   .hamburger {
@@ -150,18 +150,18 @@
   }
 
   .navBar {
+    position: fixed;
+    background: rgba(18,67,86,.87);
     border-radius: 0;
-    position: relative;
     width: 100%;
     height: 3.5rem;
-    background: linear-gradient(45deg,rgb(87, 12, 7), rgb(151, 150, 163));
     color: white;
     display: flex;
     flex-direction: row;
     align-items:  center;
     font-weight: 700;
     font-size: 1.2em;
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
     margin-left : 0;
     margin-top: 0;
 
@@ -180,7 +180,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items:  center;
-
+      background: none;
       &-user {
         &-icon {
           margin: 0 1rem;    
@@ -200,6 +200,7 @@
 @media screen and (min-width : 1024px) {
   /* Styles for this Media Queries */
   .header {
+    background: linear-gradient(45deg,rgba(18,67,86,.87),rgb(250 251 255 / 49%));
     align-items: center;
   }
 
@@ -208,8 +209,8 @@
   }
 
   .logo-link {
-    max-width: 680px;
-    width: 33%;
+    background: none;
+    width: 22%;
     height: 100%;
     object-fit: cover;
   }
@@ -220,50 +221,83 @@
   }
   
   .navBar {
-    font-weight: 800;
-    font-size: 1.5em;
-    color: rgb(71, 8, 34);
+    font-weight: 600;
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-bottom: 0;
-    padding-bottom: 0;
 
     &-link:hover {
+      color:rgba(12, 44, 56, 0.87);
       border-radius: 5px;
-      background-color: #dfdad9;
-      color: #501c13;
+      background-color: rgb(222, 221, 226);
       opacity: 0.5;
     }
   }
   
   .menu-connected {
     display: inline-block;
+    position: relative;
     &-avatar {
       display: flex;
       align-items: center;
       border: none;
       cursor: pointer;
-      font-size: 2rem;
-      position: relative;
-      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      //position: relative;
+      padding: 1rem 0;
+     // margin-bottom: 0.5rem;
+      &-icon {
+        margin-right: 1rem;
+      }
       &-dropdown {
-        padding: 1rem;  
+        padding: 1rem ;  
         border-radius: 4px;
         display: none;
-        background-color: lightgrey;
-        min-width: 153px;
+        background-color: rgba(18,67,86,.87);
+        min-width: 135px;
         position: absolute;
+        left: -1rem;
       }
 
       &-dropdown li {
-        padding: 0.2rem;
+        border-radius: 5px;
         display: block;
         }
     }
   }
+
+  .menu-link-admin {
+    padding: .5rem 0 0.5rem .5rem;
+    &:hover {
+      background-color: rgb(222, 221, 226);
+      color:rgba(12, 44, 56, 0.87);
+    }
+  }
+
+  .deconnexion {
+    &-li {
+      padding: .5rem 0;
+      &:hover {
+        background-color: rgb(222, 221, 226);
+        color:rgba(12, 44, 56, 0.87);
+      }
+    }
+    &-button {
+      font-family: 'Nunito';
+      border: none;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      background: transparent;
+      font-size: .8em;
+      &:hover {
+        color:rgba(12, 44, 56, 0.87);
+      }
+    }
+  
+  }
+
   .menu-connected:hover .menu-connected-avatar-dropdown {
     display: block;
     }
