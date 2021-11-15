@@ -91,9 +91,10 @@
 .hamburger {
   margin-left: 2rem;
   font-size: 3em;
+  color: white;
 
   &_open {
-    transform: rotate(45deg);
+    transform: rotate(90deg);
     transition-duration: 1s;
   }
 

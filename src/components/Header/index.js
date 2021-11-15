@@ -5,7 +5,7 @@ import { useState } from 'react';
 // == import styles
 // import of the icon from the react-icon lib
 import { FaUserCircle } from 'react-icons/fa';
-import { CgMenuGridR } from 'react-icons/cg';
+import { CgMenu } from 'react-icons/cg';
 
 import LDOLogo from '../../assets/logoSF.png';
 import './styles.scss';
@@ -33,7 +33,7 @@ export default function Header({ isLogged, adminInfo, logOut }) {
           setIsOpen(!isOpen);
         }}
       >
-        <CgMenuGridR className={classnameBurger} />
+        <CgMenu className={classnameBurger} />
       </a>
       <nav className={`navBar ${classnameNav}`}>
         <NavLink

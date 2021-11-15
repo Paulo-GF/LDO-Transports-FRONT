@@ -18,6 +18,7 @@ import Contact from 'src/components/Contact';
 import Notfound from 'src/components/Notfound';
 import Loading from 'src/components/App/Loading';
 import Aboutus from 'src/components/Aboutus';
+import ScrollToTop from 'src/components/ScrollToTop';
 
 // import styles
 import './styles.scss';
@@ -334,6 +335,7 @@ export default function App() {
         isLogged={isLogged}
         logOut={logOut}
       />
+      <ScrollToTop />
       {loading && <Loading />}
       <Switch>
         <Route exact path="/aboutus">
