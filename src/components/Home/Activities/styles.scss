@@ -6,16 +6,28 @@
     font-size: 1.5rem;
     font-weight: 600;
     padding: 3rem 0 1rem 0;
+    color: rgb(18,67,86);
   }
   &-content {
     justify-content: space-between;
     display: flex;
     flex-direction: column;
     align-items: center;
+    &-draw {
+      width: 80%;
+      &-ldoTruck {
+        width: 100%;
+        height: auto;
+      }
+      &-ldoFrance {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
   &-section {
-    border: solid 1px black;
-    border-radius: 5px;
+    border: solid 1px rgba(18,67,86,.87);
+    border-radius: 15px;
     padding: 2rem;
     width: 80%;
     position: relative;
@@ -27,8 +39,9 @@
       margin-bottom: 0.5rem;
     }
     &-subtitle {
-      font-weight: 400;
+      font-weight: 600;
       margin-bottom: 1.5rem;
+      color: rgb(18,67,86);
     }
 
   }
@@ -40,12 +53,20 @@
   top: 2rem;
   left: 1.5rem;
   font-size: 2em;
+  color: rgb(18,67,86);
 }
 
 
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
+  .activities {
+    &-content {
+      &-draw {
+        width: 50%;
+      }
+    }
+  }
 
 }
 
@@ -57,21 +78,27 @@
     
     &-title {
       font-size: 2em;
-      font-weight: 600;
       padding: 5rem 0 3rem 0;
     }
     &-content {
-      justify-content: space-between;
-      display: flex;
       flex-direction: row;
       flex-wrap : wrap;
-      justify-content: space-between;
+      &-draw {
+        width: 50%;
+        padding: 1rem;
+        &-ldoTruck {
+          width: 50%;
+          height: auto;
+        }
+        &-ldoFrance {
+          padding-top: 1rem;
+          width: 50%;
+          height: auto;
+        }
+      }
     }
     &-section {
       height: 18rem;
-      border: solid 1px black;
-      border-radius: 5px;
-      padding: 2rem;
       margin: 2rem;
       width: calc(50% - 4rem);
       position: relative;
