@@ -1,4 +1,4 @@
-
+// mobile first
 @keyframes fade {
   0% {
     opacity: .5;
@@ -28,29 +28,46 @@
 
 .loading {
   position: fixed;
-  top: 0;
+  top: 100px;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
   z-index: 100;
   // transform: translate(-50%, -50%);
-  color: blue;
-  font-size: 2em;
+  color: rgb(18,67,86);
+  font-size: 1em;
   // animation: fade .75s infinite alternate;
 
   &::after {
     content: "";
     height: 10px;
     width: 100%;
-    background-color: blue;
+    background-color: rgb(18,67,86);;
     opacity: .3;
     position: absolute;
     top: 70%;
     left: 0;
     animation: load 1.5s infinite;
+  }
+}
+
+// tablettes
+@media screen and (min-width : 768px) {
+  /* Styles for this Media Queries */
+  .loading {
+    top: 210px;
+  }
+
+}
+
+//desktop
+@media screen and (min-width : 1024px) {
+  /* Styles for this Media Queries */
+  .loading {
+    top: 220px;
   }
 }
