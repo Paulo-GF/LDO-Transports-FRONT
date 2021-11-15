@@ -14,8 +14,9 @@
     &-card {
       display: flex;
       flex-direction: column;
-      background-color: rgb(185, 185, 185);
-      border-radius: 5px;
+      background-color: rgb(255, 255, 255);
+      border: solid 2px rgba(18,67,86,.87);
+      border-radius: 15px;
       width: 100%;
       margin: 1rem auto;
       padding: 1rem;
@@ -24,54 +25,74 @@
         line-height: 2em;
       }
 
-      &-title {
-        font-size: 1.5em;
-        font-weight: 600;
-      }
+      &-header {
+        border-bottom: solid 2px rgba(18,67,86,.87);
+        &-title, &-city, &-type {
+          font-weight: 600;
+          padding: 1%;
+        }
 
-      &-city {
+        &-title {
+          font-size: 1.5em;
+        }
+
+        &-city {
+          font-size: 1.2em;
+        }
+
+        &-modifyButton {
+          font-size: 1.2em;
+          border: none;
+          padding: 1rem;
+          margin: 1rem auto 0 auto;
+          border-radius: 5px;
+          background-color: rgba(18,67,86,.87);
+          color: white;
+          display: block;
+          margin-bottom: 2em;
+          &:hover {
+            font-weight: bold;
+          }
+        }
+      }
+      &-deleteButton, .show-apply-button {
+        border: none;
+        padding: 1rem;
+        margin: 1rem auto 0 auto;
+        border-radius: 5px;
+        background-color: rgba(18,67,86,.87);
+        color: white;
         font-size: 1.2em;
-        font-weight: 600;
+        &:hover {
+          font-weight: bold;
+        }
       }
-
-      &-type {
-        font-weight: 600;
-      }
-
-    }
-
-    &-deleteButton {
-      padding: 1rem;
-      margin: 1rem auto 0 auto;
-      border-radius: 5px;
-    }
-
-    &-applyButton {
-      padding: 1rem;
-      margin: 1rem auto 0 auto;
-      border-radius: 5px;
-    }
-
-    &-modifyButton {
-      margin: 0 auto 1rem auto;
-      border-radius: 5px;
     }
   }
-
+    
 }
 
 .back-to-offers-link {
-  border: solid 1px black;
+  font-family: 'Nunito', sans-serif;
+  background-color: rgba(18,67,86,.87);
+  color: white;
   border-radius: 10px;
   width: 8rem;
   padding: 0.5rem;
   text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+  &:hover {
+    font-weight: bold;
+  }
 }
 
 .apply {
   margin-top: 2rem;
   padding: 1rem;
   &-title {
+    padding-top: 1em;
+    border-top: solid 2px rgba(18,67,86,.87);
     font-weight: 400;
   }
   &-content-form {
@@ -80,24 +101,33 @@
 
     &-input {
       width: 100%;
-      border: none;
+      border: solid 2px rgba(18,67,86,.87);
       padding: 1rem;
       border-radius: 8px;
       margin: 1rem 0;
     }
 
     &-applyButton {
+      border: none;
+      background-color: rgba(18,67,86,.87);
       font-size: 1.2rem;
       font-weight: 400;
       width: 100%;
       margin: 1rem auto;
       padding: 1rem;
       border-radius: 10px;
+      color: white;
       &:hover{
-        background-color: rgb(145, 129, 129);
+        font-weight: bold;
       }
     }
   }
+}
+
+.message {
+  margin-top: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .hide-apply-button {
@@ -115,19 +145,16 @@
   /* Styles for this Media Queries */
   .offer {
     &-focused {
-      display: flex;
       flex-direction: row;
       &-card {
-        display: flex;
-        flex-direction: column;
         justify-content: space-between;
         min-height: 500px;
-        width: 50%;
+        width: 70%;
       }
     }
     .back-to-offers-link {
-      width: 10rem;
-      height: 5rem;
+      width: 11rem;
+      height: 4.5rem;
       padding: 1rem;
 
     }

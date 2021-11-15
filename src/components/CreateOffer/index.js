@@ -107,7 +107,6 @@ export default function Createoffer({
           </label>
           <p className="new-offer-content-form-description">Description</p>
           <ReactQuill
-            className="new-offer-content-form-input"
             theme="snow" // snow is not hidden, there is an edition mode to create the description of the offer
             required
             value={descriptionValue}
@@ -115,7 +114,7 @@ export default function Createoffer({
               onChangeDescriptionValue(event);
             }}
           />
-          <button className="new-offer-content-form-button" type="submit">créer une nouvelle offre</button>
+          <button className="new-offer-content-form-button" type="submit">Créer une nouvelle offre</button>
         </form>
       </div>
     </div>
