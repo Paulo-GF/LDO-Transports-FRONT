@@ -14,7 +14,7 @@ export default function Footer() {
         <NavLink to="/mentions-legales" activeClassName="footer-nav-link--selected" className="footer-nav-item footer-nav-link">
           Mentions légales
         </NavLink>
-        <NavLink to="/aboutus" activeClassName="footer-nav-link--selected" className="footer-nav-link-aboutus">
+        <NavLink to="/aboutus" activeClassName="footer-nav-link--selected" className="footer-nav-item footer-nav-link-aboutus">
           Nos développeurs
         </NavLink>
       </nav>

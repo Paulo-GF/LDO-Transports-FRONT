@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import colibrimail from 'src/assets/colibrimail.jpg';
+import colibrimail from 'src/assets/colibriedited.jpg';
 
 // import styles
 import './styles.scss';
