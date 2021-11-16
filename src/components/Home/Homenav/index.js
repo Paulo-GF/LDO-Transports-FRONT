@@ -39,7 +39,7 @@ export default function HomeNav() {
             <FaRegNewspaper className="icon-anchor" />
           </AnchorLink>
         </div>
-        <p className="homeNavBar-anchor-container-text">Nos news</p>
+        <p className="homeNavBar-anchor-container-text">Nos actualités</p>
       </div>
     </nav>
   );
