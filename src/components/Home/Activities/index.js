@@ -5,7 +5,7 @@ import { FaTruckLoading } from 'react-icons/fa';
 import { GiHandTruck } from 'react-icons/gi';
 import { RiServiceFill } from 'react-icons/ri';
 import { BsTruckFlatbed } from 'react-icons/bs';
-import ldoTruck from '../../../assets/ldoTruck.jpg';
+import ldoTruck from '../../../assets/ldoTruck.png';
 import franceDrawing from '../../../assets/franceDraw.jpg';
 
 export default function Activities() {

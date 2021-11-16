@@ -14,10 +14,11 @@
     flex-direction: column;
     align-items: center;
     &-draw {
-      width: 80%;
+      width: 90%;
       &-ldoTruck {
-        width: 100%;
+        width: 90%;
         height: auto;
+        margin: 2em 4em 2em 0;
       }
       &-ldoFrance {
         width: 100%;
@@ -87,7 +88,7 @@
         width: 50%;
         padding: 1rem;
         &-ldoTruck {
-          width: 50%;
+          width: 40%;
           height: auto;
         }
         &-ldoFrance {

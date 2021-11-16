@@ -17,15 +17,30 @@ export default function HomeNav() {
   };
   return (
     <nav className="homeNavBar" style={homenavContentStyle}>
-      <AnchorLink href="#activities" className="homeNavBar-ref">
-        <GiTruck className="icon-anchor" />
-      </AnchorLink>
-      <AnchorLink href="#history" className="homeNavBar-ref">
-        <BsBookHalf className="icon-anchor" />
-      </AnchorLink>
-      <AnchorLink href="#news" className="homeNavBar-ref">
-        <FaRegNewspaper className="icon-anchor" />
-      </AnchorLink>
+      <div className="homeNavBar-anchor-container">
+        <div className="homeNavBar-anchor-container-icon-container">
+          <AnchorLink href="#activities" className="homeNavBar-anchor-container-icon-container-ref">
+            <GiTruck className="icon-anchor" />
+          </AnchorLink>
+        </div>
+        <p className="homeNavBar-anchor-container-text">Nos activités</p>
+      </div>
+      <div className="homeNavBar-anchor-container">
+        <div className="homeNavBar-anchor-container-icon-container">
+          <AnchorLink href="#history" className="homeNavBar-anchor-container-icon-container-ref">
+            <BsBookHalf className="icon-anchor" />
+          </AnchorLink>
+        </div>
+        <p className="homeNavBar-anchor-container-text">Notre histoire</p>
+      </div>
+      <div className="homeNavBar-anchor-container">
+        <div className="homeNavBar-anchor-container-icon-container">
+          <AnchorLink href="#news" className="homeNavBar-anchor-container-icon-container-ref">
+            <FaRegNewspaper className="icon-anchor" />
+          </AnchorLink>
+        </div>
+        <p className="homeNavBar-anchor-container-text">Nos news</p>
+      </div>
     </nav>
   );
 }
