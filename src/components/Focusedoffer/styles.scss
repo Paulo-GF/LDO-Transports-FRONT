@@ -1,6 +1,6 @@
 //mobile first
 .offer {
-  margin: 1rem auto;
+  margin: 150px 1rem 0 auto;
   display: flex;
   justify-content: center;
   &-focused {
@@ -138,12 +138,16 @@
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
+  .offer {
+    margin-top: 90px;
+  }
 }
 
 //desktop
 @media screen and (min-width : 1024px) {
   /* Styles for this Media Queries */
   .offer {
+    margin-top: 110px;
     &-focused {
       flex-direction: row;
       &-card {

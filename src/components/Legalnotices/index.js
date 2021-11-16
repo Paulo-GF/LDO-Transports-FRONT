@@ -66,7 +66,7 @@ export default function Legalnotices() {
           </p>
           <p>
             - Vous disposez également à tout moment du droit de demander au responsable du
-            raitement l’accès aux données à caractère personnel, la rectification ou
+            traitement l’accès aux données à caractère personnel, la rectification ou
             l’effacement de celles-ci, ou une limitation du traitement ou du droit de
             s’opposer au traitement et du droit à la portabilité des données.
           </p>
