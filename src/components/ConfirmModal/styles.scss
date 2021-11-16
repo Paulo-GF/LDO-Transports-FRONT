@@ -10,25 +10,43 @@
   padding: 1rem;
 
   &-closeButton {
-    padding: 0.3rem;
+    background-color: rgba(18,67,86,.87);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 0.6rem;
     margin-bottom: 2rem;
+    &:hover {
+      font-weight: bold;
+    }
   }
 
   &-container {
-    border: solid 1px black;
-    border-radius: 10px;
+    border: solid 2px rgba(18,67,86,.87);
+    border-radius: 15px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: auto;
+    font-size: 1.3em;
     &-text {
       margin-bottom: 2rem;
     }
     &-button {
+      font-size: 1.1em;
       padding: 1rem;
-
+      background-color: rgba(18,67,86,.87);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      padding: 1rem;
+      margin-top: 2em;
+      margin-bottom: 1rem;
+      &:hover {
+        font-weight: bold;
+      }
     }
   }
 }
@@ -49,8 +67,6 @@
     }
   
     &-container {
-      border: solid 1px black;
-      border-radius: 10px;
       padding: 3rem;
       width: 50%;
     }

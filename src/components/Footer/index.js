@@ -14,10 +14,10 @@ export default function Footer() {
         <NavLink to="/mentions-legales" activeClassName="footer-nav-link--selected" className="footer-nav-item footer-nav-link">
           Mentions légales
         </NavLink>
+        <NavLink to="/aboutus" activeClassName="footer-nav-link--selected" className="footer-nav-link-aboutus">
+          Nos développeurs
+        </NavLink>
       </nav>
-      <div className="footer-link-aboutus">
-        <Link to="/aboutus" className="footer-link-aboutus-text">Nos développeurs</Link>
-      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import colibrimail from 'src/assets/colibrimail.jpg';
 
 // import styles
 import './styles.scss';
@@ -37,6 +38,9 @@ export default function Contact({
   return (
     <div>
       <div className="contact">
+        <div className="contact-image">
+          <img src={colibrimail} alt="colibri mail" className="contact-image-picture" />
+        </div>
         <div className="contact-content">
           <form
             className="contact-content-form"
@@ -123,7 +127,7 @@ export default function Contact({
               />
             </label>
             <button className="contact-content-form-button" type="submit">Envoyer votre message</button>
-            {UIMessage && (<h2>{ UIMessage }</h2>)}
+            {UIMessage && (<h2 className="message">{ UIMessage }</h2>)}
           </form>
         </div>
       </div>

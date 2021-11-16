@@ -15,7 +15,7 @@ export default function ConfirmModal({ message, closeModal, handleConfirm }) {
           type="button"
           className="confirmModal-container-button"
         >
-          supprimer l'offre
+          Supprimer l'offre
         </button>
       </div>
     </div>

@@ -10,10 +10,18 @@
     text-align: center;
     width: 60%;
     margin: 1% 0;
-    border: solid 3px #81252a;
+    border: solid 3px rgba(18,67,86,.87);
     border-radius: 25px;
-    background: #ececec;
+    background: white;
     padding: 1% 0;
+    &-link-container {
+      color: rgba(18,67,86,.87);
+    }
+    &-icon {
+      height: 2em;
+      width: 2em;
+      color: rgba(18,67,86,.87);
+    }
     &-profilepic {
       height: 7em;
       width: 7em;
@@ -24,7 +32,16 @@
     padding: 1%;
   }
 }
-
+.linkedin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 //desktop
 @media screen and (min-width : 1024px) {
   .aboutus {

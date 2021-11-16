@@ -131,15 +131,17 @@ export default function FocusedOffer({
             Retour aux offres d'emploi
           </Link>
           <div className="offer-focused-card">
-            {isLogged && (
-              <button type="button" onClick={showModifyOfferModal} className="offer-focused-modifyButton">
-                Modifier l'annonce
-              </button>
-            )}
+            <div className="offer-focused-card-header">
+              {isLogged && (
+                <button type="button" onClick={showModifyOfferModal} className="offer-focused-card-header-modifyButton">
+                  Modifier l'annonce
+                </button>
+              )}
+              <h1 className="offer-focused-card-header-title">{offer.title}</h1>
+              <p className="offer-focused-card-header-city">{offer.city}</p>
+              <p className="offer-focused-card-header-type">{offer.type}</p>
+            </div>
             <div className="offer-focused-card-content">
-              <h1 className="offer-focused-card-title">{offer.title}</h1>
-              <p className="offer-focused-card-city">{offer.city}</p>
-              <p className="offer-focused-card-type">{offer.type}</p>
               <ReactQuill
                 value={offer.description}
                 readOnly // no edition mode
@@ -152,7 +154,7 @@ export default function FocusedOffer({
                 onClick={() => {
                   setOpenModal(true);
                 }}
-                className="offer-focused-deleteButton"
+                className="offer-focused-card-deleteButton"
               >
                 Supprimer l'offre
               </button>
@@ -256,7 +258,7 @@ export default function FocusedOffer({
                   <button type="submit" className="apply-content-form-applyButton">
                     Confirmer votre candidature
                   </button>
-                  {UIMessage && (<p>{ UIMessage }</p>)}
+                  {UIMessage && (<p className="message">{ UIMessage }</p>)}
                 </form>
               </div>
             )}

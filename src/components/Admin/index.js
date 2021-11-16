@@ -51,7 +51,7 @@ export default function Admin({
               }}
               placeholder="Confirmer mot de passe"
             />
-            {UIMessage && (<p>{ UIMessage }</p>)}
+            {UIMessage && (<p className="messageAdmin">{ UIMessage }</p>)}
             <ul className="admin-content-form-list">
               <li>entre 8 et 24 caractères</li>
               <li>au moins un caractère spécial</li>
