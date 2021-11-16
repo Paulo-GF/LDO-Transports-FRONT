@@ -1,7 +1,8 @@
 //mobile first
 .footer {
   min-height: 10vh;
-  background-color: rgb(221, 221, 221);
+  background-color: white;
+  border-top: 2px solid rgba(18,67,86,.87);
   position: absolute;
   bottom: 0;
   top: 100%;
@@ -9,32 +10,32 @@
   padding: 1.5rem;
   width: 100%;
   font-weight: 600;
+  color: rgba(18,67,86,.87);
 
   &-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    &-link:hover {
-    text-decoration: underline;
-    text-decoration-color: #a32610;
-    text-decoration-thickness: 0.2em;
-    }
-
-    &-link--selected {
-      text-decoration: underline;
-      text-decoration-color: #a32610;
-      text-decoration-thickness: 0.2em;
-    }
-  }
-  &-link-aboutus {
-    padding-top: 1%;
-    padding-left: 2%;
-    text-align: center;
-
-    &-text {
-      font-size: 0.7em;
-      color: rgb(114, 114, 114);
+    &-link {
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: #a32610;
+        text-decoration-thickness: 0.1em;
+      }
+      &--selected {
+        text-decoration: underline;
+        text-decoration-color: #a32610;
+        text-decoration-thickness: 0.1em;
+      }
+      &-aboutus {
+        font-size: 0.8em;
+        color: grey;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: #a32610;
+          text-decoration-thickness: 0.1em;
+        }
+      }
     }
   }
 }
