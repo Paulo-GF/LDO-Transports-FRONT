@@ -6,6 +6,7 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
+    color: rgb(18,67,86);
   }
   &-colibri {
     display: none
@@ -35,6 +36,13 @@
 // tablettes
 @media screen and (min-width : 768px) {
   /* Styles for this Media Queries */
+  .history {
+    &-content {
+      font-weight: 600;
+      border-radius: 10px;
+      background-color: rgba(18,67,86,.3);
+    }
+  }
 }
 
 //desktop
@@ -73,14 +81,14 @@
       margin-top: 3rem;
       flex-direction: row;
       justify-content: flex-end;
-      font-weight: 600;
       width: 100%;
-      line-height: 2em;
+      line-height: 3em;
     }
 
     &-content {
       width : 50%;
-      padding: 2rem;
+      font-weight: 700;
+      background-color: rgba(18,67,86,.5);
     }
   }
 

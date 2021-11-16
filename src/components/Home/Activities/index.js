@@ -1,9 +1,12 @@
 // import styles
 import './styles.scss';
 // import images
-import { FaTrailer, FaTruckLoading } from 'react-icons/fa';
+import { FaTruckLoading } from 'react-icons/fa';
 import { GiHandTruck } from 'react-icons/gi';
 import { RiServiceFill } from 'react-icons/ri';
+import { BsTruckFlatbed } from 'react-icons/bs';
+import ldoTruck from '../../../assets/ldoTruck.png';
+import franceDrawing from '../../../assets/franceDraw.jpg';
 
 export default function Activities() {
   return (
@@ -11,16 +14,19 @@ export default function Activities() {
       <h1 className="activities-title">Nos activités</h1>
       <div className="activities-content">
         <section className="activities-section">
-          <FaTrailer className="section-icon" />
+          <BsTruckFlatbed className="section-icon" />
           <h2 className="activities-section-title">Traction</h2>
           <h3 className="activities-section-subtitle">Notre savoir-faire</h3>
           <p className="activities-section-decription">
-            Des montagnes de lignes qui collent à vos attentes,
+            Des montages de lignes qui collent à vos attentes,
             des professionnels de la route derrière le volant
             et une équipe d'exploitation expérimentée et réactive
             qui assure le suivi de l'acheminement de vos marchandises
           </p>
         </section>
+        <div className="activities-content-draw">
+          <img className="activities-content-draw-ldoTruck" src={ldoTruck} alt="draw of ldo truck" />
+        </div>
         <section className="activities-section">
           <FaTruckLoading className="section-icon" />
           <h2 className="activities-section-title">Affrètement</h2>
@@ -39,6 +45,9 @@ export default function Activities() {
             qu'il vous faut. Alors faites votre menu !
           </p>
         </section>
+        <div className="activities-content-draw">
+          <img className="activities-content-draw-ldoFrance" src={franceDrawing} alt="draw of colibri" />
+        </div>
         <section className="activities-section">
           <RiServiceFill className="section-icon" />
           <h2 className="activities-section-title">Contact</h2>

@@ -1,13 +1,14 @@
 //mobile first
 .signin {
+  margin-top: 100px;
   padding: 1rem 0 0 0;
-    &-content {
-    margin: auto;
+  &-content {
+    margin: 1em auto;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    background: linear-gradient(45deg,rgb(83, 24, 14), rgb(243, 63, 39));
-    border-radius: 5px;
+    width: 90%;
+    background: rgba(18,67,86,.87);
+    border-radius: 10px;
     padding: 1rem;
     text-align: center;
 
@@ -15,6 +16,7 @@
       margin-bottom: 1rem;
       &-icon {
         font-size: 2em; 
+        color: white;
       }
       
     }
@@ -30,12 +32,17 @@
         border-radius: 4px;
         border: solid 1px black;
         outline: none;
+      }
       &-button {
         padding: 1rem;
-        width: 50%;
+        width: 70%;
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.3em;
+        color: rgba(18,67,86,.87);
       }
     }
-  }
   };
 }
 
@@ -50,13 +57,19 @@
   /* Styles for this Media Queries */
   .signin {
     &-content {
-      width: 60%;
+      width: 40%;
       border-radius: 10px;
       padding: 1.5rem 0 3rem 0;
 
       &-form {
         &-input{
+          width: 80%;
+        }
+        &-button {
           width: 50%;
+          &:hover {
+            font-weight: bold
+          }
         }
       }
 

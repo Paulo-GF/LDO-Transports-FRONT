@@ -4,7 +4,7 @@ import './styles.scss';
 // import images
 import ldo from '../../../assets/ldo.png';
 import colibri from '../../../assets/colibri.png';
-import redRoad from '../../../assets/redRoad.jpg';
+import redRoad from '../../../assets/redRoad2.jpg';
 
 export default function History() {
   // background image
