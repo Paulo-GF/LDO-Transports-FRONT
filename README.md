@@ -34,7 +34,7 @@ L'idée dans un premier temps est d'avoir :
    * Gestion de la RGPD sur la partie information et donnée recueillis : <u>C'est très important pour le client</u>  
 Pouvoir en un clique récupérer les infos que le site détiens sur le visiteur qui a postulé (les infos du formulaire de recrutement)  
 Pouvoir supprimer les infos en question  
-   * Créer une partie archivage des cv intéressants (non embaucher mais pourrais faire l'affaire plustard) sur le backoffice
+   * Créer une partie archivage des cv intéressants (non embaucher mais pourrais faire l'affaire plustard) sur le backofficee
    * Au niveau de la place en bdd, c'est au client de se faire le ménage s'il veut pas avoir un site trop lourd ou qui coûte cher, cela évitera de perdre des infos importante et d'avoir une autonomie sur la solution
 </details>
 
